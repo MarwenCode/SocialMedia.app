@@ -5,6 +5,7 @@ import multer from "multer";
 import path from 'path';
 import authRoute from "./routes/auth.js";
 import userRoute from "./routes/users.js"
+import postRoute from "./routes/posts.js"
 
 
 
@@ -25,6 +26,7 @@ const connect = async () => {
 app.use(express.json());
 app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
+app.use("/api/post", postRoute)
 
 
 app.listen(5500, () => {

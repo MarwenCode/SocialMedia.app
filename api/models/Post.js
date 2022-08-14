@@ -31,4 +31,4 @@ PostSchema.virtual("comments", {
     justOne: false
   });
 
-  export default mongoose.model("Post", UserSchema)
+  export default mongoose.model("Post", PostSchema)
