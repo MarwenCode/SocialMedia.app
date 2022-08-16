@@ -1,19 +1,18 @@
-import React, {useState, useReducer, useEffect} from "react";
+import React, {useState, useReducer, useEffect,useRef} from "react";
 import axios from "axios";
+import reducer from "./reducer";
 
 
 export const AppContext = React.createContext()
 
-// const initialState = {
-//     user:JSON.parse(localStorage.getItem("user")) || null,
-//     // user: null,
-//     isFetching: false,
-//     error:false
-// }
+const initialState = {
+    user:JSON.parse(localStorage.getItem("user")) || null,
+    isFetching: false,
+    error:false
+}
 
 export const AppProvider = ({children}) => {
-    // const [state, dispatch] = useReducer(reducer, initialState)
-
+    const [state, dispatch] = useReducer(reducer, initialState)
     const [modalOpen, setModalOpen] = useState(false);
     // const [theme, setTheme]= useState("light");
 
@@ -21,17 +20,21 @@ export const AppProvider = ({children}) => {
     //     setTheme((currentThem) => (currentThem === 'light' ? "dark" : "light"))
     //   }
 
-    // useEffect(() => {
-    //     localStorage.setItem("user", JSON.stringify(state.user))
-    // },[state.user])
+    useEffect(() => {
+        localStorage.setItem("user", JSON.stringify(state.user))
+    },[state.user])
 
-   
+
 
 
 
 
     return(
         <AppContext.Provider value={{
+            user: state.user,
+            isFetching: state.isFetching,
+            error: state.error,
+            dispatch,
             modalOpen, setModalOpen
            
 
