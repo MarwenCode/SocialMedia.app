@@ -3,6 +3,7 @@ import {FaTrashAlt} from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../context/context";
+import "./post.scss"
 
 
 const Post = ({post}) => {
@@ -27,6 +28,28 @@ const Post = ({post}) => {
     //     addComment();
     //   };
 
+    const deletePost = async() => {
+  
+      try {
+        await axios.delete(`/post/${post._id}`, {
+          data: {userId: user._id}
+      
+        })
+        window.location.replace("/")
+        
+        
+      } catch (error) {
+        console.log(error)
+        
+      }
+    }
+
+    console.log(post._id)
+    console.log(post)
+
+
+
+
   console.log(post.comments)
 
   return (
@@ -37,6 +60,7 @@ const Post = ({post}) => {
         
               <img
                 className="postProfileImg"
+                src="./images/image1.jpg"
               
               />
             
@@ -49,27 +73,37 @@ const Post = ({post}) => {
         </div>
         <div className="postCenter">
           <span className="postText"> {post.desc}  </span>
-          <img className="postImg"  />
+          <img className="postImg" 
+
+          src="./images/image2.jpeg"
+          
+          
+          />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
             <img
               className="likeIcon"
+              src="./images/like.png"
              
             />
             <img
               className="likeIcon"
-           
+              src="./images/heart.png"
+             
             />
 
-            <span className="postLikeCounter">like it  {post.likes}  </span>
-            <p>{post.comments.map( comment => <p>{comment.text}</p>)} </p>
-          </div>
+            <span className="postLikeCounter">like it 20 {post.likes}  </span>
+        
         
           <div className="deletePost">
-            <FaTrashAlt  />
+            <FaTrashAlt  onClick={deletePost} />
           </div>
         </div>
+        <div className="comment">
+              {post.comments.map( comment => <p className="text">{comment.text}</p>)} 
+            </div>
+          </div>
       </div>
     </div>
   );

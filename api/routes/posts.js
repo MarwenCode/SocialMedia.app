@@ -50,7 +50,7 @@ postRoute.delete("/:id", async(req, res) => {
         const post  = await Post.findById(req.params.id)
         if(post.userId === req.body.userId) {
             try {
-                await post.delete()
+                await post.deleteOne()
                 res.status(200).json("post has been deleted")
             } catch (error) {
                 res.status(500).json(error)

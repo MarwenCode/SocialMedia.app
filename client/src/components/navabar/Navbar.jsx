@@ -74,7 +74,10 @@ const Navbar = () => {
       <div className="setting">
         <div className="settingList">
         <ul className="list">
+          <Link to="profile" className="link" >
           <li className="item">Profile</li>
+          </Link>
+        
           <Link to="/"  className="link" >
           <li className="item">Home</li>
           </Link>

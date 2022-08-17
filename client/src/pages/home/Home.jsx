@@ -1,6 +1,7 @@
 import React, {useState, useEffect}   from 'react';
 import axios from 'axios';
 import Posts from '../../components/Posts/Posts';
+import "./home.scss"
 
 
 const Home = () => {
@@ -22,8 +23,22 @@ const Home = () => {
 
   return (
     <div className='home'>
+      
+      <div className="right">
+        
 
+      </div>
+      <div className="center">
+        
       <Posts posts={posts} />
+
+      </div>
+      <div className="left">
+        
+
+      </div>
+
+      
     </div>
   )
 }
