@@ -63,11 +63,13 @@
         align-items: center;
         justify-content: space-between;
         width: 500px;
+        margin-top:2px;
 
         .postBottomLeft{
             display: flex;
             align-items: center; 
              justify-items: baseline;
+             margin-bottom: 100px;
 
              .likeIcon{
                 width: 24px;
@@ -95,8 +97,8 @@
         }
 
         .comment{
-            width:450px;
-            height: 100%;
+            width: 450px;
+            height:100%;
             border-radius: 10px;
             -webkit-box-shadow: 0px 0px 16px -8px rgba(9, 31, 27, 0.68);
             box-shadow: 0px 0px 16px -8px rgba(3, 1, 1, 0.68);
@@ -104,16 +106,55 @@
             margin-right: 300px;
             margin-left: -500px;
             background: linear-gradient(#95beda, #d8d9eb);
+            align-items: center;
+            // position: relative;
+            
           
 
             .text{
-                height: 20px;
-                width: 500px;
+                height: 55px;
+                width: 350px;
                 margin: 10px;
                 justify-content: center;
                 text-align: left;
+                background: linear-gradient(#c1cacf, #d8d9eb);
+                // border: 2px solid rgb(153, 142, 142);
+                border-radius: 5px;
+                // position: fixed;
+
            
            
+            }
+            .iconRespond{
+              background-color: antiquewhite;
+                display: flex;
+                margin: 10px;
+                cursor: pointer;
+                // position: fixed;
+                // margin-bottom: -55px;
+            
+
+                .likeIcon{
+                    width:20px;
+                 
+                }
+
+                .respond{
+                    font-size:medium;
+                    margin-left: 100px;
+                }
+                .addComment{
+                    margin-left: 60px;
+                    cursor: pointer;
+                }
+            }
+
+
+            .respondInput {
+                resize: none;
+                width: 350px;
+                border-radius: 5px;
+             
             }
 
         }

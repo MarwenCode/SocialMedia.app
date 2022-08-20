@@ -1,6 +1,7 @@
 import React, {useState, useEffect}   from 'react';
 import axios from 'axios';
 import Posts from '../../components/Posts/Posts';
+import Share from '../../components/share/Share';
 import "./home.scss"
 
 
@@ -29,6 +30,7 @@ const Home = () => {
 
       </div>
       <div className="center">
+        <Share />
         
       <Posts posts={posts} />
 

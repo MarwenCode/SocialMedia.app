@@ -24,6 +24,8 @@ export const AppProvider = ({children}) => {
         localStorage.setItem("user", JSON.stringify(state.user))
     },[state.user])
 
+   
+
 
 
 
