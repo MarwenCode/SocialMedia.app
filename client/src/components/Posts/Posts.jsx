@@ -1,11 +1,16 @@
 import React from 'react';
+import { FaCommentSlash } from 'react-icons/fa';
 import Post from '../post/Post';
+
 
 const Posts = ({posts}) => {
   return (
-    <div className='posts'>
+    <>
+
+<div className='posts'>
     {posts.map((post, index)=> (
       <Post post={post} key={index}/>
+      
 
     ))}
     
@@ -13,6 +18,10 @@ const Posts = ({posts}) => {
 
     
 </div>
+
+    
+    </>
+
   )
 }
 

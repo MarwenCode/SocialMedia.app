@@ -7,6 +7,7 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Profile from "./pages/profile/Profile";
+import SinglePost from "./components/singlePost/SinglePost";
 
 
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/post/:postId" element={<SinglePost />} />
       </Routes>
     </div>
   </Router>

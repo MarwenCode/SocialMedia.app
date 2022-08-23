@@ -58,7 +58,7 @@ postRoute.delete("/:id", async(req, res) => {
             }
 
         }else {
-            res.status.apply(401).json("you can delete only your post")
+            res.status(401).json("you can delete only your post")
         }
         
     } catch (error) {

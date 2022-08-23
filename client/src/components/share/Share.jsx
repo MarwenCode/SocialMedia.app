@@ -48,7 +48,15 @@ const Share = () => {
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img className="shareProfileImg" src={image + user.profilePicture} alt="" />
+        <img
+            className="shareProfileImg"
+            src={
+              user.profilePicture
+                ? image + user.profilePicture
+                :  "/images/noAvatar.png"
+            }
+            alt=""
+          />
           <input
             placeholder={"What's in your mind " + user.username + "?"}
             className="shareInput"
