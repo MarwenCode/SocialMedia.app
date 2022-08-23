@@ -27,7 +27,7 @@ const Post = ({ post }) => {
       const res = await axios.get(`/comments/${comment._id}`);
  
       console.log(res);
-      setComments(res.data);
+      setComment(res.data);
     };
 
     fetchComment();
