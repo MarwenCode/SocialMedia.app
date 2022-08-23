@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
-import { FaTrashAlt, FaRegCommentAlt } from "react-icons/fa";
+import { FaTrashAlt, FaRegCommentAlt, FaEdit } from "react-icons/fa";
+import { GiConfirmed } from "react-icons/gi";
 import { MdDeleteForever } from "react-icons/md";
 import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
@@ -10,7 +11,7 @@ import { useEffect } from "react";
 const Post = ({ post }) => {
   const { user } = useContext(AppContext);
   const image = "http://localhost:5500/images/";
-  const [commentMode, setCommentMode] = useState(false)
+  const [commentMode, setCommentMode] = useState(false);
 
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState([]);
@@ -19,13 +20,12 @@ const Post = ({ post }) => {
   console.log(Location);
   const { userId } = useParams();
 
-  // const commentDelete = comments.map(commentDelete)
-
+  // get all comments and stock it all in const [comment, seComment]
   useEffect(() => {
     const fetchComment = async () => {
       // const res = await axios.get("/comments")
       const res = await axios.get(`/comments/${comment._id}`);
- 
+
       console.log(res);
       setComment(res.data);
     };
@@ -34,6 +34,8 @@ const Post = ({ post }) => {
   }, []);
 
   console.log(comment);
+
+  // add comment and stock it on const [comments, setComments]
 
   const addComment = (e) => {
     e.preventDefault();
@@ -74,14 +76,14 @@ const Post = ({ post }) => {
     }
   };
 
-  const deleteComment = async (commentId ) => {
-    console.log(commentId)
+  const deleteComment = async (commentId) => {
+    console.log(commentId);
     try {
       await axios.delete(
         `/comments/${commentId}`,
 
         {
-          data: { userId: user._id},
+          data: { userId: user._id },
           // data:{comments: comment._id}
           // data: { username: user.username },
           // comments: {comments._id} ,
@@ -91,53 +93,60 @@ const Post = ({ post }) => {
     } catch (error) {
       console.log(error);
     }
-
-    
-
-    // setComment(newList)
-
-    // console.log(comment)
-    // console.log(newList)
   };
 
-  // console.log(post._id);
-  // console.log(post);
-
-  // console.log(post.comments);
-
-
-  //like and deslike a post 
+  //like and deslike a post
   const [like, setLike] = useState(post.likes.length);
- 
+
   const [isLiked, setIsLiked] = useState(false);
 
-  useEffect(() => {
-    setIsLiked(post.likes.includes(user._id));
-  }, [user._id, post.likes]);
+  // useEffect(() => {
+  //   setIsLiked(post.likes.includes(user._id));
+  // }, [user._id, post.likes]);
 
   const likeHandler = () => {
     try {
-      axios.put("/post/" + post._id +"like",{userId: user._id })
-      
-    } catch (err) {
-      setLike(isLiked ? like - 1 : like + 1);
-      setIsLiked(!isLiked);
-      
-    }
-  }
+      axios.put("/post/" + post._id + "/like", { userId: user._id });
+    } catch (err) {}
+    setLike(isLiked ? like - 1 : like + 1);
+    setIsLiked(!isLiked);
+  };
 
+  //Edit post
+  // const [editMode, setEditMode] = useState(false);
+  // const [edit, setEdit] = useState("")
+
+  // const handleEdit = async() => {
+  //   try {
+  //     await axios.put(`/post/${post._id}`, {
+  //       username: user.username,
+  //       userId: user._id,
+  //       comment: comment.text
+  //     });
+
+  //     setEditMode(false)
+
+  //     // setComments(comments)
+
+  //   } catch (error) {
+
+  //   }
+  // }
 
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img className="postProfileImg" src={
-              user.profilePicture
-                ? image + user.profilePicture
-                :  "/images/noAvatar.png"
-            }
-            alt="" />
+            <img
+              className="postProfileImg"
+              src={
+                user.profilePicture
+                  ? image + user.profilePicture
+                  : "/images/noAvatar.png"
+              }
+              alt=""
+            />
 
             {/* <img
             className="postImg"
@@ -158,14 +167,21 @@ const Post = ({ post }) => {
           <span className="postText"> {post.desc} </span>
           {/* <img className="postImg" src="./images/image2.jpeg" /> */}
           <img className="postImg" src={image + post.img} alt="" />
-          
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img className="likeIcon" src="./images/like.png"  onClick={likeHandler} />
-            <img className="likeIcon" src="./images/heart.png"  onClick={likeHandler} />
+            <img
+              className="likeIcon"
+              src="./images/like.png"
+              onClick={likeHandler}
+            />
+            <img
+              className="likeIcon"
+              src="./images/heart.png"
+              onClick={likeHandler}
+            />
 
-            <span className="postLikeCounter">like it 20 {post.likes} </span>
+            <span className="postLikeCounter">like it {like} </span>
 
             <div className="deletePost">
               <FaTrashAlt onClick={deletePost} />
@@ -173,15 +189,23 @@ const Post = ({ post }) => {
           </div>
           <div className="comment">
             {/* {post.comments.map((comment) => ( */}
-            {post.comments.map((comment) => (
+            {comment.map((comment) => (
               <div className="commentText">
-                <p className="text">{comment.text}</p>
+                <p className="text"> {comment.text}</p>
+
                 <span className="commentUser">{comment.username}</span>
                 <div className="editDeleteComment">
-                  <Link to={`/post/${comment._id}`} className="link">
-                    <FaRegCommentAlt className="edit" />
-                  </Link>
-                  <MdDeleteForever onClick={deleteComment} className="delete" />
+                  {/* <GiConfirmed className="edit" onClick={handleEdit} /> */}
+                  {/* <FaEdit
+                    className="edit"
+                    onClick={() => setEditMode((prev) => !prev)}
+                  /> */}
+                  {/* <FaEdit className="edit"  onClick={handleEdit} /> */}
+
+                  <MdDeleteForever
+                    onClick={() => deleteComment(comment._id)}
+                    className="delete"
+                  />
                 </div>
               </div>
             ))}
@@ -214,4 +238,3 @@ const Post = ({ post }) => {
 };
 
 export default Post;
-

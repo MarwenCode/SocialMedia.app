@@ -43,6 +43,44 @@ commentRoute.delete("/:id", async (req, res) => {
   }
 });
 
+
+// update a comment
+
+commentRoute.put("/:id", async(req, res) => {
+  try {
+    const comment = await Comment.findById(req.params.id);
+    if (comment.userId === req.body.userId) {
+      try {
+        const updateComment = await Comment.findByIdAndUpdate(
+          req.params.id,
+          {$set: req.body},
+          {new: true}
+        );
+        res.status(200).json(updateComment);
+      } catch (error) {
+        res.status(500).json(error)
+        
+      }
+    }else {
+      res.status(401).json("you can edit only your comment")
+    }
+
+  } catch (error) {
+    res.status(500).json(error);
+    
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
 // commentRoute.post("/:postId", async(req, res) => {
 //   try {
 //     return Post.findByIdAndUpdate(

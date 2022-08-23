@@ -142,6 +142,21 @@
                
                 }
 
+                .textwhite{
+                    height: 55px;
+                    width: 350px;
+                    margin: 10px;
+                    justify-content: center;
+                    text-align: left;
+                    background: linear-gradient(#c3d2da, #d5d6e2);
+                    // border: 2px solid rgb(153, 142, 142);
+                    border-radius: 5px;
+                    // position: fixed;
+                    padding: 10px
+
+
+                }
+
                 .commentUser{
                     font-size: small;
                     // font-style: italic;
