@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
+import { FcSearch } from "react-icons/fc";
 import { useEffect } from "react";
 import { AppContext } from "../context/context";
 import "./lefthome.scss";
@@ -7,6 +8,7 @@ import "./lefthome.scss";
 const LeftHome = () => {
   const { user } = useContext(AppContext);
   const [friends, setFriends] = useState([]);
+  const image = "http://localhost:5500/images/";
 
   useEffect(() => {
     const getFriends = async () => {
@@ -17,57 +19,69 @@ const LeftHome = () => {
       } catch (error) {
         console.log(error);
       }
-   
     };
 
     getFriends();
   }, [user._id]);
 
-  console.log(friends)
-  console.log(user)
 
-  return(
-
-
- 
-<div className="lefthome">
-   
-   <div className="top">
-
-   </div>
-
-   <div className="down">
-
-   <div className="friendslist">
-     <h4 className="rightbarTitle">User friends</h4>
-
-     <div className="searchFriendsList">
-       {/* <Search  className='searchIcon'/> */}
-       <input
-
-         placeholder="search for a friend"
-         className="inputSearchFriend" />
-
-     </div>
-   </div>
-
-   <div className="leftbarFollowings">
-
-     <div className="leftbarFollowing">
-       <span className="leftbarFollowingName"></span>
-       <img className="leftbarFollowingImg" />
-
-     </div>
-
-   </div>
-
- </div>
- 
- 
+  console.log(friends);
+  console.log(user);
 
 
-</div>
 
+
+
+
+
+
+
+
+
+
+  return (
+    <div className="lefthome">
+      <div className="top">
+      
+
+      </div>
+
+      <div className="down">
+        <div className="friendslist">
+          <h4 className="rightbarTitle">User friends</h4>
+
+          <div className="searchFriendsList">
+            <FcSearch className="searchIcon" />
+            <input
+              placeholder="search for a friend"
+              className="inputSearchFriend"
+            />
+          </div>
+        </div>
+
+        <div className="leftbarFollowings">
+          {friends.map((friend) => (
+            <div className="leftbarFollowing">
+                <img
+                className="leftbarFollowingImg"
+                src={
+                  friend.profilePicture 
+                  ?
+                  image + friend.profilePicture
+                   :
+                   "/images/noAvatar.png"
+                
+                }
+              />
+              <span className="leftbarFollowingName">
+                {friend.username}
+                </span>
+            
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 

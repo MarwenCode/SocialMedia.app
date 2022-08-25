@@ -9,6 +9,91 @@
 
   .down {
     height: 70%;
-    // background-color: rgb(88, 5, 40);
+    background-color: rgb(88, 5, 40);
+
+    .friendslist{
+  
+
+
+
+      .rightbarTitle{
+        // margin: 10px;
+        align-items: center;
+        justify-content: center;
+        margin-left: 15px;
+        margin-bottom: 10px;
+        font-family: 'Lato', sans-serif;
+        font-size: large;
+
+
+      }
+
+      .searchFriendsList{
+        display: flex;
+        align-items: center;
+
+        .searchIcon{
+          width:30px;
+
+
+        }
+
+        .inputSearchFriend{
+          width: 70%;
+          border-radius: 10px;
+  
+  
+        }
+
+      }
+
+      
+
+     
+
+    }
+
+
+
+    .leftbarFollowings{
+      width: 75%;
+      background-color: rgb(199, 118, 12);
+      margin: 20px;
+      height: 100%;
+
+
+
+      .leftbarFollowing{
+        display: flex;
+        margin: 10px;
+
+
+        .leftbarFollowingName{
+          font-size: medium;
+          margin: 10px;
+          font-family: 'Lato', sans-serif;
+          color: #42494b;
+        }
+
+        .leftbarFollowingImg{
+          border-radius: 10px;
+          width:35px;
+          margin-top: 10px;
+         
+        }
+
+
+
+
+
+
+      }
+
+
+
+
+
+
+    }
   }
 }
