@@ -11,9 +11,12 @@ const initialState = {
     error:false
 }
 
+
+
 export const AppProvider = ({children}) => {
     const [state, dispatch] = useReducer(reducer, initialState)
     const [modalOpen, setModalOpen] = useState(false);
+    const [posts, setPosts] = useState([]);
     // const [theme, setTheme]= useState("light");
 
     // const toggleTheme = () => {
@@ -24,9 +27,21 @@ export const AppProvider = ({children}) => {
         localStorage.setItem("user", JSON.stringify(state.user))
     },[state.user])
 
+    //fetch Posts
+    
+    useEffect(() => {
+        const fetchPosts = async () => {
+          const res = await axios.get("/post");
+          console.log(res);
+          setPosts(res.data);
+        };
+    
+        fetchPosts();
+      }, []);
+
    
 
-
+    console.log(posts)
 
 
 
@@ -37,7 +52,8 @@ export const AppProvider = ({children}) => {
             isFetching: state.isFetching,
             error: state.error,
             dispatch,
-            modalOpen, setModalOpen
+            modalOpen, setModalOpen,
+            posts,setPosts
            
 
         }}        

@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { FcSearch } from "react-icons/fc";
 import { useEffect } from "react";
 import { AppContext } from "../context/context";
+import Reactions from "../reactions/Reactions";
 import "./lefthome.scss";
 
 const LeftHome = () => {
@@ -24,25 +25,13 @@ const LeftHome = () => {
     getFriends();
   }, [user._id]);
 
-
   console.log(friends);
   console.log(user);
-
-
-
-
-
-
-
-
-
-
-
 
   return (
     <div className="lefthome">
       <div className="top">
-      
+      <Reactions />
 
       </div>
 
@@ -62,21 +51,15 @@ const LeftHome = () => {
         <div className="leftbarFollowings">
           {friends.map((friend) => (
             <div className="leftbarFollowing">
-                <img
+              <img
                 className="leftbarFollowingImg"
                 src={
-                  friend.profilePicture 
-                  ?
-                  image + friend.profilePicture
-                   :
-                   "/images/noAvatar.png"
-                
+                  friend.profilePicture
+                    ? image + friend.profilePicture
+                    : "/images/noAvatar.png"
                 }
               />
-              <span className="leftbarFollowingName">
-                {friend.username}
-                </span>
-            
+              <span className="leftbarFollowingName">{friend.username}</span>
             </div>
           ))}
         </div>

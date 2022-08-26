@@ -1,0 +1,32 @@
+.reactions {
+    width: 80%;
+    margin-top: 10px;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  
+    
+   
+   
+
+    .reactionBox {
+        border: 1px solid grey;
+        width: 250px;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 10px;
+        background: linear-gradient(#5fa4cf, #6d78dd);
+        font-size: medium;
+        
+       
+        
+
+       
+    }
+
+    .reactionBox:hover {
+        background: linear-gradient(#5195d46c, #8c94e9);
+        // width: 100px;
+        // border-radius: 10px;
+    }
+}

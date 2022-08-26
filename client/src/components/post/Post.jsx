@@ -159,7 +159,7 @@ const Post = ({ post }) => {
           /> */}
 
             <span className="postUsername">{user.username}</span>
-            <span className="postDate">{post.createdAt}</span>
+            <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
           </div>
           <div className="postTopRight">{/* <MoreVert /> */}</div>
         </div>
@@ -189,7 +189,7 @@ const Post = ({ post }) => {
           </div>
           <div className="comment">
             {/* {post.comments.map((comment) => ( */}
-            {comment.map((comment) => (
+            {post.comments.map((comment) => (
               <div className="commentText">
                 <p className="text"> {comment.text}</p>
 
