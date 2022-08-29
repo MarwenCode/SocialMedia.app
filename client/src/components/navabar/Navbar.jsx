@@ -7,7 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-    const { modalOpen, setModalOpen } = useContext(AppContext);
+    const { modalOpen, setModalOpen ,user} = useContext(AppContext);
   //   const publicFolder = "http://localhost:8000/images/";
   //   const [posts, setPosts] = useState([]);
   const Navigate = useNavigate();
@@ -74,7 +74,7 @@ const Navbar = () => {
       <div className="setting">
         <div className="settingList">
         <ul className="list">
-          <Link to="profile" className="link" >
+          <Link to={`/profile/${user._id}`} className="link" >
           <li className="item">Profile</li>
           </Link>
         

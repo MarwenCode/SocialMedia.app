@@ -3,14 +3,17 @@ import axios from "axios";
 import Posts from "../../components/Posts/Posts";
 import Share from "../../components/share/Share";
 import LeftHome from "../../components/leftHome/LeftHome";
+import SideBar from "../../components/sidebar/SideBar";
 import { FaTrashAlt, FaRegCommentAlt } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { AppContext } from "../../components/context/context";
 import "./home.scss";
 
+
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
+  
   const { user } = useContext(AppContext);
   // const [comment, setComment] =useState([])
 
@@ -73,10 +76,13 @@ const Home = () => {
   // console.log(comments)
 
   // console.log(comments)
+  console.log(user)
 
   return (
     <div className="home">
-      <div className="right"></div>
+      <div className="right">
+        <SideBar />
+      </div>
       <div className="center">
         <Share />
 
@@ -85,6 +91,7 @@ const Home = () => {
       <div className="left">
         <LeftHome />
       </div>
+  
     </div>
   );
 };

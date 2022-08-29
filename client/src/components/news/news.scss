@@ -1,0 +1,24 @@
+.news {
+    width: 100%;
+    
+
+
+
+    .title {
+        font-size: 15;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+       
+    }
+
+    .createdAt {
+        color: grey;
+        margin:10px;
+    }
+
+    .image{
+        width: 100%;
+        border-radius: 10px;
+        scroll-behavior: smooth;
+
+    }
+}

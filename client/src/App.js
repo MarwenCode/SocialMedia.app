@@ -6,8 +6,8 @@ import { useContext } from "react";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import Profile from "./pages/profile/Profile";
 import SinglePost from "./components/singlePost/SinglePost";
+import Profile from "./pages/profile/Profile";
 
 
 
@@ -16,14 +16,14 @@ function App() {
   return (
     <Router>
     <div className="container" >
-      <Navbar />
+      <Navbar /> 
       {modalOpen && <Modal setOpenModal={setModalOpen} />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/post/:postId" element={<SinglePost />} />
+        <Route path="/profile/:id" element={<Profile />} />
       </Routes>
     </div>
   </Router>
