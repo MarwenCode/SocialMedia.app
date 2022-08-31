@@ -123,6 +123,20 @@ postRoute.get("/myposts/:id", async (req, res) => {
   }
 });
 
+// postRoute.get("/profile/friend/:id", async(req, res) => {
+
+//   try {
+//     const user = await User.findById(req.params.id);
+//     const posts = await Post.find({ userId: user._id })
+//       .populate("comments")
+//       .exec();
+//     res.status(200).json(posts);
+//   } catch (error) {
+//     res.status(500).json(error);
+//   }
+
+// })
+
 // postRoute.get("/timeline/:userId", async (req, res) => {
 //     try {
 //       const currentUser = await User.findById(req.params.userId);

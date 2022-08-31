@@ -37,10 +37,23 @@
       
           }
 
-          .reactions {
-            margin-top:100px;
-            margin-right:10px;
-          }
+          .informations {
+        
+            // margin-top: 250px;
+            // display: flex;
+            margin: 10px;
+            padding: 5px;
+            list-style-type: none;
+            border-top: 1px solid grey;
+            
+        
+            .list{
+              font-size: large;
+              margin-left: -15px;
+           
+            }
+
+      
 
 
     }
@@ -69,7 +82,7 @@
 
         .share {
           width:750px;
-          margin-left: 20px;
+          margin-left: 100px;
           margin-top:8px;
         }
 
@@ -79,30 +92,16 @@
     .users{ 
       // background-color: rgb(38, 21, 136);
      display: block;
-     margin-top: 380px;
+     margin-top: 370px;
      width: 400px;
     //  height:500px;
     cursor: pointer;
-    position:fixed;
-    margin-left: 1300px;
-
-    .title{
-      font-family: sans-serif;
-      margin-left: 50px;
-      margin-bottom: 250px;
-    
-    }
-   
-   
-   
-   
-  
   
 
     .suggTop{
-      width:80%;
+      width:400px;
       height:200px;
-      background: linear-gradient(#c6d8e4, #d7d8e6);
+      background: linear-gradient(#68b2e4, #9198e5);
       overflow-y:scroll;
       border-radius: 20px;
 
@@ -115,12 +114,7 @@
       }
 
 
-      .suggestions {
-        
-        // margin-top: 250px;
-        display: flex;
-        margin: 10px;
-        padding: 5px;
+    
      
 
 
@@ -157,44 +151,22 @@
 
       .friendsList{
         // flex:2;
-     
+        // background-color: rgb(223, 90, 223);
         overflow-y:scroll;
-        position: absolute;
-        width:100%;
-        // background-color: aqua;
-        margin-top: 50px;
-        // position: absolute;
-        // position: sticky;
-
-        .title{
-          font-family: sans-serif;
-          margin-left: 50px;
-        }
        
-      
-      
-       
-        // margin-top: 200px;
+        margin-top: 200px;
 
         .leftbarFollowings{
-          width: 80%;
+          width: 75%;
           // background-color: rgb(199, 118, 12);
           margin: 20px;
-          // height: 100%;
-          background: linear-gradient(#c6d8e4, #d7d8e6);
-          // position: absolute;
-          border-radius: 10px;
-          
-      
-        
-      
+          height: 100%;
     
     
     
           .leftbarFollowing{
             display: flex;
             margin: 10px;
-         
     
     
             .leftbarFollowingName{

@@ -158,7 +158,7 @@ const Post = ({ post }) => {
             alt=""
           /> */}
 
-            <span className="postUsername">{user.username}</span>
+            <span className="postUsername">{post.username}</span>
             <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
           </div>
           <div className="postTopRight">{/* <MoreVert /> */}</div>

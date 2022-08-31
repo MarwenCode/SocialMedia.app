@@ -8,6 +8,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import SinglePost from "./components/singlePost/SinglePost";
 import Profile from "./pages/profile/Profile";
+import FriendProfile from "./components/FriendProfile/FriendProfile";
 
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/post/:postId" element={<SinglePost />} />
         <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/profile/friend/:id" element={<FriendProfile />} />
       </Routes>
     </div>
   </Router>
