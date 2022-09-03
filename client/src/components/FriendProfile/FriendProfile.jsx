@@ -15,15 +15,32 @@ import Post from "../post/Post";
 
 import "./friendprofile.scss";
 
+const getlocalStorage = () => {
+  let follow = localStorage.getItem("follow")
+  if(follow) {
+    return JSON.parse(localStorage.getItem("follow"))
+  }else {
+    return []
+
+  }
+}
+
+
+
+
+
+
+
+
+
 const FriendProfile = () => {
   const { user, dispatch } = useContext(AppContext);
   const [friends, setFriends] = useState([]);
-
-  const location = useLocation()
-  console.log(location)
+  const [followed, setFollowed] = useState(getlocalStorage(false));
+  const location = useLocation();
+  console.log(location);
   const path = location.pathname.split("/")[3];
   console.log(path);
-
 
   const [users, setUsers] = useState([]);
 
@@ -34,14 +51,13 @@ const FriendProfile = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       // const res = await axios.get(`/profile/friend/${user._id}`);
-      const res = await axios.get('/profile/friend/' + path);
+      const res = await axios.get("/profile/friend/" + path);
       console.log(res);
       setPosts(res.data);
     };
 
     fetchPosts();
   }, []);
-
 
   useEffect(() => {
     const getUsers = async () => {
@@ -57,13 +73,10 @@ const FriendProfile = () => {
     getUsers();
   }, []);
 
-
   const [commentMode, setCommentMode] = useState(false);
 
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState([]);
-
-
 
   // get all comments and stock it all in const [comment, seComment]
   useEffect(() => {
@@ -108,8 +121,6 @@ const FriendProfile = () => {
 
   // }, [])
 
-
-
   //like and deslike a post
   const [like, setLike] = useState();
 
@@ -127,30 +138,49 @@ const FriendProfile = () => {
     setIsLiked(!isLiked);
   };
 
-  const deleteComment = async (commentId) => {
-    console.log(commentId);
-    try {
-      await axios.delete(
-        `/comments/${commentId}`,
+  // const deleteComment = async (commentId) => {
+  //   console.log(commentId);
+  //   try {
+  //     await axios.delete(
+  //       `/comments/${commentId}`,
 
-        {
-          data: { userId: user._id },
-          // data:{comments: comment._id}
-          // data: { username: user.username },
-          // comments: {comments._id} ,
-        }
-      );
-      window.location.replace("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
+  //       {
+  //         data: { userId: user._id },
+  //         // data:{comments: comment._id}
+  //         // data: { username: user.username },
+  //         // comments: {comments._id} ,
+  //       }
+  //     );
+  //     window.location.replace("/");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
 
 
+//   const handleClick = async () => {
+//   try {
+//     if (followed) {
+//       await axios.put(`/user/unfollow/${user._id}`, {
+//         userId: user._id,
+//       });
+//       dispatch({ type: "UNFOLLOW", payload: user._id });
+//     } else {
+//       await axios.put(`/user/follow/${user._id}`, {
+//         userId: user._id,
+//       });
+//       dispatch({ type: "FOLLOW", payload: user._id });
+//     }
+//     setFollowed(!followed);
+//   } catch (err) {
+//   }
+// };
 
+useEffect(() => {
+  localStorage.setItem("follow", JSON.stringify(followed))
+
+}, [followed])
 
 
 
@@ -176,12 +206,11 @@ const FriendProfile = () => {
           <li className="list">City</li>
           <li className="list">Occupation</li>
         </div>
-        <div className="follow">
-          <button> follow
-            <RiUserFollowFill />
-          </button>
-          <button> unfollow
-            <RiUserUnfollowFill />
+        <div className="follow"  onClick={() => setFollowed((prev) => !prev)}>
+          <button className="followBtn" >
+        
+          {followed ? "Follow" : "UnFollow"}
+                  {/* {followed ? <RiUserUnfollowFill /> : <RiUserFollowFill />} */}
           </button>
         </div>
       </div>
@@ -189,107 +218,96 @@ const FriendProfile = () => {
         <div className="image">
           <img className="picBack" src="/images/image2.jpeg" />
         </div>
+
+        
         <div className="posts">
           {posts.map((post) => (
             // <Post post={post} />
             <div className="post">
-      <div className="postWrapper">
-        <div className="postTop">
-          <div className="postTopLeft">
-            <img
-              className="postProfileImg"
-              src={
-               "/images/noAvatar.png"
-              }
-              alt=""
-            />
+              <div className="postWrapper">
+                <div className="postTop">
+                  <div className="postTopLeft">
+                    <img
+                      className="postProfileImg"
+                      src={"/images/noAvatar.png"}
+                      alt=""
+                    />
 
-            {/* <img
-            className="postImg"
-            src={
-              user.profilePicture
-                ? image + user.profilePicture
-                :  "/images/noAvatar.png"
-            }
-            alt=""
-          /> */}
+                    <span className="postUsername">{post.username}</span>
+                    <span className="postDate">
+                      {new Date(post.createdAt).toDateString()}
+                    </span>
+                  </div>
+                  <div className="postTopRight">{/* <MoreVert /> */}</div>
+                </div>
+                <div className="postCenter">
+                  <span className="postText"> {post.desc} </span>
+                  {/* <img className="postImg" src="./images/image2.jpeg" /> */}
+                  <img className="postImg" src={image + post.img} alt="" />
+                </div>
+                <div className="postBottom">
+                  <div className="postBottomLeft">
+                    <img
+                      className="likeIcon"
+                      src="./images/like.png"
+                      onClick={likeHandler}
+                    />
+                    <img
+                      className="likeIcon"
+                      src="./images/heart.png"
+                      onClick={likeHandler}
+                    />
 
-            <span className="postUsername">{post.username}</span>
-            <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
-          </div>
-          <div className="postTopRight">{/* <MoreVert /> */}</div>
-        </div>
-        <div className="postCenter">
-          <span className="postText"> {post.desc} </span>
-          {/* <img className="postImg" src="./images/image2.jpeg" /> */}
-          <img className="postImg" src={image + post.img} alt="" />
-        </div>
-        <div className="postBottom">
-          <div className="postBottomLeft">
-            <img
-              className="likeIcon"
-              src="./images/like.png"
-              onClick={likeHandler}
-            />
-            <img
-              className="likeIcon"
-              src="./images/heart.png"
-              onClick={likeHandler}
-            />
+                    <span className="postLikeCounter">like it {like} </span>
+                  </div>
+                  <div className="comment">
+                    {/* {post.comments.map((comment) => ( */}
+                    {post.comments.map((comment) => (
+                      <div className="commentText">
+                        <p className="text"> {comment.text}</p>
 
-            <span className="postLikeCounter">like it {like} </span>
-          </div>
-          <div className="comment">
-            {/* {post.comments.map((comment) => ( */}
-            {post.comments.map((comment) => (
-              <div className="commentText">
-                <p className="text"> {comment.text}</p>
-
-                <span className="commentUser">{comment.username}</span>
-                <div className="editDeleteComment">
-                  {/* <GiConfirmed className="edit" onClick={handleEdit} /> */}
-                  {/* <FaEdit
+                        <span className="commentUser">{comment.username}</span>
+                        <div className="editDeleteComment">
+                          {/* <GiConfirmed className="edit" onClick={handleEdit} /> */}
+                          {/* <FaEdit
                     className="edit"
                     onClick={() => setEditMode((prev) => !prev)}
                   /> */}
-                  {/* <FaEdit className="edit"  onClick={handleEdit} /> */}
-
-                  <MdDeleteForever
-                    onClick={() => deleteComment(comment._id)}
-                    className="delete"
-                  />
-                </div>
-              </div>
-            ))}
-            <div className="iconRespond">
-              <img className="likeIcon" src="./images/like.png" />
-              <FaRegCommentAlt
-                className="respond"
-                onClick={() => setCommentMode((prev) => !prev)}
-              />
-              {/* <span>add comment</span> */}
-              {/* <button
+                          {/* <FaEdit className="edit"  onClick={handleEdit} /> */}
+{/* 
+                          <MdDeleteForever
+                            onClick={() => deleteComment(comment._id)}
+                            className="delete"
+                          /> */}
+                        </div>
+                      </div>
+                    ))}
+                    <div className="iconRespond">
+                      <img className="likeIcon" src="./images/like.png" />
+                      <FaRegCommentAlt
+                        className="respond"
+                        onClick={() => setCommentMode((prev) => !prev)}
+                      />
+                      {/* <span>add comment</span> */}
+                      {/* <button
                 className="addComment"
                 // onClick={(e) => addComment(e)}>reply</button>
                 onClick={(e) => addComment(e)}>
                 reply
               </button> */}
+                    </div>
+                    {commentMode && (
+                      <textarea
+                        className="respondInput"
+                        value={comments}
+                        onChange={(e) => setComments(e.target.value)}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
-            {commentMode && (
-              <textarea
-                className="respondInput"
-                value={comments}
-                onChange={(e) => setComments(e.target.value)}
-              />
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-
-
           ))}
-
         </div>
       </div>
       <div className="users">

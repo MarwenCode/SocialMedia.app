@@ -16,6 +16,9 @@ const Profile = () => {
   const [friends, setFriends] = useState([]);
   const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [followed, setFollowed] = useState(
+    
+  );
   const image = "http://localhost:5500/images/";
 
   //fetch friends list
@@ -71,23 +74,7 @@ const Profile = () => {
 // );
 
 
-// const handleClick = async () => {
-//   try {
-//     if (followed) {
-//       await axios.put(`/user/unfollow/${user._id}`, {
-//         userId: user._id,
-//       });
-//       dispatch({ type: "UNFOLLOW", payload: user._id });
-//     } else {
-//       await axios.put(`/user/follow/${user._id}`, {
-//         userId: user._id,
-//       });
-//       dispatch({ type: "FOLLOW", payload: user._id });
-//     }
-//     setFollowed(!followed);
-//   } catch (err) {
-//   }
-// };
+console.log(user)
 
 
 

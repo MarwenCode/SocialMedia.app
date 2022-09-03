@@ -50,16 +50,6 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="leftnavbar">
-        <div className="siwtchBtn">
-          <label className="switch">
-            <input type="checkbox" />
-            {/* <input type="checkbox" onChange={toggleTheme}/> */}
-            {/* <input type="checkbox" onChange={toggleTheme} checked={theme === "light"}/> */}
-            <span className="slider"></span>
-          </label>
-    
-        </div>
-      
       </div>
       <div className="searchSection">
         <div className="FasearchInput">
@@ -82,7 +72,11 @@ const Navbar = () => {
           <li className="item">Home</li>
           </Link>
        
-          <li><FaRegEnvelope /> </li>
+          <li  className="item">
+            <FaRegEnvelope  /> 
+            <span className="IconBadge">2</span>
+            
+            </li>
         </ul>
 
         </div>
