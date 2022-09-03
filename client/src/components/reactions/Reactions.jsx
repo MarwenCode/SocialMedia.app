@@ -12,8 +12,8 @@ const Reactions = () => {
       {posts.map((reaction) => (
         <div className="reactionBox">
           <span className="date">{new Date(reaction.createdAt).toDateString()} </span>
-          <span className="username"> {reaction.username}</span>
-          <span className="reaction">   { user.username } post this : 
+          <span className="username">  { user.username }</span>
+          <span className="reaction">   post this : 
            {reaction.desc}
            </span>
         </div>

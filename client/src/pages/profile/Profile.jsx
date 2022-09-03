@@ -156,7 +156,9 @@ console.log(user)
                       : "/images/noAvatar.png"
                   }
                 />
+                <span className="online"></span>
                 <span className="leftbarFollowingName">{friend.username}</span>
+                
               </div>
             ))}
           </div>

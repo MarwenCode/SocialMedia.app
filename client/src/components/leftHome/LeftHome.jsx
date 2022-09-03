@@ -37,7 +37,7 @@ const LeftHome = () => {
 
       <div className="down">
         <div className="friendslist">
-          <h4 className="rightbarTitle">User friends</h4>
+          {/* <h4 className="rightbarTitle">User friends</h4> */}
 
           <div className="searchFriendsList">
             <FcSearch className="searchIcon" />
@@ -59,6 +59,7 @@ const LeftHome = () => {
                     : "/images/noAvatar.png"
                 }
               />
+              <span className="online"></span>
               <span className="leftbarFollowingName">{friend.username}</span>
             </div>
           ))}
