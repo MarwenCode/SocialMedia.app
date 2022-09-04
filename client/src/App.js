@@ -13,16 +13,16 @@ import FriendProfile from "./components/FriendProfile/FriendProfile";
 
 
 function App() {
-  const { modalOpen, setModalOpen } = useContext(AppContext);
+  const { modalOpen, setModalOpen, user } = useContext(AppContext);
   return (
     <Router>
     <div className="container" >
       <Navbar /> 
-      {modalOpen && <Modal setOpenModal={setModalOpen} />}
+      {/* {modalOpen && <Modal setOpenModal={setModalOpen} />} */}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Home /> } />
+        <Route path="/login" element={user ? <Home /> : <Login /> } />
+        <Route path="/register" element={user ? <Login /> : <Register />} />
         <Route path="/post/:postId" element={<SinglePost />} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/profile/friend/:id" element={<FriendProfile />} />

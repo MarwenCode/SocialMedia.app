@@ -3,14 +3,35 @@
   height: 100%;
   width:100%;
 
+
   .top {
     // background-color: rgb(236, 222, 18);
-    height: 20%;
-    width: 70%;
+    height: 10%;
+    width: 80%;
     // margin: 50px;
     margin-top: 50px;
-    margin-left: 100px;
+    margin-left: 70px;
+    // position: fixed;
+    background: linear-gradient(#48aef1, #f3f3f5);
+    overflow-y:scroll;
+    border-radius: 20px;
   
+  }
+
+
+  .top::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: #9cd5e4;
+  
+  }
+  
+  .top::-webkit-scrollbar-thumb
+  {
+    background-color: #000000;
+    border: 2px solid #555555;
+    border-radius: 10px;
+    
   }
 
   .down {
@@ -21,7 +42,7 @@
     background: linear-gradient(#48aef1, #f3f3f5);
     border-radius: 15px;
     margin-left: 140px;
-    margin-top: 409px;
+    margin-top: 290px;
     position: fixed;
     width: 245px;
 
@@ -74,14 +95,16 @@
     .leftbarFollowings{
       width: 75%;
       // background-color: rgb(199, 118, 12);
-      margin: 20px;
+      // margin: 100px;
       height: 100%;
+  
 
 
 
       .leftbarFollowing{
         display: flex;
         margin: 10px;
+        
 
 
         .leftbarFollowingName{

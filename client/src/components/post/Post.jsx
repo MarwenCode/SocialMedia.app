@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { FaTrashAlt, FaRegCommentAlt, FaEdit } from "react-icons/fa";
 import { GiConfirmed } from "react-icons/gi";
 import { MdDeleteForever } from "react-icons/md";
+import {FcLike} from "react-icons/fc";
+import {AiOutlineDislike} from "react-icons/ai"
 import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../context/context";
@@ -170,16 +172,18 @@ const Post = ({ post }) => {
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img
+            {/* <img
               className="likeIcon"
               src="./images/like.png"
               onClick={likeHandler}
-            />
-            <img
+            /> */}
+            <FcLike className="likeIcon"  onClick={likeHandler} / >
+              <AiOutlineDislike    className="likeIcon"   onClick={likeHandler} />
+            {/* <img
               className="likeIcon"
               src="./images/heart.png"
               onClick={likeHandler}
-            />
+            /> */}
 
             <span className="postLikeCounter">like it {like} </span>
 
@@ -202,10 +206,10 @@ const Post = ({ post }) => {
                   /> */}
                   {/* <FaEdit className="edit"  onClick={handleEdit} /> */}
 
-                  <MdDeleteForever
+                  {/* <MdDeleteForever
                     onClick={() => deleteComment(comment._id)}
                     className="delete"
-                  />
+                  /> */}
                 </div>
               </div>
             ))}

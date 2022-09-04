@@ -4,38 +4,64 @@
     background: linear-gradient(#237ab4, #9198e5);
     height: 200px;
     float: right;
-    margin: 3px;
-    position: relative;
+    // position: relative;
     border-radius: 20px;
+    // margin-top: 48px;
+    margin-right: -260px;
+   
 
     .sign{
-        // display: block;
+        // display: flex;
         margin: 3px;
         justify-content: space-around;
-        position: absolute;
+        // position: absolute;
         // flex-direction: column;
-        list-style: none;
+    
         cursor: pointer;
         margin-left:8px;
-        li{
+
+
+        .signList{
+            list-style: none;
+
+         
+
+
+            
+        .item{
             margin-bottom: 25px;
+            margin-left:1px;
+
+
+            // .settingItem{
+            //     margin-right: 90px;
+            // }
         }
 
         
-            li:hover {
+            .item:hover {
                 background: linear-gradient(#a3bbca, #9198e5);
-                width: 100px;
+                width: 80px;
                 border-radius: 10px;
             }
         
 
 
         .close{
-            margin-left: 160px;
+            margin-left: 130px;
+            margin-right: 20px;
        
 
             
         
         }
+
+
+
+        }
+
+
+
+
     }
 }

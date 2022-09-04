@@ -1,5 +1,6 @@
 import { FcFolder } from "react-icons/fc";
 import { MdCancel } from "react-icons/md";
+import { BsEmojiSmile } from "react-icons/bs";
 import { useContext, useRef, useState } from "react";
 import Picker from "emoji-picker-react";
 import axios from "axios";
@@ -12,32 +13,33 @@ const Share = () => {
   const image = "http://localhost:5500/images/";
   const desc = useRef();
   const [file, setFile] = useState(null);
+  const [inputStr, setInputStr] = useState("");
+  const [showPicker, setShowPicker] = useState(false);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     const newPost = {
       userId: user._id,
+      username: user.username,
       desc: desc.current.value,
     };
     if (file) {
       const data = new FormData();
-      const idImage = Date.now();
-      data.append("name",idImage);
-      data.append("file",file);
+      const idImage = Date.now() + file.name;
+      data.append("name", idImage);
+      data.append("file", file);
       newPost.img = idImage;
-    //   console.log(newPost);
+        console.log(newPost);
+
       try {
         await axios.post("/upload", data);
       } catch (err) {}
     }
     try {
-      await axios.post("/post", newPost);
+      await axios.post("/post", newPost)
       window.location.reload();
     } catch (err) {}
   };
-
-  const [inputStr, setInputStr] = useState("");
-  const [showPicker, setShowPicker] = useState(false);
 
   const onEmojiClick = (event, emojiObject) => {
     setInputStr((prevInput) => prevInput + emojiObject.emoji);
@@ -48,12 +50,13 @@ const Share = () => {
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-        <img
+          <img
             className="shareProfileImg"
             src={
               user.profilePicture
                 ? image + user.profilePicture
-                :  "/images/noAvatar.png"
+                : 
+                "/images/noAvatar.png"
             }
             alt=""
           />
@@ -62,7 +65,7 @@ const Share = () => {
             className="shareInput"
             ref={desc}
             value={inputStr}
-            onChange={e => setInputStr(e.target.value)}
+            onChange={(e) => setInputStr(e.target.value)}
           />
 
           <div className="Emoji">
@@ -73,7 +76,10 @@ const Share = () => {
         {file && (
           <div className="shareImgContainer">
             <img className="shareImg" src={URL.createObjectURL(file)} alt="" />
-            <MdCancel className="shareCancelImg" onClick={() => setFile(null)} />
+            <MdCancel
+              className="shareCancelImg"
+              onClick={() => setFile(null)}
+            />
           </div>
         )}
         <form className="shareBottom" onSubmit={submitHandler}>
@@ -91,14 +97,17 @@ const Share = () => {
             </label>
 
             <div className="shareOption">
-              {/* {chosenEmoji &&   <Emoji />} */}
-
-              {/* <EmojiEmotions htmlColor="goldenrod" className="shareIcon"   /> */}
-              {/* {showPicker && <Picker
-          pickerStyle={{ width: '100%' }}
-          onEmojiClick={onEmojiClick} />
-          } */}
-              {/* <div className="picker"> <Picker onEmojiClick={onEmojiClick}/></div> */}
+              <BsEmojiSmile
+                htmlColor="goldenrod"
+                className="shareIcon"
+                onClick={() => setShowPicker((val) => !val)}
+              />
+              {showPicker && (
+                <Picker
+                  pickerStyle={{ width: "100%" }}
+                  onEmojiClick={onEmojiClick}
+                />
+              )}
             </div>
           </div>
           <button className="shareButton" type="submit">
@@ -112,9 +121,4 @@ const Share = () => {
 
 export default Share;
 
-{
-  /* {chosenEmoji && <Picker onEmojiClick={onEmojiClick} htmlColor="goldenrod" className="shareIcon" /> } */
-}
-{
-  /* <Picker onEmojiClick={onEmojiClick} htmlColor="goldenrod" className="shareIcon" /> */
-}
+

@@ -9,6 +9,8 @@
     margin-right: 250px;
     display: flex;
     height: auto;
+    // background: #c4cde2;
+    background: linear-gradient(#c8e3f5, #f3f3f5);
    
    
 
@@ -116,13 +118,15 @@
             margin-right: 60px;
             // margin-left: -450px;
             margin-bottom: 10px;
-            background: linear-gradient(#95beda, #d8d9eb);
+            // background: linear-gradient(#95beda, #d8d9eb);
+            // background: #3b5998;
             align-items: center;
             // position: relative;
             padding: 10px;
             margin-top: 10px;
             display: block;
             align-items: center;
+            background: linear-gradient(#48aef1, #c6c6e4);
 
 
             .commentText {
@@ -134,8 +138,9 @@
                     margin: 10px;
                     justify-content: center;
                     text-align: left;
-                    background: linear-gradient(#8ebdd6, #b0b2dd);
+                    // background: linear-gradient(#8ebdd6, #b0b2dd);
                     // border: 2px solid rgb(153, 142, 142);
+                    background: linear-gradient(#75a6c5, #f3f3f5);
                     border-radius: 5px;
                     // position: fixed;
                     padding: 10px

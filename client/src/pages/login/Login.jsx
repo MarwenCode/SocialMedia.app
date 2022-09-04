@@ -1,5 +1,6 @@
 import React, { useRef,useContext,useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../components/context/context';
 import "./login.scss"
@@ -22,7 +23,7 @@ const Login = () => {
     dispatch({type:"LOGIN_START"})
 
     try {
-        const res = await axios.post("auth/login", {
+        const res = await axios.post("/auth/login", {
             email,
             password
         })
@@ -61,9 +62,16 @@ const Login = () => {
           />
           <button className="loginButton"  type="submit" >Log in</button>
           <span className="loginForgot">Forgot Password?</span>
+        
+          <Link to="/register">
           <button className="loginRegisterButton">
             Create a New Account
           </button>
+          
+          </Link>
+        
+         
+        
         </form>
       </div>
     </div>

@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../context/context";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Modal from "./Modal";
 
 const Navbar = () => {
-    const { modalOpen, setModalOpen ,user} = useContext(AppContext);
+  const { modalOpen, setModalOpen, user } = useContext(AppContext);
   //   const publicFolder = "http://localhost:8000/images/";
   //   const [posts, setPosts] = useState([]);
   const Navigate = useNavigate();
-
 
   //   const [searchTerm, setSearchTerm] = useState("");
   //   const [searchActive, setSearchActive] = useState(false);
@@ -49,58 +49,61 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div className="leftnavbar">
-      </div>
-      <div className="searchSection">
-        <div className="FasearchInput">
-          <FaSearch className="Fasearch" />
-          <input
-            className="inputSearch"
-            type="text"
-            placeholder="search for a post..."
-          />
-        </div>
-      </div>
-      <div className="setting">
-        <div className="settingList">
-        <ul className="list">
-          <Link to={`/profile/${user._id}`} className="link" >
-          <li className="item">Profile</li>
-          </Link>
-        
-          <Link to="/"  className="link" >
-          <li className="item">Home</li>
-          </Link>
-       
-          <li  className="item">
-            <FaRegEnvelope  /> 
-            <span className="IconBadge">2</span>
-            
-            </li>
-        </ul>
+      {user && (
+        <>
+          <div className="leftnavbar"></div>
+          <div className="searchSection">
+            <div className="FasearchInput">
+              <FaSearch className="Fasearch" />
+              <input
+                className="inputSearch"
+                type="text"
+                placeholder="search for a post..."
+              />
+            </div>
+          </div>
+          <div className="setting">
+            <div className="settingList">
+              <ul className="list">
+                <Link to={`/profile/${user._id}`} className="link">
+                  <li className="item">Profile</li>
+                </Link>
 
-        </div>
-        <div className="sign">
-        
-      <img className="topImg"  src="images/image1.jpg" onClick={() => {
-        setModalOpen(true)
-      }}/>
-      {/* <span className="logout">Logout</span>
+                <Link to="/" className="link">
+                  <li className="item">Home</li>
+                </Link>
 
-      <span className="signItemLogin">Login</span>
+                <li className="item">
+                  <FaRegEnvelope />
+                  <span className="IconBadge">2</span>
+                </li>
+              </ul>
+            </div>
+            <div className="sign">
+              {modalOpen ? (
+                <div className="modal">
+                  <Modal setOpenModal={setModalOpen} />
+                </div>
+              ) : (
+                <img
+                  className="topImg"
+                  src="images/image1.jpg"
+                  onClick={() => {
+                    setModalOpen(true);
+                  }}
+                />
+              )}
+            </div>
+          </div>
+        </>
+      ) 
+      
+     
+      
+      }
 
-      <span className="signItemRegister">Register</span> */}
-
-
-        </div>
-
-
-
-      </div>
- 
     </div>
   );
 };
 
 export default Navbar;
-

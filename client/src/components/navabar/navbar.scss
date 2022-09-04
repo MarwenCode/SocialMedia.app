@@ -4,8 +4,9 @@
     height: 40px;
     font-size: large;
     cursor: pointer;
-    background: linear-gradient(#0671b8, #1526e6);
+    // background: linear-gradient(#0671b8, #1526e6);
     // overflow: hidden;
+    background: #3b5998;
     position: fixed;
     z-index: 1;
     padding: 4px;
@@ -101,6 +102,12 @@
         }
 
      
+
+    }
+
+    .modal {
+        display: flex;
+        margin-right: 350px;
 
     }
 }

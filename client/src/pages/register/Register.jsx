@@ -1,5 +1,6 @@
 import React, { useRef,useContext, useState} from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../components/context/context';
 import "./login.scss"
@@ -64,11 +65,15 @@ const Register = () => {
                    onChange={(e) => setPasswordAgain(e.target.value)}
           
           />
-          <button className="loginButton"  type="submit" >Log in</button>
+          <button className="loginButton"  type="submit" >Sign in</button>
           <span className="loginForgot">Forgot Password?</span>
           <button className="loginRegisterButton">
             Create a New Account
           </button>
+          <Link to="/login">
+          <button className='loginButton'>if you have a profile Log in </button>
+          </Link>
+         
         </form>
       </div>
     </div>

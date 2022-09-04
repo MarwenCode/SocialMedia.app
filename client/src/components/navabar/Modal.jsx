@@ -1,35 +1,49 @@
-import React,{useContext, useState} from 'react'
-import { AppContext } from '../context/context';
-import {FaRegTimesCircle, FaRegSun} from "react-icons/fa"
-import "./modal.scss"
+import React, { useContext, useState } from "react";
+import { AppContext } from "../context/context";
+import { FaRegTimesCircle, FaRegSun } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import "./modal.scss";
 
 const Modal = () => {
-  const { modalOpen, setModalOpen } = useContext(AppContext);
+  const { modalOpen, setModalOpen, user, dispatch } = useContext(AppContext);
 
   // const closeModal = () => {
   //   setModalOpen(prev => prev(!modalOpen))
   // }
+  const Navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+
+    Navigate("/login");
+  };
+
   return (
     <div className="modalbackground">
-        <div className="sign">
-        <FaRegTimesCircle className="close" onClick={() => setModalOpen((prev) => !prev)}/>
-        <li className="logout">Logout</li>
-  
-        <li className="signItemLogin">Login</li>
-  
-        <li className="signItemRegister">Register</li>
-        <li className="setting">
-        Setting <FaRegSun className='settingItem'/>
-        </li>
-       
-      
-        
-  
-  
-          </div>
+      <div className="sign">
+        <ul className="signList">
+          <FaRegTimesCircle
+            className="close"
+            onClick={() => setModalOpen((prev) => !prev)}
+          />
 
+          {user && (
+            <li className="item" onClick={handleLogout}>
+              Logout
+            </li>
+          )}
+
+          {/* <li className="signItemLogin">Login</li>
+  
+        <li className="signItemRegister">Register</li> */}
+          <li className="item">
+            Setting 
+            <FaRegSun className="settingItem" />
+          </li>
+        </ul>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;
