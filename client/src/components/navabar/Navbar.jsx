@@ -8,10 +8,17 @@ import { useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 
 const Navbar = () => {
-  const { modalOpen, setModalOpen, user } = useContext(AppContext);
+  const { modalOpen, setModalOpen, user,posts } = useContext(AppContext);
   //   const publicFolder = "http://localhost:8000/images/";
   //   const [posts, setPosts] = useState([]);
   const Navigate = useNavigate();
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchActive, setSearchActive] = useState(false);
+
+  const handleClickSearchTerm = () => {
+    setSearchActive(false);
+  };
 
   //   const [searchTerm, setSearchTerm] = useState("");
   //   const [searchActive, setSearchActive] = useState(false);
@@ -53,13 +60,44 @@ const Navbar = () => {
         <>
           <div className="leftnavbar"></div>
           <div className="searchSection">
+          {searchActive && (
+          <div className="search">
+            {posts
+              .filter((post) => {
+                if (searchTerm == "") {
+                  return post;
+                } else if (
+                  post.desc.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return post;
+                }
+              })
+              .map((post, key) => {
+                return (
+                  <div className="searchTerm" key={key}>
+                    <Link to={`/post/search/${post._id}`} className="link">
+                      <p
+                        className="searchTitle"
+                        onClick={handleClickSearchTerm}>
+                        {post.desc}
+                      </p>
+                      {/* <p className="searchTitle" >{post.title} </p> */}
+                    </Link>
+                  </div>
+                );
+              })}
+          </div>
+        )}
             <div className="FasearchInput">
-              <FaSearch className="Fasearch" />
-              <input
-                className="inputSearch"
-                type="text"
-                placeholder="search for a post..."
-              />
+            <FaSearch className="Fasearch" />
+          <input
+            className="inputSearch"
+            type="text"
+            placeholder="search for a post..."
+            onChange={(e) => setSearchTerm(e.target.value)}
+            // onClick={() => setSearchActive(true)}
+            onClick={() => setSearchActive((prev) => !prev)}
+          />
             </div>
           </div>
           <div className="setting">

@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { FaTrashAlt, FaRegCommentAlt } from "react-icons/fa";
+import {FcLike} from "react-icons/fc";
+import {AiOutlineDislike} from "react-icons/ai"
 import { MdDeleteForever } from "react-icons/md";
 import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
@@ -23,7 +25,7 @@ const SinglePost = () => {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("/post/");
+      const res = await axios.get("/post/" + path);
       console.log(res.data);
       setPost(res.data);
       //   setTitle(res.data.title);
@@ -122,34 +124,33 @@ const SinglePost = () => {
         </div>
         <div className="postCenter">
           <span className="postText"> {post.desc} </span>
-          <img className="postImg" src="./images/image2.jpeg" />
+          {/* <img className="postImg" src="./images/image2.jpeg" /> */}
           <img className="postImg" src={image + post.img} alt="" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img className="likeIcon" src="./images/like.png" />
-            <img className="likeIcon" src="./images/heart.png" />
+          <FcLike className="likeIcon"   / >
+          <AiOutlineDislike className="likeIcon" />
 
             <span className="postLikeCounter">like it 20 {post.likes} </span>
 
             <div className="deletePost">
               <FaTrashAlt />
-              <FaTrashAlt />
             </div>
           </div>
           <div className="comment">
-            //{" "}
+            
             {comments.map((comment) => (
               <div className="commentText">
                 <p className="text">{comment.text}</p>
                 <span className="commentUser">{comment.username}</span>
-                <div className="editDeleteComment">
+                {/* <div className="editDeleteComment">
                   <FaRegCommentAlt className="edit" />
                   <MdDeleteForever onClick={deleteComment} className="delete" />
-                </div>
+                </div> */}
               </div>
             ))}
-            <div className="iconRespond">
+            {/* <div className="iconRespond">
               <img className="likeIcon" src="./images/like.png" />
               <FaRegCommentAlt
                 className="respond"
@@ -159,14 +160,14 @@ const SinglePost = () => {
               <button className="addComment" onClick={(e) => addComment(e)}>
                 reply
               </button>
-            </div>
-            {commentMode && (
+            </div> */}
+            {/* {commentMode && (
               <textarea
                 className="respondInput"
                 value={comments}
                 onChange={(e) => setComments(e.target.value)}
               />
-            )}
+            )} */}
           </div>
         </div>
       </div>

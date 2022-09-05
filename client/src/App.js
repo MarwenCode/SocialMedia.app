@@ -12,6 +12,7 @@ import FriendProfile from "./components/FriendProfile/FriendProfile";
 
 
 
+
 function App() {
   const { modalOpen, setModalOpen, user } = useContext(AppContext);
   return (
