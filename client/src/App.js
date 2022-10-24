@@ -21,7 +21,7 @@ function App() {
       <Navbar /> 
       {/* {modalOpen && <Modal setOpenModal={setModalOpen} />} */}
       <Routes>
-        <Route path="/" element={<Home /> } />
+        <Route path="/" element={user ? <Home /> : <Login /> } />
         <Route path="/login" element={user ? <Home /> : <Login /> } />
         <Route path="/register" element={user ? <Login /> : <Register />} />
         <Route path="/post/:postId" element={<SinglePost />} />

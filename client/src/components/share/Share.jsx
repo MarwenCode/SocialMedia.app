@@ -10,7 +10,7 @@ import { AppContext } from "../context/context";
 
 const Share = () => {
   const { user } = useContext(AppContext);
-  const image = "http://localhost:5500/images/";
+  const image = "https://social-media-app-vp1y.onrender.com/api/images/";
   const desc = useRef();
   const [file, setFile] = useState(null);
   const [inputStr, setInputStr] = useState("");
@@ -63,7 +63,7 @@ const Share = () => {
             // alt=""
           />
           <input
-            placeholder={"What's in your mind " + user.username + "?"}
+            // placeholder={"What's in your mind " + user.username + "?"}
             className="shareInput"
             ref={desc}
             value={inputStr}

@@ -9,7 +9,7 @@ import Modal from "./Modal";
 
 const Navbar = () => {
   const { modalOpen, setModalOpen, user,posts } = useContext(AppContext);
-  //   const publicFolder = "http://localhost:8000/images/";
+    const publicFolder = "https://social-media-app-vp1y.onrender.com/api/images/";
   //   const [posts, setPosts] = useState([]);
   const Navigate = useNavigate();
 

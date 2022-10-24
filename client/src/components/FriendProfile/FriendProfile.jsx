@@ -37,7 +37,7 @@ const FriendProfile = () => {
 
   const [posts, setPosts] = useState([]);
 
-  const image = "http://localhost:5500/images/";
+  const image = "https://social-media-app-vp1y.onrender.com/api/images/";
 
   useEffect(() => {
     const fetchPosts = async () => {

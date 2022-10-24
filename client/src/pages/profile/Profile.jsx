@@ -19,7 +19,7 @@ const Profile = () => {
   const [followed, setFollowed] = useState(
     
   );
-  const image = "http://localhost:5500/images/";
+  const image = "https://social-media-app-vp1y.onrender.com/api/images/";
 
   //fetch friends list
 

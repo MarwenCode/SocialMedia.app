@@ -23,7 +23,8 @@ const LeftHome = () => {
     };
 
     getFriends();
-  }, [user._id]);
+  // }, [user._id]);
+  }, []);
 
   console.log(friends);
   console.log(user);
