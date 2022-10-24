@@ -17,8 +17,7 @@ const SideBar = () => {
     useEffect(() => {
         const fetchNews = async() => {
 
-            const res =  await axios.get(`
-            https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=8e331b907e5c48dba9b48ea87cfdadc3`)
+            const res =  await axios.get(url)
             // .then((res) => setListData((listData) => [...listData, res.data]))
            
           setListData(res.data.articles)
