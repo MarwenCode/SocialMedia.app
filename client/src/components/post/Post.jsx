@@ -26,7 +26,7 @@ const Post = ({ post }) => {
   useEffect(() => {
     const fetchComment = async () => {
       // const res = await axios.get("/comments")
-      const res = await axios.get(`/comments/${comment._id}`);
+      const res = await axios.get(`https://social-media-app-vp1y.onrender.com/api/comments/${comment._id}`);
 
       console.log(res);
       setComment(res.data);

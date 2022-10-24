@@ -9,6 +9,7 @@ import postRoute from "./routes/posts.js";
 import commentRoute from "./routes/comments.js";
 import profilefriendRoute from "./routes/friendsprofile.js"
 import { fileURLToPath } from "url";
+import cors from "cors"
 
 
 
@@ -52,6 +53,8 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 
   app.use("/images", express.static(path.join(__dirname, "/images")));
 
+  app.use(cors())
+
 app.use(express.json());
 app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
@@ -59,6 +62,11 @@ app.use("/api/post", postRoute)
 app.use("/api/comments", commentRoute);
 app.use("/api/profile", profilefriendRoute);
 
+
+
+app.get("/", (req, res) => {
+  res.send('hello to media-app API')
+})
 
 
 app.listen(5500, () => {

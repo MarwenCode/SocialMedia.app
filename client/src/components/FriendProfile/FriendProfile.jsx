@@ -42,7 +42,7 @@ const FriendProfile = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       // const res = await axios.get(`/profile/friend/${user._id}`);
-      const res = await axios.get("/profile/friend/" + path);
+      const res = await axios.get("https://social-media-app-vp1y.onrender.com/api/profile/friend/" + path);
       console.log(res);
       setPosts(res.data);
     };

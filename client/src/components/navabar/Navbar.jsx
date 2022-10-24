@@ -58,14 +58,14 @@ const Navbar = () => {
     <div className="navbar">
       {user && (
         <>
-          <div className="leftnavbar"></div>
+          {/* <div className="leftnavbar"></div> */}
           <div className="searchSection">
           {searchActive && (
           <div className="search">
             {posts
               .filter((post) => {
                 if (searchTerm == "") {
-                  return post;
+               
                 } else if (
                   post.desc.toLowerCase().includes(searchTerm.toLowerCase())
                 ) {

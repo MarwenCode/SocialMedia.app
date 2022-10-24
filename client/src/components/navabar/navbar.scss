@@ -14,24 +14,34 @@
 
     .leftnavbar {
         flex:2;
-        width:200px;
+      
         // background-color: aqua;
+        margin-left: 650px;
+     
       
         
     }
     .searchSection {
         flex:5;
         // background-color: blue;
+        margin-left: 150px;
+   
+    
+       
 
 
         .search{
             flex:3;
+            margin-left: 430px;
             // display: flex;
             align-items: center;
             justify-content: center;
             // position: relative;
             height: 100px;
             background-color: rgb(250, 251, 252);
+            width: 150%;
+       
+           
            
             z-index: 1;
             margin-top: 25px;
@@ -48,10 +58,10 @@
         
     
             .searchTerm {
-                width:100%;
+                width: 60%;
                 // height:60px;
                 // margin:40px;
-                margin-left: 10px;
+            
                 // margin-top: 550px;
                 // background-color: #0a577e;
                 box-shadow:rgba(0, 0, 0, 0.35);
@@ -91,7 +101,10 @@
 
 
         .FasearchInput{
-            margin-left: 5px;
+            // margin-left: 5px;
+            width: 450px;
+            margin-left:430px;
+          
 
             .Fasearch{
               
@@ -115,6 +128,7 @@
 
         .settingList{
             display: flex;
+            margin-right: 200px;
         
 
             .list{
@@ -162,8 +176,10 @@
 
         .sign{
             display: flex;
+         
             .topImg {
                 border-radius: 15px;
+              
     
             }
         }

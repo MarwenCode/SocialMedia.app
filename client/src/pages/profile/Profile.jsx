@@ -26,8 +26,8 @@ const Profile = () => {
   useEffect(() => {
     const getFriends = async () => {
       try {
-        // const friendList = await axios.get(`/user/friends/${user._id}`);
-        const friendList = await axios.get("/user/friends/" + user._id);
+        const friendList = await axios.get(`/user/friends/${user._id}`);
+        // const friendList = await axios.get("https://social-media-app-vp1y.onrender.com/api/user/friends/" + user._id);
         setFriends(friendList.data);
       } catch (error) {
         console.log(error);

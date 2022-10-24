@@ -25,6 +25,7 @@ const SinglePost = () => {
 
   useEffect(() => {
     const getPost = async () => {
+      // const res = await axios.get("https://social-media-app-vp1y.onrender.com/api/post/" + path);
       const res = await axios.get("/post/" + path);
       console.log(res.data);
       setPost(res.data);
