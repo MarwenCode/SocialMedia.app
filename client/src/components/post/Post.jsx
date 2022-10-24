@@ -145,13 +145,13 @@ const Post = ({ post }) => {
         <div className="postTop">
           <div className="postTopLeft">
             <img
-              className="postProfileImg"
-              src={
-                user.profilePicture
-                  ? image + user.profilePicture
-                  : "/images/noAvatar.png"
-              }
-              alt=""
+              // className="postProfileImg"
+              // src={
+              //   user.profilePicture
+              //     ? image + user.profilePicture
+              //     : "/images/noAvatar.png"
+              // }
+              // alt=""
             />
 
             {/* <img
