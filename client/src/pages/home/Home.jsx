@@ -21,7 +21,8 @@ const Home = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get("/post");
+      // const res = await axios.get("/post");
+      const res = await axios.get("https://social-media-app-vp1y.onrender.com/api/post");
       console.log(res);
       setPosts( res.data.sort((p1, p2) => {
         return new Date(p2.createdAt) - new Date(p1.createdAt);

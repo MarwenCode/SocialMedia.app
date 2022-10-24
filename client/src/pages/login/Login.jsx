@@ -23,7 +23,8 @@ const Login = () => {
     dispatch({type:"LOGIN_START"})
 
     try {
-        const res = await axios.post("/auth/login", {
+        // const res = await axios.post("/auth/login", {
+        const res = await axios.post("https://social-media-app-vp1y.onrender.com/api/auth/login", {
             email,
             password
         })

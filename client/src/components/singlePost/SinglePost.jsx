@@ -25,8 +25,8 @@ const SinglePost = () => {
 
   useEffect(() => {
     const getPost = async () => {
-      // const res = await axios.get("https://social-media-app-vp1y.onrender.com/api/post/" + path);
-      const res = await axios.get("/post/" + path);
+      const res = await axios.get("https://social-media-app-vp1y.onrender.com/api/post/" + path);
+      // const res = await axios.get("/post/" + path);
       console.log(res.data);
       setPost(res.data);
       //   setTitle(res.data.title);
@@ -38,7 +38,8 @@ const SinglePost = () => {
 
   useEffect(() => {
     const getComments = async () => {
-      const res = await axios.get(`/comments/${comments._id}` + path);
+      // const res = await axios.get(`/comments/${comments._id}` + path);
+      const res = await axios.get(`https://social-media-app-vp1y.onrender.com/api/comments/${comments._id}` + path);
       console.log(res.data);
       setComments(res.data);
       //   setTitle(res.data.title);
@@ -62,7 +63,8 @@ const SinglePost = () => {
     };
 
     try {
-      const res = axios.post(`/comments/${post._id}`, newComment);
+      // const res = axios.post(`/comments/${post._id}`, newComment);
+      const res = axios.post(`https://social-media-app-vp1y.onrender.com/api/comments/${post._id}`, newComment);
 
       setComments(res.data);
 
@@ -84,7 +86,7 @@ const SinglePost = () => {
     // }
     try {
       // await axios.delete(`/comments/${comment._id}`
-      await axios.delete(`/comments/${comments._id}`,
+      await axios.delete(`https://social-media-app-vp1y.onrender.com/api/comments/${comments._id}`,
 
         {
 

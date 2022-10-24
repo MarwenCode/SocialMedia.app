@@ -32,11 +32,13 @@ const Share = () => {
         console.log(newPost);
 
       try {
-        await axios.post("/upload", data);
+        await axios.post("https://social-media-app-vp1y.onrender.com/api/upload", data);
+        // await axios.post("/upload", data);
       } catch (err) {}
     }
     try {
-      await axios.post("/post", newPost)
+      await axios.post("https://social-media-app-vp1y.onrender.com/api/post", newPost)
+      // await axios.post("/post", newPost)
       window.location.reload();
     } catch (err) {}
   };

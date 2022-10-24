@@ -31,7 +31,9 @@ export const AppProvider = ({children}) => {
     
     useEffect(() => {
         const fetchPosts = async () => {
-          const res = await axios.get("/post");
+          
+        //   const res = await axios.get("/post");
+          const res = await axios.get("https://social-media-app-vp1y.onrender.com/api/post");
           console.log(res);
           setPosts(res.data);
         };

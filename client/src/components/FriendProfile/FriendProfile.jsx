@@ -53,7 +53,8 @@ const FriendProfile = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const usersList = await axios.get("/user");
+        // const usersList = await axios.get("/user");
+        const usersList = await axios.get("https://social-media-app-vp1y.onrender.com/api/user");
         console.log(usersList);
         setUsers(usersList.data);
       } catch (error) {
@@ -72,7 +73,8 @@ const FriendProfile = () => {
   // get all comments and stock it all in const [comment, seComment]
   useEffect(() => {
     const fetchComment = async () => {
-      const res = await axios.get(`/comments/${comment._id}`);
+      // const res = await axios.get(`/comments/${comment._id}`);
+      const res = await axios.get(`https://social-media-app-vp1y.onrender.com/api/comments/${comment._id}`);
 
       console.log(res);
       setComment(res.data);

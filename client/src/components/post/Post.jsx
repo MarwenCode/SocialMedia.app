@@ -49,7 +49,9 @@ const Post = ({ post }) => {
     };
 
     try {
-      const res = axios.post(`/comments/${post._id}`, newComment);
+
+      // const res = axios.post(`/comments/${post._id}`, newComment);
+      const res = axios.post(`https://social-media-app-vp1y.onrender.com/api/comments/${post._id}`, newComment);
 
       setComments(res.data);
 
@@ -69,7 +71,8 @@ const Post = ({ post }) => {
 
   const deletePost = async () => {
     try {
-      await axios.delete(`/post/${post._id}`, {
+      // await axios.delete(`/post/${post._id}`, {
+      await axios.delete(`https://social-media-app-vp1y.onrender.com/api/post/${post._id}`, {
         data: { userId: user._id },
       });
       window.location.replace("/");
@@ -81,8 +84,8 @@ const Post = ({ post }) => {
   const deleteComment = async (commentId) => {
     console.log(commentId);
     try {
-      await axios.delete(
-        `/comments/${commentId}`,
+      // await axios.delete(`/comments/${commentId}`,
+      await axios.delete(`https://social-media-app-vp1y.onrender.com/api/comments/${commentId}`,
 
         {
           data: { userId: user._id },
@@ -108,7 +111,8 @@ const Post = ({ post }) => {
 
   const likeHandler = () => {
     try {
-      axios.put("/post/" + post._id + "/like", { userId: user._id });
+      axios.put("https://social-media-app-vp1y.onrender.com/api/post/" + post._id + "/like", { userId: user._id });
+      // axios.put("/post/" + post._id + "/like", { userId: user._id });
     } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);

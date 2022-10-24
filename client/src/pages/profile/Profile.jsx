@@ -26,8 +26,8 @@ const Profile = () => {
   useEffect(() => {
     const getFriends = async () => {
       try {
-        const friendList = await axios.get(`/user/friends/${user._id}`);
-        // const friendList = await axios.get("https://social-media-app-vp1y.onrender.com/api/user/friends/" + user._id);
+        // const friendList = await axios.get(`/user/friends/${user._id}`);
+        const friendList = await axios.get("https://social-media-app-vp1y.onrender.com/api/user/friends/" + user._id);
         setFriends(friendList.data);
       } catch (error) {
         console.log(error);
@@ -41,7 +41,8 @@ const Profile = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const usersList = await axios.get("/user");
+        // const usersList = await axios.get("/user");
+        const usersList = await axios.get("https://social-media-app-vp1y.onrender.com/api/user");
         console.log(usersList);
         setUsers(usersList.data);
       } catch (error) {
@@ -58,7 +59,8 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get(`/post/myposts/${user._id}`);
+      // const res = await axios.get(`/post/myposts/${user._id}`);
+      const res = await axios.get(`https://social-media-app-vp1y.onrender.com/api/post/myposts/${user._id}`);
       console.log(res);
       setPosts(res.data);
     };
