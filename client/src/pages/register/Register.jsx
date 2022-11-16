@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../components/context/context';
-import "./login.scss"
+import "./register.scss"
 
 
 const Register = () => {
@@ -41,7 +41,7 @@ const Register = () => {
   console.log(user)
  
   return (
-    <div className="login">
+    <div className="register">
     <div className="loginWrapper">
       <div className="loginLeft">
         <img src="images/logo.jpg" className='logo'/>
@@ -67,7 +67,6 @@ const Register = () => {
           
           />
           <button className="loginButton"  type="submit" >Sign in</button>
-          <span className="loginForgot">Forgot Password?</span>
           <button className="loginRegisterButton">
             Create a New Account
           </button>

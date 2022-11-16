@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { FaTrashAlt, FaRegCommentAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import {FcLike} from "react-icons/fc";
 import {AiOutlineDislike} from "react-icons/ai"
 import { MdDeleteForever } from "react-icons/md";
@@ -17,6 +18,8 @@ const SinglePost = () => {
   const [updateMode, setUpdateMode] = useState(false);
   const [commentMode, setCommentMode] = useState(false);
   const image = "http://localhost:5500/images/";
+
+  const navigate = useNavigate();
 
   const location = useLocation();
   console.log(location);
@@ -70,6 +73,7 @@ const SinglePost = () => {
 
       console.log("test");
       console.log(res);
+      window.location.replace("/");
 
       console.log(res.data);
     } catch (err) {

@@ -110,7 +110,7 @@
     .suggTop{
       width:90%;
       height:150px;
-      background: linear-gradient(#48aef1, #f3f3f5);
+      background: rgb(223, 216, 216);
       overflow-y:scroll;
       border-radius: 20px;
       
@@ -205,9 +205,10 @@
         .leftbarFollowings{
           width: 100%;
           // background-color: rgb(199, 118, 12);
-          margin: 20px;
+          margin: -10px;
+       
           // height: 100%;
-          background: linear-gradient(#48aef1, #f3f3f5);
+          background: white;
           // position: absolute;
           border-radius: 10px;
           

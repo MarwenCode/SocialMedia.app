@@ -6,7 +6,7 @@
     cursor: pointer;
     // background: linear-gradient(#0671b8, #1526e6);
     // overflow: hidden;
-    background: #3b5998;
+   background: linear-gradient(#0671b8, #4e5beb);
     position: fixed;
     z-index: 1;
     padding: 4px;
@@ -84,7 +84,7 @@
                 }
 
                 .searchTitle:hover{
-                    background-color: #e3eef3;
+                    background-color: #c1d5df;
                     color:rgb(15, 32, 46);
                     border: 1px solide grey;
                     border-radius: 8px;
@@ -162,12 +162,12 @@
                 li:hover {
                     display: inline;
                     background: linear-gradient(#a3bbca, #9198e5);
-                    width: 100%;
+                    width: 150%;
                     border-radius: 10px;
                     justify-content: center;
                     align-items: center;
                     justify-content: space-around;
-                    height: 25px;
+                    height: 20px;
                    
                 }
 
