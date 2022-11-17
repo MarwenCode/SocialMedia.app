@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { FaTrashAlt, FaRegCommentAlt, FaEdit } from "react-icons/fa";
 import { GiConfirmed } from "react-icons/gi";
 import { MdDeleteForever } from "react-icons/md";
-import {FcLike} from "react-icons/fc";
-import {AiOutlineDislike} from "react-icons/ai"
+import { FcLike } from "react-icons/fc";
+import { AiOutlineDislike } from "react-icons/ai";
 import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../context/context";
@@ -23,21 +23,24 @@ const Post = ({ post }) => {
   const { userId } = useParams();
 
   // get all comments and stock it all in const [comment, seComment]
+
   useEffect(() => {
-    const fetchComment = async () => {
+    const fetchCommentsData = async () => {
       // const res = await axios.get("/comments")
-      const res = await axios.get(`https://social-media-app-vp1y.onrender.com/api/comments/${comment._id}`);
+      const res = await axios.get(
+        `https://social-media-app-vp1y.onrender.com/api/comments/${comment._id}`
+      );
 
       console.log(res);
-      setComment(res.data);
+      setComments(res.data);
     };
 
-    fetchComment();
-  }, []);
+    fetchCommentsData();
+  }, [comment._id]);
 
-  console.log(comment);
+  console.log(comments);
 
-  // add comment and stock it on const [comments, setComments]
+  // add comment and stock it on const [comment, setComment]
 
   const addComment = (e) => {
     e.preventDefault();
@@ -45,20 +48,24 @@ const Post = ({ post }) => {
       // commenterId: user.commenterId,
       userId: user._id,
       username: user.username,
-      text: comments,
+      text: comment,
     };
 
     try {
-
       // const res = axios.post(`/comments/${post._id}`, newComment);
-      const res = axios.post(`https://social-media-app-vp1y.onrender.com/api/comments/${post._id}`, newComment);
+      const res = axios.post(
+        `https://social-media-app-vp1y.onrender.com/api/comments/${post._id}`,
+        newComment
+      );
 
-      setComments(res.data);
+      setComment(res.data);
 
       console.log("test");
       console.log(res);
 
       console.log(res.data);
+
+      window.location.replace("/");
     } catch (err) {
       console.log(err);
     }
@@ -72,9 +79,12 @@ const Post = ({ post }) => {
   const deletePost = async () => {
     try {
       // await axios.delete(`/post/${post._id}`, {
-      await axios.delete(`https://social-media-app-vp1y.onrender.com/api/post/${post._id}`, {
-        data: { userId: user._id },
-      });
+      await axios.delete(
+        `https://social-media-app-vp1y.onrender.com/api/post/${post._id}`,
+        {
+          data: { userId: user._id },
+        }
+      );
       window.location.replace("/");
     } catch (error) {
       console.log(error);
@@ -82,10 +92,11 @@ const Post = ({ post }) => {
   };
 
   const deleteComment = async (commentId) => {
-    console.log(commentId);
+    console.log();
     try {
       // await axios.delete(`/comments/${commentId}`,
-      await axios.delete(`https://social-media-app-vp1y.onrender.com/api/comments/${commentId}`,
+      await axios.delete(
+        `https://social-media-app-vp1y.onrender.com/api/comments/${commentId}`,
 
         {
           data: { userId: user._id },
@@ -111,7 +122,12 @@ const Post = ({ post }) => {
 
   const likeHandler = () => {
     try {
-      axios.put("https://social-media-app-vp1y.onrender.com/api/post/" + post._id + "/like", { userId: user._id });
+      axios.put(
+        "https://social-media-app-vp1y.onrender.com/api/post/" +
+          post._id +
+          "/like",
+        { userId: user._id }
+      );
       // axios.put("/post/" + post._id + "/like", { userId: user._id });
     } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
@@ -145,13 +161,13 @@ const Post = ({ post }) => {
         <div className="postTop">
           <div className="postTopLeft">
             <img
-              // className="postProfileImg"
-              // src={
-              //   user.profilePicture
-              //     ? image + user.profilePicture
-              //     : "/images/noAvatar.png"
-              // }
-              // alt=""
+            // className="postProfileImg"
+            // src={
+            //   user.profilePicture
+            //     ? image + user.profilePicture
+            //     : "/images/noAvatar.png"
+            // }
+            // alt=""
             />
 
             {/* <img
@@ -165,7 +181,9 @@ const Post = ({ post }) => {
           /> */}
 
             <span className="postUsername">{post.username}</span>
-            <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
+            <span className="postDate">
+              {new Date(post.createdAt).toDateString()}
+            </span>
           </div>
           <div className="postTopRight">{/* <MoreVert /> */}</div>
         </div>
@@ -181,8 +199,8 @@ const Post = ({ post }) => {
               src="./images/like.png"
               onClick={likeHandler}
             /> */}
-            <FcLike className="likeIcon"  onClick={likeHandler} / >
-              <AiOutlineDislike    className="likeIcon"   onClick={likeHandler} />
+            <FcLike className="likeIcon" onClick={likeHandler} />
+            <AiOutlineDislike className="likeIcon" onClick={likeHandler} />
             {/* <img
               className="likeIcon"
               src="./images/heart.png"
@@ -210,10 +228,10 @@ const Post = ({ post }) => {
                   /> */}
                   {/* <FaEdit className="edit"  onClick={handleEdit} /> */}
 
-                  {/* <MdDeleteForever
+                  <MdDeleteForever
                     onClick={() => deleteComment(comment._id)}
                     className="delete"
-                  /> */}
+                  />
                 </div>
               </div>
             ))}
@@ -246,4 +264,3 @@ const Post = ({ post }) => {
 };
 
 export default Post;
-

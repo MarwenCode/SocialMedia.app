@@ -104,7 +104,7 @@ console.log(user)
       </div>
       <div className="center">
         <div className="image">
-          <img className="picBack" src="/images/image2.jpeg" />
+          <img className="picBack" src="/images/image4.jpg" />
         </div>
 
         <div className="share">
