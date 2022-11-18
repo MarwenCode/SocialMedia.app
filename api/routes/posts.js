@@ -75,12 +75,22 @@ postRoute.put("/:id/like", async (req, res) => {
 
 //get a post
 postRoute.get("/:id", async (req, res) => {
+  // try {
+  //   const post = await Post.findById(req.params.id);
+  //   res.status(200).json(post);
+  // } catch (error) {
+  //   res.status(500).json(error);
+
   try {
-    const post = await Post.findById(req.params.id);
-    res.status(200).json(post);
+  
+    const posts = await Post.find(req.params.id)
+      .populate("comments")
+      .exec();
+    res.status(200).json(posts);
   } catch (error) {
     res.status(500).json(error);
   }
+  // }
 });
 
 //get all posts

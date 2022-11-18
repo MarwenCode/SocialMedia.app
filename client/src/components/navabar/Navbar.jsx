@@ -10,7 +10,7 @@ import Modal from "./Modal";
 const Navbar = () => {
   const { modalOpen, setModalOpen, user,posts } = useContext(AppContext);
     const publicFolder = "https://social-media-app-vp1y.onrender.com/api/images/";
-  //   const [posts, setPosts] = useState([]);
+    const [post, setPost] = useState([]);
   const Navigate = useNavigate();
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -20,6 +20,8 @@ const Navbar = () => {
     setSearchActive(false);
   };
 
+
+  console.log(post)
   //   const [searchTerm, setSearchTerm] = useState("");
   //   const [searchActive, setSearchActive] = useState(false);
 
@@ -29,15 +31,16 @@ const Navbar = () => {
   //     Navigate("/login")
   //   };
 
-  //   useEffect(() => {
-  //     const fetchPosts = async () => {
-  //       const res = await axios.get("/post");
-  //       console.log(res);
-  //       setPosts(res.data);
-  //     };
+    useEffect(() => {
+      const fetchPost = async (postId) => {
+        const res = await axios.get(`/post/${postId}`);
+        // const res = await axios.get("/post/:id");
+        console.log(res);
+        setPost(res.data);
+      };
 
-  //     fetchPosts();
-  //   }, []);
+      fetchPost();
+    }, [post]);
 
   //   const handleClickSearchTerm = () => {
   //     setSearchActive(false);
@@ -65,7 +68,7 @@ const Navbar = () => {
             {posts
               .filter((post) => {
                 if (searchTerm == "") {
-               
+                    return;
                 } else if (
                   post.desc.toLowerCase().includes(searchTerm.toLowerCase())
                 ) {
@@ -75,7 +78,7 @@ const Navbar = () => {
               .map((post, key) => {
                 return (
                   <div className="searchTerm" key={key}>
-                    <Link to={`/post/search/${post._id}`} className="link">
+                    <Link to={`/post/${post._id}`} className="link">
                       <p
                         className="searchTitle"
                         onClick={handleClickSearchTerm}>

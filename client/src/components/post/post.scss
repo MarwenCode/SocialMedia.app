@@ -388,11 +388,13 @@
 
             .commentText {
                 display: flex;
+                width: 450px;
+               
 
                 .text{
                     height: 20px;
-                    width: 350px;
-                    margin: 10px;
+                    width: 450px;
+                    // margin: 10px;
                     justify-content: center;
                     text-align: left;
                     // background: linear-gradient(#8ebdd6, #b0b2dd);
@@ -400,7 +402,9 @@
                     background: linear-gradient(#eaeef0, #f3f3f5);
                     border-radius: 5px;
                     // position: fixed;
-                    padding: 10px
+                    padding: 10px;
+                    margin-top: 20px;
+                    margin-right: -95px;
 
                
                 }
@@ -409,6 +413,8 @@
                     font-size: small;
                     // font-style: italic;
                     color: rgb(67, 92, 131);
+                
+                 
                   
                 }
 
@@ -417,6 +423,7 @@
                     display: flex;
                     // align-items:flex-start;
                     justify-content: space-around;
+                  
 
                     .edit {
                       margin: 4px;
@@ -449,7 +456,8 @@
             
 
                 .likeIcon{
-                    width:20px;
+                    width:10px;
+                    object-fit: fill;
                  
                 }
 

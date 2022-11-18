@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { FaTrashAlt, FaRegCommentAlt, FaEdit } from "react-icons/fa";
 import { GiConfirmed } from "react-icons/gi";
 import { MdDeleteForever } from "react-icons/md";
+import { BiLike } from "react-icons/bi";
 import { FcLike } from "react-icons/fc";
 import { AiOutlineDislike } from "react-icons/ai";
 import { Link, useLocation, useParams } from "react-router-dom";
@@ -32,13 +33,14 @@ const Post = ({ post }) => {
       );
 
       console.log(res);
-      setComments(res.data);
+      setComment(res.data);
+      setEditComment(res.data.editComment);
     };
 
     fetchCommentsData();
   }, [comment._id]);
 
-  console.log(comments);
+  console.log(comment);
 
   // add comment and stock it on const [comment, setComment]
 
@@ -48,7 +50,7 @@ const Post = ({ post }) => {
       // commenterId: user.commenterId,
       userId: user._id,
       username: user.username,
-      text: comment,
+      text: comments,
     };
 
     try {
@@ -58,7 +60,7 @@ const Post = ({ post }) => {
         newComment
       );
 
-      setComment(res.data);
+      setComments(res.data);
 
       console.log("test");
       console.log(res);
@@ -135,7 +137,7 @@ const Post = ({ post }) => {
   };
 
   //Edit post
-  // const [editMode, setEditMode] = useState(false);
+
   // const [edit, setEdit] = useState("")
 
   // const handleEdit = async() => {
@@ -149,6 +151,31 @@ const Post = ({ post }) => {
   //     setEditMode(false)
 
   //     // setComments(comments)
+
+  //   } catch (error) {
+
+  //   }
+  // }
+
+  //edit a comment
+  const [editComment, setEditComment] = useState("");
+  const [editModeComment, setEditModeComment] = useState(false);
+
+  // const showEditComment = (e) => {
+  //   if(editComment === comment.id) {
+  //     setComment(editComment)
+  //     setEditComment(true)
+  //   }else {
+  //     return false
+  //   }
+  // }
+
+  // const handleEdit = async(commentId) => {
+  //   try {
+  //     await axios.put(`https://social-media-app-vp1y.onrender.com/api/comments/${commentId}`, {
+  //      text: editComment
+
+  //     });
 
   //   } catch (error) {
 
@@ -217,15 +244,27 @@ const Post = ({ post }) => {
             {/* {post.comments.map((comment) => ( */}
             {post.comments.map((comment) => (
               <div className="commentText">
-                <p className="text"> {comment.text}</p>
+                {editModeComment ? (
+                  <textarea
+                    className=""
+                    value={editComment}
+                    onChange={(e) => setEditComment(e.target.value)}
+                  />
+                ) : (
+                  <p className="text"> {comment.text}</p>
+                )}
 
                 <span className="commentUser">{comment.username}</span>
                 <div className="editDeleteComment">
-                  {/* <GiConfirmed className="edit" onClick={handleEdit} /> */}
-                  {/* <FaEdit
+                  {/* <GiConfirmed className="edit"
+                   onClick={handleEdit}
+                   
+                   /> */}
+                  <FaEdit
                     className="edit"
-                    onClick={() => setEditMode((prev) => !prev)}
-                  /> */}
+                    // onClick={() => setEditModeComment((prev) => !prev)}
+                    // onClick={showEditComment}
+                  />
                   {/* <FaEdit className="edit"  onClick={handleEdit} /> */}
 
                   <MdDeleteForever
@@ -236,7 +275,11 @@ const Post = ({ post }) => {
               </div>
             ))}
             <div className="iconRespond">
-              <img className="likeIcon" src="./images/like.png" />
+              {/* <img className="likeIcon" src="./images/like.png" /> */}
+              <span className="likeIcon">
+                {" "}
+                <BiLike />{" "}
+              </span>
               <FaRegCommentAlt
                 className="respond"
                 onClick={() => setCommentMode((prev) => !prev)}
