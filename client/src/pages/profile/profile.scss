@@ -4,6 +4,7 @@
     // height: 1050px;
     // background-color: chocolate;
     overflow: hidden;
+ 
     
    
 
@@ -41,7 +42,7 @@
             margin-top:100px;
             margin-right:10px;
             width:100%;
-            height: 100px;
+           
             // background: linear-gradient(#48aef1, #f3f3f5);
             // overflow-y:scroll;
           
@@ -89,10 +90,11 @@
      display: block;
      margin-top: 380px;
      width: 400px;
-    //  height:500px;
+     height:500px;
     cursor: pointer;
     position:fixed;
     margin-left: 1300px;
+
 
     .title{
       font-family: sans-serif;
@@ -109,10 +111,11 @@
 
     .suggTop{
       width:90%;
-      height:150px;
-      background: rgb(223, 216, 216);
+      height:100px;
+      // background: rgb(223, 216, 216);
+      background-color: white;
       overflow-y:scroll;
-      border-radius: 20px;
+      // border-radius: 20px;
       
 
       .title{
@@ -186,8 +189,8 @@
         overflow-y:scroll;
         position: absolute;
         width:90%;
-        // background-color: aqua;
-        margin-top: 50px;
+        background-color: white;
+        margin-top: 190px;
         margin-bottom: 20px;
         // position: absolute;
         // position: sticky;

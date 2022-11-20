@@ -121,7 +121,7 @@ console.log(user)
       </div>
       <div className="users">
       <span className="title">
-          suggestions
+      Suggested accounts
           </span>
          <div className="suggTop">
         

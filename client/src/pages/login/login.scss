@@ -112,10 +112,11 @@
 .login {
     width: 100vw;
     height: 100vh;
-    background-color: #f0f2f5;
+ 
     display: flex;
     align-items: center;
     justify-content: center;
+   
   
 
 
@@ -123,6 +124,7 @@
         width: 650px;
         height: 70%;
         display: flex;
+       
 
 
 
@@ -148,13 +150,14 @@
             flex-direction: column;
             justify-content: center;
             width:350px;
-           
+            background-color: white;
+          
 
 
             .loginBox{
                 height: 400px;
                 padding: 20px;
-                background: linear-gradient(#8bb3ce, #9196cc);
+                // background: linear-gradient(#8bb3ce, #9196cc);
                 border-radius: 10px;
                 display: flex;
                 flex-direction: column;
@@ -203,7 +206,7 @@
                     font-size: 20px;
                     font-weight: 500;
                     cursor: pointer;
-                    margin: 10px;
+                    margin-left: 100px;
                 }
             }
             

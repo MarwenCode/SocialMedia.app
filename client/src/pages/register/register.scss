@@ -3,6 +3,7 @@
     width: 100vw;
     height: 100vh;
     background-color: #f0f2f5;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,6 +14,8 @@
         width: 650px;
         height: 70%;
         display: flex;
+        // background-color: white;
+   
 
 
 
@@ -38,13 +41,15 @@
             flex-direction: column;
             justify-content: center;
             width:350px;
+            // background-color: white;
+           
            
 
 
             .loginBox{
                 height: 400px;
                 padding: 20px;
-                background: linear-gradient(#8bb3ce, #9196cc);
+                background-color: white;
                 border-radius: 10px;
                 display: flex;
                 flex-direction: column;
@@ -69,7 +74,7 @@
                     border-radius: 10px;
                     border: none;
                     background: rgb(109, 168, 216);
-                    color: white;
+                    // color: black;
                     font-size: 20px;
                     font-weight: 500;
                     cursor: pointer;

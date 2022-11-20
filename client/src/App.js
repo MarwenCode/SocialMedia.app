@@ -9,7 +9,7 @@ import Register from "./pages/register/Register";
 import SinglePost from "./components/singlePost/SinglePost";
 import Profile from "./pages/profile/Profile";
 import FriendProfile from "./components/FriendProfile/FriendProfile";
-
+import "./app.scss"
 
 
 
