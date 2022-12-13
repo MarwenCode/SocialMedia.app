@@ -6,7 +6,8 @@
     cursor: pointer;
     // background: linear-gradient(#0671b8, #1526e6);
     // overflow: hidden;
-   background: linear-gradient(#0671b8, #4e5beb);
+//    background: linear-gradient(#0671b8, #4e5beb);
+background-color: white;
     position: fixed;
     z-index: 1;
     padding: 4px;
@@ -196,5 +197,10 @@
         display: flex;
         margin-right: 300px;
 
+    }
+
+    .avatar {
+        margin-left: 1450px;
+       font-size: xx-large;
     }
 }

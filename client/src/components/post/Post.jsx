@@ -18,6 +18,7 @@ const Post = ({ post }) => {
 
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState([]);
+  const [text, setText] = useState("");
   const Location = useLocation();
 
   console.log(Location);
@@ -34,7 +35,8 @@ const Post = ({ post }) => {
 
       console.log(res);
       setComment(res.data);
-      setEditComment(res.data.editComment);
+      // setEditComment(res.data.editComment);
+      // setText(res.data.comment)
     };
 
     fetchCommentsData();
@@ -138,17 +140,17 @@ const Post = ({ post }) => {
 
   //Edit post
 
-  // const [edit, setEdit] = useState("")
+  const [edit, setEdit] = useState("");
 
   // const handleEdit = async() => {
   //   try {
-  //     await axios.put(`/post/${post._id}`, {
+  //     await axios.put(`/comments/${post._id}`, {
   //       username: user.username,
   //       userId: user._id,
-  //       comment: comment.text
+  //       text:edit
   //     });
 
-  //     setEditMode(false)
+  //     setEditComment(false)
 
   //     // setComments(comments)
 
@@ -170,17 +172,27 @@ const Post = ({ post }) => {
   //   }
   // }
 
-  // const handleEdit = async(commentId) => {
-  //   try {
-  //     await axios.put(`https://social-media-app-vp1y.onrender.com/api/comments/${commentId}`, {
-  //      text: editComment
+  const handleEdit = async (commentId) => {
+    try {
+      await axios.put(
+        `https://social-media-app-vp1y.onrender.com/api/comments/${commentId}`,
+        {
+          username: user.username,
+          userId: user._id,
+          text: editComment,
+        }
+      );
+      window.location.replace("/");
 
-  //     });
+      // const specificComment = comments.find((currentComment) => currentComment._id === commentId)
+      // console.log(post)
 
-  //   } catch (error) {
+      // setComment(specificComment.editComment)
 
-  //   }
-  // }
+      // setEditModeComment(false)
+      // setEditComment(editComment)
+    } catch (error) {}
+  };
 
   return (
     <div className="post">
@@ -227,7 +239,7 @@ const Post = ({ post }) => {
               onClick={likeHandler}
             /> */}
             <FcLike className="likeIcon" onClick={likeHandler} />
-            <AiOutlineDislike className="likeIcon" onClick={likeHandler} />
+            {/* <AiOutlineDislike className="likeIcon" onClick={likeHandler} /> */}
             {/* <img
               className="likeIcon"
               src="./images/heart.png"
@@ -241,57 +253,75 @@ const Post = ({ post }) => {
             </div>
           </div>
           <div className="comment">
-            {/* {post.comments.map((comment) => ( */}
             {post.comments.map((comment) => (
               <div className="commentText">
                 {editModeComment ? (
-                  <textarea
-                    className=""
-                    value={editComment}
-                    onChange={(e) => setEditComment(e.target.value)}
-                  />
+                  <>
+                    <textarea
+                      className="commentInput"
+                      type="text"
+                      value={editComment}
+                      onChange={(e) => setEditComment(e.target.value)}
+                    />
+
+                    <button
+                      className="updateCommentBtn"
+                      onClick={() => handleEdit(comment._id)}>
+                      update
+                    </button>
+                  </>
                 ) : (
                   <p className="text"> {comment.text}</p>
                 )}
 
-                <span className="commentUser">{comment.username}</span>
-                <div className="editDeleteComment">
-                  {/* <GiConfirmed className="edit"
-                   onClick={handleEdit}
-                   
-                   /> */}
-                  <FaEdit
-                    className="edit"
-                    // onClick={() => setEditModeComment((prev) => !prev)}
-                    // onClick={showEditComment}
-                  />
-                  {/* <FaEdit className="edit"  onClick={handleEdit} /> */}
+                {!editModeComment && (
+                  <>
+                    <span className="commentUser">{comment.username}</span>
+                    <div className="editDeleteComment">
+                      {/* <GiConfirmed className="edit"
+                      //  onClick={handleEdit}
+                       
+                       /> */}
+                      <FaEdit
+                        className="edit"
+                        onClick={() => setEditModeComment((prev) => !prev)}
+                        // onClick={showEditComment}
+                      />
+                      {/* <FaEdit className="edit"  onClick={handleEdit} /> */}
 
-                  <MdDeleteForever
-                    onClick={() => deleteComment(comment._id)}
-                    className="delete"
-                  />
-                </div>
+                      <MdDeleteForever
+                        onClick={() => deleteComment(comment._id)}
+                        className="delete"
+                      />
+                    </div>
+                  </>
+                )}
               </div>
             ))}
-            <div className="iconRespond">
-              {/* <img className="likeIcon" src="./images/like.png" /> */}
-              <span className="likeIcon">
-                {" "}
-                <BiLike />{" "}
-              </span>
-              <FaRegCommentAlt
-                className="respond"
-                onClick={() => setCommentMode((prev) => !prev)}
-              />
-              {/* <span>add comment</span> */}
-              <button
-                className="addComment"
-                // onClick={(e) => addComment(e)}>reply</button>
-                onClick={(e) => addComment(e)}>
-                reply
-              </button>
-            </div>
+
+            {!editModeComment && (
+              <div className="iconRespond">
+                {/* <img className="likeIcon" src="./images/like.png" /> */}
+                {/* <span className="likeIcon">
+                  <BiLike />
+                </span> */}
+
+                <FaRegCommentAlt
+                  className="respond"
+                  onClick={() => setCommentMode((prev) => !prev)}
+                />
+
+                {/* <span>add comment</span> */}
+                {commentMode && (
+                  <button
+                    className="addComment"
+                    // onClick={(e) => addComment(e)}>reply</button>
+                    onClick={(e) => addComment(e)}>
+                    reply
+                  </button>
+                )}
+              </div>
+            )}
             {commentMode && (
               <textarea
                 className="respondInput"

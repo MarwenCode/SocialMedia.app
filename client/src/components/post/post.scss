@@ -415,6 +415,7 @@
                     font-size: small;
                     // font-style: italic;
                     color: rgb(67, 92, 131);
+                    // margin-left: -25px;
                 
                  
                   
@@ -425,6 +426,7 @@
                     display: flex;
                     // align-items:flex-start;
                     justify-content: space-around;
+                    cursor: pointer;
                   
 
                     .edit {
@@ -439,6 +441,29 @@
                   
 
                     }
+                }
+
+                .commentInput{
+                    width: 100%;
+                    resize: none;
+                }
+
+                .updateCommentBtn{
+                    // margin-left: 150px;
+                    border: none;
+                    background-color: #1872f2;
+                    color: white;
+                    // border-radius: 5px;
+                    // padding: 5px 10px;
+                    // display: flex;
+                    /* align-items: center; */
+                    font-size: 16px;
+                    // font-weight: 500;
+                    cursor: pointer;
+                    // height:25px;
+                    // margin-bottom: 15px;
+                   
+                   
                 }
                 
                 
@@ -465,7 +490,7 @@
 
                 .respond{
                     font-size:medium;
-                    margin-left: 100px;
+                    margin-left: 180px;
                 }
                 .addComment{
                     margin-left: 60px;

@@ -81,6 +81,7 @@ const Home = () => {
   // console.log(comments)
   console.log(user)
 
+
   return (
     <div className="home">
       <div className="right">

@@ -45,18 +45,25 @@ const Login = () => {
     <div className="login">
     <div className="loginWrapper">
       <div className="loginLeft">
-        <img src="images/logo.jpg" className='logo'/>
+        {/* <img src="images/logo.jpg" className='logo'/> */}
         <span className="loginDesc">
           Make a touch and connect every where.
         </span>
       </div>
       <div className="loginRight" >
         <form className="loginBox"  onSubmit={handleLogin}>
-          <input placeholder="Email" type="email" className="loginInput" required  
+          <label>Username</label>
+          <input
+           placeholder="Email" 
+           type="email"
+            className="loginInput"
+             required 
+
            onChange={(e) => setEmail(e.target.value)}
           
           
           />
+              <label>Password</label>
           <input placeholder="Password" type="password" className="loginInput" 
           onChange={(e) => setPassword(e.target.value)}
           

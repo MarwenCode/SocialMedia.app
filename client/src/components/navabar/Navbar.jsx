@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./navbar.scss";
 import { FaSearch, FaRegEnvelope } from "react-icons/fa";
+import { UserCircle } from "phosphor-react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../context/context";
 import axios from "axios";
@@ -8,9 +9,9 @@ import { useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 
 const Navbar = () => {
-  const { modalOpen, setModalOpen, user,posts } = useContext(AppContext);
-    const publicFolder = "https://social-media-app-vp1y.onrender.com/api/images/";
-    const [post, setPost] = useState([]);
+  const { modalOpen, setModalOpen, user, posts } = useContext(AppContext);
+  const publicFolder = "https://social-media-app-vp1y.onrender.com/api/images/";
+  const [post, setPost] = useState([]);
   const Navigate = useNavigate();
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -20,8 +21,7 @@ const Navbar = () => {
     setSearchActive(false);
   };
 
-
-  console.log(post)
+  console.log(post);
   //   const [searchTerm, setSearchTerm] = useState("");
   //   const [searchActive, setSearchActive] = useState(false);
 
@@ -31,16 +31,16 @@ const Navbar = () => {
   //     Navigate("/login")
   //   };
 
-    useEffect(() => {
-      const fetchPost = async (postId) => {
-        const res = await axios.get(`/post/${postId}`);
-        // const res = await axios.get("/post/:id");
-        console.log(res);
-        setPost(res.data);
-      };
+  useEffect(() => {
+    const fetchPost = async (postId) => {
+      const res = await axios.get(`/post/${postId}`);
+      // const res = await axios.get("/post/:id");
+      console.log(res);
+      setPost(res.data);
+    };
 
-      fetchPost();
-    }, [post]);
+    fetchPost();
+  }, [post]);
 
   //   const handleClickSearchTerm = () => {
   //     setSearchActive(false);
@@ -59,48 +59,48 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      {user && (
+      {user ? (
         <>
           {/* <div className="leftnavbar"></div> */}
           <div className="searchSection">
-          {searchActive && (
-          <div className="search">
-            {posts
-              .filter((post) => {
-                if (searchTerm == "") {
-                    return;
-                } else if (
-                  post.desc.toLowerCase().includes(searchTerm.toLowerCase())
-                ) {
-                  return post;
-                }
-              })
-              .map((post, key) => {
-                return (
-                  <div className="searchTerm" key={key}>
-                    <Link to={`/post/${post._id}`} className="link">
-                      <p
-                        className="searchTitle"
-                        onClick={handleClickSearchTerm}>
-                        {post.desc}
-                      </p>
-                      {/* <p className="searchTitle" >{post.title} </p> */}
-                    </Link>
-                  </div>
-                );
-              })}
-          </div>
-        )}
+            {searchActive && (
+              <div className="search">
+                {posts
+                  .filter((post) => {
+                    if (searchTerm == "") {
+                      return;
+                    } else if (
+                      post.desc.toLowerCase().includes(searchTerm.toLowerCase())
+                    ) {
+                      return post;
+                    }
+                  })
+                  .map((post, key) => {
+                    return (
+                      <div className="searchTerm" key={key}>
+                        <Link to={`/post/${post._id}`} className="link">
+                          <p
+                            className="searchTitle"
+                            onClick={handleClickSearchTerm}>
+                            {post.desc}
+                          </p>
+                          {/* <p className="searchTitle" >{post.title} </p> */}
+                        </Link>
+                      </div>
+                    );
+                  })}
+              </div>
+            )}
             <div className="FasearchInput">
-            <FaSearch className="Fasearch" />
-          <input
-            className="inputSearch"
-            type="text"
-            placeholder="search for a post..."
-            onChange={(e) => setSearchTerm(e.target.value)}
-            // onClick={() => setSearchActive(true)}
-            onClick={() => setSearchActive((prev) => !prev)}
-          />
+              <FaSearch className="Fasearch" />
+              <input
+                className="inputSearch"
+                type="text"
+                placeholder="search for a post..."
+                onChange={(e) => setSearchTerm(e.target.value)}
+                // onClick={() => setSearchActive(true)}
+                onClick={() => setSearchActive((prev) => !prev)}
+              />
             </div>
           </div>
           <div className="setting">
@@ -137,12 +137,18 @@ const Navbar = () => {
             </div>
           </div>
         </>
-      ) 
-      
-     
-      
-      }
+      ): (
+          <div className="avatar">
+            <UserCircle/>
 
+          </div>
+          
+      
+      )
+    
+    
+    }
+    
     </div>
   );
 };
