@@ -47,8 +47,21 @@ const Login = () => {
       <div className="loginLeft">
         {/* <img src="images/logo.jpg" className='logo'/> */}
         <span className="loginDesc">
-          Make a touch and connect every where.
+          Make a touch & connect every where.
         </span>
+        <p>Do not have an account?
+          <Link to="/register" className='link'>
+          <span style={{
+              textDecoration: "none",
+              color: "#1c7ed6",
+            }}>Register</span>
+          
+          </Link>
+         
+            
+            
+            </p>
+       
       </div>
       <div className="loginRight" >
         <form className="loginBox"  onSubmit={handleLogin}>
@@ -68,14 +81,14 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           
           />
-          <button className="loginButton"  type="submit" >Log in</button>
+          <button className="loginButton"  type="submit" >Login</button>
         
-          <Link to="/register">
+          {/* <Link to="/register">
           <button className="loginRegisterButton">
             Create a New Account
           </button>
           
-          </Link>
+          </Link> */}
         
          
         
@@ -88,5 +101,5 @@ const Login = () => {
 
 export default Login;
 
-// {isFetching ? "Loading" : "Log In"}
+
 
