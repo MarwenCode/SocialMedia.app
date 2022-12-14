@@ -15,7 +15,10 @@ const LeftHome = () => {
     const getFriends = async () => {
       try {
         // const friendList = await axios.get(`/user/friends/${user._id}`);
-        const friendList = await axios.get("https://social-media-app-vp1y.onrender.com/api/user/friends/" + user._id);
+        const friendList = await axios.get(
+          "https://social-media-app-vp1y.onrender.com/api/user/friends/" +
+            user._id
+        );
         setFriends(friendList.data);
       } catch (error) {
         console.log(error);
@@ -23,7 +26,7 @@ const LeftHome = () => {
     };
 
     getFriends();
-  // }, [user._id]);
+    // }, [user._id]);
   }, []);
 
   console.log(friends);
@@ -32,13 +35,12 @@ const LeftHome = () => {
   return (
     <div className="lefthome">
       <div className="top">
-      <Reactions />
-
+        <Reactions />
       </div>
 
-      <div className="down">
+      {/* <div className="down">
         <div className="friendslist">
-          {/* <h4 className="rightbarTitle">User friends</h4> */}
+        
 
           <div className="searchFriendsList">
             <FcSearch className="searchIcon" />
@@ -65,7 +67,8 @@ const LeftHome = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
+
     </div>
   );
 };

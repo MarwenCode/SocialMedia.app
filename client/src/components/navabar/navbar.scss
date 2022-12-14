@@ -160,6 +160,7 @@ background-color: white;
                         align-items: center;
                         justify-content: center;
                         font-size: 15px;
+                      
                     }
 
                  
@@ -183,7 +184,13 @@ background-color: white;
             display: flex;
          
             .topImg {
-                border-radius: 15px;
+                border-radius: 45px;
+                width: 40px;
+                object-fit: cover;
+                margin-right: 100px;
+              
+              
+                
               
     
             }

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./navbar.scss";
 import { FaSearch, FaRegEnvelope } from "react-icons/fa";
-import { UserCircle } from "phosphor-react";
+import { UserCircle, House,Bell   } from "phosphor-react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../context/context";
 import axios from "axios";
@@ -106,17 +106,17 @@ const Navbar = () => {
           <div className="setting">
             <div className="settingList">
               <ul className="list">
-                <Link to={`/profile/${user._id}`} className="link">
-                  <li className="item">Profile</li>
-                </Link>
+              
 
                 <Link to="/" className="link">
-                  <li className="item">Home</li>
+                  {/* <li className="item">Home</li> */}
+                  <House size={25} />
                 </Link>
 
                 <li className="item">
-                  <FaRegEnvelope />
+                  {/* <FaRegEnvelope /> */}
                   <span className="IconBadge">2</span>
+                  <Bell size={25} />
                 </li>
               </ul>
             </div>
@@ -128,7 +128,8 @@ const Navbar = () => {
               ) : (
                 <img
                   className="topImg"
-                  src="images/image1.jpg"
+                  // src="images/image1.jpg"
+                  src="/images/noAvatar.png"
                   onClick={() => {
                     setModalOpen(true);
                   }}

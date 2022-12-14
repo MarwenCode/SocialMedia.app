@@ -44,10 +44,21 @@ const Register = () => {
     <div className="register">
     <div className="loginWrapper">
       <div className="loginLeft">
-        <img src="images/logo.jpg" className='logo'/>
-        <span className="loginDesc">
-          Make a touch and connect every where.
+      <span className="loginDesc">
+          Make a touch & connect every where.
         </span>
+        <p>Already have an account?
+          <Link to="/login" className='link'>
+          <span style={{
+              textDecoration: "none",
+              color: "#1c7ed6",
+            }}>Login</span>
+          
+          </Link>
+         
+            
+            
+            </p>
       </div>
       <div className="loginRight" >
         <form className="loginBox"  onSubmit={handleRegister}>
@@ -67,12 +78,12 @@ const Register = () => {
           
           />
           <button className="loginButton"  type="submit" >Sign in</button>
-          <button className="loginRegisterButton">
+          {/* <button className="loginRegisterButton">
             Create a New Account
-          </button>
-          <Link to="/login">
+          </button> */}
+          {/* <Link to="/login">
           <button className='loginButton'>if you have a profile Log in </button>
-          </Link>
+          </Link> */}
          
         </form>
       </div>

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../context/context";
 import { FaRegTimesCircle, FaRegSun } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./modal.scss";
 
@@ -28,9 +29,16 @@ const Modal = () => {
           />
 
           {user && (
+            <>
+                 <Link to={`/profile/${user._id}`} className="link">
+               <li className="item">Profile</li>
+             </Link>
             <li className="item" onClick={handleLogout}>
               Logout
             </li>
+            
+            </>
+          
           )}
 
           {/* <li className="signItemLogin">Login</li>
