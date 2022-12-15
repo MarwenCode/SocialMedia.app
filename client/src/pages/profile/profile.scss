@@ -1,124 +1,160 @@
-.profile{
-    display: flex;
-    width:100%;
-    // height: 1050px;
-    // background-color: chocolate;
-    overflow: hidden;
- 
-    
-   
+.profile {
+  display: flex;
+  width: 100%;
+  // height: 1050px;
+  // background-color: chocolate;
+  overflow: hidden;
 
-    .news {
-        // background-color: rgb(94, 255, 0);
-        flex:2;
-        margin-top: 50px;
-        margin-left: 15px;
-        height: 250px;
+  .leftSide {
+    // background-color: rgb(94, 255, 0);
+    flex: 2;
+    margin-top: 50px;
+    margin-left: 15px;
+    height: 250px;
 
-        .sidebarList {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-      
-            .sidebarListItem {
-              display: flex;
-              align-items: center;
-              margin-bottom: 20px;
-      
-              .sidebarIcon {
-                margin-right: 15px;
-              }
-      
-      
-      
-            }
-      
-      
-      
-      
-          }
+    .sidebarList {
+      padding: 0;
+      margin: 0;
+      list-style: none;
 
-          .reactions {
-            margin-top:100px;
-            margin-right:10px;
-            width:100%;
-           
-            // background: linear-gradient(#48aef1, #f3f3f5);
-            // overflow-y:scroll;
-          
-           
-       
-          
-          }
+      .sidebarListItem {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
 
-
+        .sidebarIcon {
+          margin-right: 15px;
+        }
+      }
     }
 
-    .center{
-        flex:10;
-        // background-color: aqua;
-        width:250px;
-        margin-right: 350px;
-        height: auto;
+    .reactions {
+      margin-top: 100px;
+      margin-right: 10px;
+      width: 100%;
 
+      // background: linear-gradient(#48aef1, #f3f3f5);
+      // overflow-y:scroll;
+    }
+  }
+
+  .profileinfo {
+    background-color: white;
+    margin-left: -10px;
+    width: 120%;
+    height: 30vh;
+    .top {
+      display: flex;
+       
         .image {
+          width: 40px;
+          border-radius: 20px;
+        }
+      
+      
+      button {
+        margin-left: 150px;
+        margin-top: 10px;
+        width: 100px;
+        margin-left: 200px;
+
+        border: none;
+        background-color: #1872f2;
+        color: white;
+        border-radius: 5px;
+        font-weight: 500;
+        cursor: pointer;
+        height: 25px;
+      }
+    }
+    .center {
+      margin-top: 30px;
+      margin-left: -3px;
+
+      .username {
+        text-transform: capitalize;
+
        
-        
-  
-            .picBack {
-                width: 1400px;
-                position: sticky;
-                margin-top: 40px;
-                height: 300px;
-                object-fit: cover;
-                border-radius: 10px;
-            }
-           
+
+      }
+      .joined {
+        color: rgb(161, 161, 161);
+        margin-left: 10px;
+
+      }
+    }
+    .down {
+
+      .followings{
+        span {
+          color: grey
         }
 
-        .share {
-          width:750px;
-          margin-left: 20px;
-          margin-top:8px;
+      }
+
+      .followers{
+         margin-left: 10px;
+         span {
+          color: grey
         }
+      }
+
 
 
     }
+  }
 
-    .users{ 
-      // background-color: rgb(38, 21, 136);
-     display: block;
-     margin-top: 380px;
-     width: 400px;
-     height:500px;
+  .center {
+    flex: 10;
+    // background-color: aqua;
+    width: 250px;
+    // margin-right: 350px;
+    margin-left: 50px;
+    height: auto;
+
+    .image {
+      .picBack {
+        width: 1400px;
+        position: sticky;
+        margin-top: 40px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+    }
+
+    .share {
+      width: 750px;
+      margin-left: 20px;
+      margin-top: 60px;
+    }
+  }
+
+  .users {
+    // background-color: rgb(38, 21, 136);
+    display: block;
+    margin-top: 380px;
+    width: 400px;
+    height: 500px;
     cursor: pointer;
-    position:fixed;
+    position: fixed;
     margin-left: 1300px;
 
-
-    .title{
+    .title {
       font-family: sans-serif;
       margin-left: 50px;
       margin-bottom: 250px;
-    
     }
-   
-   
-   
-   
-  
-  
 
-    .suggTop{
-      width:90%;
-      height:100px;
+    .suggTop {
+      width: 90%;
+      height: 100px;
       // background: rgb(223, 216, 216);
       background-color: white;
-      overflow-y:scroll;
+      overflow-y: scroll;
       // border-radius: 20px;
-      
 
-      .title{
+      .title {
         font-size: medium;
         font-family: sans-serif;
         align-items: center;
@@ -126,151 +162,96 @@
         margin-left: 65px;
       }
 
-
       .suggestions {
-        
         // margin-top: 250px;
         display: flex;
         margin: 10px;
         padding: 5px;
-     
 
-
-        .image{
-          width:35px;
+        .image {
+          width: 35px;
           margin-left: 10px;
           border-radius: 10px;
-         
         }
 
-        .name{
+        .name {
           margin-left: 10px;
           align-items: center;
           justify-content: center;
-
         }
-
-
       }
 
-      .suggestions:hover{
+      .suggestions:hover {
         color: cadetblue;
       }
-
-
     }
 
+    .suggTop::-webkit-scrollbar {
+      width: 10px;
+      background-color: #9cd5e4;
+    }
 
-    .suggTop::-webkit-scrollbar
-{
-	width: 10px;
-	background-color: #9cd5e4;
+    .suggTop::-webkit-scrollbar-thumb {
+      background-color: #000000;
+      border: 2px solid #555555;
+      border-radius: 10px;
+    }
 
-}
+    .friendsList {
+      // flex:2;
 
-.suggTop::-webkit-scrollbar-thumb
-{
-	background-color: #000000;
-	border: 2px solid #555555;
-  border-radius: 10px;
-  
-}
+      overflow-y: scroll;
+      position: absolute;
+      width: 90%;
+      background-color: white;
+      margin-top: 190px;
+      margin-bottom: 20px;
+      // position: absolute;
+      // position: sticky;
 
-    
+      .title {
+        font-family: sans-serif;
+        margin-left: 50px;
+      }
 
-    
+      // margin-top: 200px;
 
+      .leftbarFollowings {
+        width: 100%;
+        // background-color: rgb(199, 118, 12);
+        // margin: -10px;
 
-
-
-      .friendsList{
-        // flex:2;
-     
-        overflow-y:scroll;
-        position: absolute;
-        width:90%;
-        background-color: white;
-        margin-top: 190px;
-        margin-bottom: 20px;
+        // height: 100%;
+        background: white;
         // position: absolute;
-        // position: sticky;
-       
+        border-radius: 10px;
 
-        .title{
-          font-family: sans-serif;
-          margin-left: 50px;
-        }
-       
-      
-      
-       
-        // margin-top: 200px;
+        .leftbarFollowing {
+          display: flex;
+          margin: 10px;
 
-        .leftbarFollowings{
-          width: 100%;
-          // background-color: rgb(199, 118, 12);
-          // margin: -10px;
-       
-          // height: 100%;
-          background: white;
-          // position: absolute;
-          border-radius: 10px;
-          
-      
-        
-      
-    
-    
-    
-          .leftbarFollowing{
-            display: flex;
+          .leftbarFollowingName {
+            font-size: medium;
             margin: 10px;
-         
-    
-    
-            .leftbarFollowingName{
-              font-size: medium;
-              margin: 10px;
-              font-family: 'Lato', sans-serif;
-              color: #42494b;
-            }
-    
-            .leftbarFollowingImg{
-              border-radius: 10px;
-              width:35px;
-              margin-top: 10px;
-             
-            }
-            .online{
-              width:10px;
-              border-radius: 50%;
-              background-color: rgb(72, 184, 72);
-              height: 10px;
-              margin-left: -4px;
-              margin-top: 10px;
-            }
-    
-    
-    
-    
-    
-    
+            font-family: "Lato", sans-serif;
+            color: #42494b;
           }
-    
-    
-    
-    
-    
-    
+
+          .leftbarFollowingImg {
+            border-radius: 10px;
+            width: 35px;
+            margin-top: 10px;
+          }
+          .online {
+            width: 10px;
+            border-radius: 50%;
+            background-color: rgb(72, 184, 72);
+            height: 10px;
+            margin-left: -4px;
+            margin-top: 10px;
+          }
         }
-
-       
-
-
+      }
     }
-
-
-    }
-
- 
+  }
 }
