@@ -6,6 +6,7 @@ import Picker from "emoji-picker-react";
 import axios from "axios";
 import "./share.scss";
 import { AppContext } from "../context/context";
+import { useEffect } from "react";
 // import Emoji from "./Emoji";
 
 const Share = () => {
@@ -47,6 +48,24 @@ const Share = () => {
     setInputStr((prevInput) => prevInput + emojiObject.emoji);
     setShowPicker(false);
   };
+
+
+  //close the emoji modal 
+  // useEffect(() => {
+  //   const closeEmojiModal = (e) => {
+  //     console.log(e)
+  //     if (e.tagname !== "INPUT")
+    
+
+  //     setShowPicker((prev) => !prev)
+  //   }
+  //   // document.body.addEventListener("click", closeEmojiModal);
+  //   // return () => document.body.removeEventListener("click", closeEmojiModal)
+  // }, [])
+
+
+
+
 
   return (
     <div className="share">
@@ -102,8 +121,11 @@ const Share = () => {
               <BsEmojiSmile
                 htmlColor="goldenrod"
                 className="shareIcon"
-                onClick={() => setShowPicker((val) => !val)}
+                onClick={() => setShowPicker((prev) => !prev)}
               />
+
+          
+             
               {showPicker && (
                 <Picker
                   pickerStyle={{ width: "100%" }}
@@ -111,7 +133,14 @@ const Share = () => {
                 />
               )}
             </div>
+          
           </div>
+          {showPicker && (
+                 <button className="EmojiCloseBtn"  onClick={() => setShowPicker((prev) => !prev)}>X</button>
+              )
+
+
+              }
           <button className="shareButton" type="submit">
             Share
           </button>
