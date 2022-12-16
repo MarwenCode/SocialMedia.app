@@ -42,7 +42,8 @@
     background-color: white;
     margin-left: -10px;
     width: 120%;
-    height: 30vh;
+    height: 20vh;
+    margin-top: 10px;
     .top {
       display: flex;
        
@@ -140,33 +141,35 @@
     position: fixed;
     margin-left: 1300px;
 
-    .title {
-      font-family: sans-serif;
-      margin-left: 50px;
-      margin-bottom: 250px;
-    }
-
+  
     .suggTop {
       width: 90%;
-      height: 100px;
+      height: 130px;
       // background: rgb(223, 216, 216);
       background-color: white;
       overflow-y: scroll;
       // border-radius: 20px;
+      margin-top: -315px;
+      margin-left: -30px;
+      width: 200px;
 
-      .title {
-        font-size: medium;
-        font-family: sans-serif;
-        align-items: center;
-        justify-content: center;
-        margin-left: 65px;
-      }
+      // .title {
+      //   font-size: medium;
+      //   font-family: sans-serif;
+      //   align-items: center;
+      //   justify-content: center;
+      //   margin-left: 65px;
+      
+      // }
 
       .suggestions {
         // margin-top: 250px;
         display: flex;
         margin: 10px;
         padding: 5px;
+
+    
+      
 
         .image {
           width: 35px;
@@ -203,12 +206,13 @@
       overflow-y: scroll;
       position: absolute;
       width: 90%;
-      background-color: white;
-      margin-top: 190px;
+      // background-color: white;
+      margin-top: 430px;
       margin-bottom: 20px;
       // position: absolute;
       // position: sticky;
 
+     
       .title {
         font-family: sans-serif;
         margin-left: 50px;
@@ -222,13 +226,14 @@
         // margin: -10px;
 
         // height: 100%;
-        background: white;
+        // background: white;
         // position: absolute;
         border-radius: 10px;
+       
 
         .leftbarFollowing {
           display: flex;
-          margin: 10px;
+          // margin: 10px;
 
           .leftbarFollowingName {
             font-size: medium;
@@ -253,5 +258,12 @@
         }
       }
     }
+
+     .expandMore {
+        // margin-bottom: 40px;
+        margin-top: 520px;
+        
+      }
+
   }
 }

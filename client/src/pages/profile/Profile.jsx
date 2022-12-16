@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { BsChatSquareText } from "react-icons/bs";
 import { FcVideoCall } from "react-icons/fc";
-import { MdGroups } from "react-icons/md";
+import { MdGroups, MdExpandMore,MdExpandLess } from "react-icons/md";
 import LeftHome from "../../components/leftHome/LeftHome";
 import { Link } from "react-router-dom";
 import Reactions from "../../components/reactions/Reactions";
@@ -17,6 +17,7 @@ const Profile = () => {
   const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
   const [followed, setFollowed] = useState();
+  const [showFriendsList, setShowFriendsList] = useState(false);
   const image = "https://social-media-app-vp1y.onrender.com/api/images/";
 
   //fetch friends list
@@ -117,8 +118,12 @@ const Profile = () => {
             <span className="joined">joined</span>
           </div>
           <div className="down">
-            <span className="followings">{user.followings.length} <span>Following</span> </span>
-            <span className="followers">{user.followers.length} <span>Followers</span>    </span>
+            <span className="followings">
+              {user.followings.length} <span>Following</span>{" "}
+            </span>
+            <span className="followers">
+              {user.followers.length} <span>Followers</span>{" "}
+            </span>
           </div>
         </div>
         <div className="reactions">
@@ -140,8 +145,9 @@ const Profile = () => {
         </div>
       </div>
       <div className="users">
-        <span className="title">Suggested accounts</span>
+       
         <div className="suggTop">
+    
           {users.map((user) => (
             <div className="suggestions">
               <img
@@ -158,27 +164,39 @@ const Profile = () => {
               </Link>
             </div>
           ))}
+           
         </div>
+        <span className="title">Suggested accounts</span>
 
         <div className="friendsList">
-          <span className="title">On Line Friends</span>
+         
           <div className="leftbarFollowings">
-            {friends.map((friend) => (
-              <div className="leftbarFollowing">
-                <img
-                  className="leftbarFollowingImg"
-                  src={
-                    friend.profilePicture
-                      ? image + friend.profilePicture
-                      : "/images/noAvatar.png"
-                  }
-                />
-                <span className="online"></span>
-                <span className="leftbarFollowingName">{friend.username}</span>
-              </div>
-            ))}
+            {showFriendsList && (
+              <>
+                {friends.map((friend) => (
+                  <div className="leftbarFollowing">
+                    <img
+                      className="leftbarFollowingImg"
+                      src={
+                        friend.profilePicture
+                          ? image + friend.profilePicture
+                          : "/images/noAvatar.png"
+                      }
+                    />
+                    <span className="online"></span>
+                    <span className="leftbarFollowingName">
+                      {friend.username}
+                    </span>
+                  </div>
+                ))}
+              </>
+            )}
           </div>
+      
         </div>
+        <summary className="expandMore"    onClick={() => setShowFriendsList((prev) => !prev)}>
+            On Line Friends <MdExpandLess />
+          </summary>
       </div>
     </div>
   );
