@@ -3,6 +3,7 @@ import { BsChatSquareText } from "react-icons/bs";
 import { FcVideoCall } from "react-icons/fc";
 import { RiUserFollowFill, RiUserUnfollowFill } from "react-icons/ri";
 import { FaTrashAlt, FaRegCommentAlt, FaEdit } from "react-icons/fa";
+import { ArrowLeft   } from "phosphor-react";
 import { MdDeleteForever } from "react-icons/md";
 import { MdGroups } from "react-icons/md";
 import LeftHome from "../../components/leftHome/LeftHome";
@@ -28,6 +29,7 @@ const FriendProfile = () => {
   const { user, dispatch } = useContext(AppContext);
   const [friends, setFriends] = useState([]);
   const [followed, setFollowed] = useState(getlocalStorage(false));
+  const [friendProfile, setFriendProfile] = useState([])
   const location = useLocation();
   console.log(location);
   const path = location.pathname.split("/")[3];
@@ -64,6 +66,35 @@ const FriendProfile = () => {
 
     getUsers();
   }, []);
+
+  //get profile friend
+  useEffect(() => {
+    const profileFriend = async () => {
+    try {
+     
+      //  fetch("/friend/info/" + path, {method: 'GET'})
+      //  .then(response => response.json())
+      // //  .then(data => setFriendProfile(data))
+      //  .then(data => console.log(data))
+      //   // const data = await res.json()
+      //   // console.log(data)
+      //   // setFriendProfile(data)
+
+      const res = await axios.get("https://social-media-app-vp1y.onrender.com/api/user/" + path)
+      console.log(res.data)
+      setFriendProfile(res.data)
+       
+        
+      
+  
+      } catch(error) {
+        console.log(error)
+      }
+      
+    }
+    profileFriend()
+
+  }, [])
 
   const [commentMode, setCommentMode] = useState(false);
 
@@ -144,15 +175,15 @@ const FriendProfile = () => {
         <div className="profileIntro">
         
           <div className="top">
-          <button>button</button>
+           <ArrowLeft  />
           <div className="firstbloc">
             <div className="right">
-            <img  src="eee" />
-            <span>name</span>
+            <img   src="/images/noAvatar.png"/>
+           
 
             </div>
             <div className="left">
-              follow
+              <button>Follow</button>
             </div>
         
            
@@ -160,6 +191,15 @@ const FriendProfile = () => {
 
           </div>
           <div className="center">
+          <span>{friendProfile.username}</span>
+          <p>Description</p>
+          <span className="joined">member since {new Date(friendProfile.createdAt).toDateString()}</span>
+          <div className="follow">
+            <span className="followers">{friendProfile.followers.length} Followers</span>
+            <span>{friendProfile.followings.length} Followings</span>
+
+          </div>
+       
 
           </div>
         </div>

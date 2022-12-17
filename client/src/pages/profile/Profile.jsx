@@ -119,10 +119,10 @@ const Profile = () => {
           </div>
           <div className="down">
             <span className="followings">
-              {user.followings.length} <span>Following</span>{" "}
+              {user.followings.length} <span>Following</span>
             </span>
             <span className="followers">
-              {user.followers.length} <span>Followers</span>{" "}
+              {user.followers.length} <span>Followers</span>
             </span>
           </div>
         </div>

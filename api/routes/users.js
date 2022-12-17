@@ -93,19 +93,6 @@ userRoute.get("/", async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // follow a user
 userRoute.put("/follow/:id", async (req, res) => {
   if (req.body.userId !== req.params.id) {

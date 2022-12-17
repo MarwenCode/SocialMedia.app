@@ -263,16 +263,60 @@
         background-color: white;
 
         .top {
+          padding: 10px;
 
           .firstbloc {
             display: flex;
 
             .right {
-
+              img {
+                width:30px
+              }
+            
             }
 
             .left {
               margin-left: 450px;
+              button {
+                border: none;
+                background-color: #1872f2;
+                color: white;
+                border-radius: 5px;
+                padding: 5px 10px;
+                font-size: 16px;
+                cursor: pointer;
+                height:25px;
+          
+
+              }
+            }
+          }
+
+        }
+
+        .center {
+
+          span {
+            margin-left: -40px;
+            text-transform: capitalize;
+          }
+          p {
+            margin-left: -40px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+
+          }
+          .joined {
+            color: grey;
+            
+          }
+
+          .follow{
+            display: flex;
+            margin-top: 10px;
+            .followers {
+              margin-right: 50px;
+              
             }
           }
 
