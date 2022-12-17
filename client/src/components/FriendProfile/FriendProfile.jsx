@@ -108,7 +108,7 @@ const FriendProfile = () => {
 
   return (
     <div className="profile">
-      <div className="news">
+      <div className="leftSide">
         <ul className="sidebarList">
           <li className="sidebarListItem">
             <BsChatSquareText className="sidebarIcon" />
@@ -135,11 +135,34 @@ const FriendProfile = () => {
         </div>
       </div>
       <div className="center">
-        <div className="image">
+        {/* <div className="image">
           <img className="picBack" src="/images/image2.jpeg" />
-        </div>
+        </div> */}
+      
 
         <div className="posts">
+        <div className="profileIntro">
+        
+          <div className="top">
+          <button>button</button>
+          <div className="firstbloc">
+            <div className="right">
+            <img  src="eee" />
+            <span>name</span>
+
+            </div>
+            <div className="left">
+              follow
+            </div>
+        
+           
+          </div>
+
+          </div>
+          <div className="center">
+
+          </div>
+        </div>
           {posts.map((post) => (
             <div className="post">
               <div className="postWrapper">

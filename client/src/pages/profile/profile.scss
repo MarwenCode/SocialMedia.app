@@ -144,7 +144,7 @@
   
     .suggTop {
       width: 90%;
-      height: 130px;
+      height: 110px;
       // background: rgb(223, 216, 216);
       background-color: white;
       overflow-y: scroll;
@@ -229,11 +229,19 @@
         // background: white;
         // position: absolute;
         border-radius: 10px;
+    
+   
+       
+     
        
 
         .leftbarFollowing {
           display: flex;
           // margin: 10px;
+          margin-bottom: -10px;
+          margin-left: 60px;
+        
+        
 
           .leftbarFollowingName {
             font-size: medium;
@@ -261,7 +269,8 @@
 
      .expandMore {
         // margin-bottom: 40px;
-        margin-top: 520px;
+        margin-top: 500px;
+        margin-left: 60px;
         
       }
 

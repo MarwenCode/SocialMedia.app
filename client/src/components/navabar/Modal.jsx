@@ -7,6 +7,7 @@ import "./modal.scss";
 
 const Modal = () => {
   const { modalOpen, setModalOpen, user, dispatch } = useContext(AppContext);
+ 
 
   // const closeModal = () => {
   //   setModalOpen(prev => prev(!modalOpen))
@@ -19,6 +20,11 @@ const Modal = () => {
     Navigate("/login");
   };
 
+
+
+
+
+
   return (
     <div className="modalbackground">
       <div className="sign">
@@ -30,7 +36,7 @@ const Modal = () => {
 
           {user && (
             <>
-                 <Link to={`/profile/${user._id}`} className="link">
+                 <Link to={`/profile/${user._id}`} className="link"   onClick={() => setModalOpen((prev) => !prev)}  >
                <li className="item">Profile</li>
              </Link>
             <li className="item" onClick={handleLogout}>
