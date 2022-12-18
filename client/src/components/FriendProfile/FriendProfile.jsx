@@ -26,10 +26,17 @@ const getlocalStorage = () => {
 };
 
 const FriendProfile = () => {
+  const [friendProfile, setFriendProfile] = useState([])
+  const [followers, setFollowers] = useState("")
+  const [followings, setFollowings] = useState("")
   const { user, dispatch } = useContext(AppContext);
   const [friends, setFriends] = useState([]);
   const [followed, setFollowed] = useState(getlocalStorage(false));
-  const [friendProfile, setFriendProfile] = useState([])
+
+  const [follow, setFollow] = useState(
+    user.followings.includes(friendProfile?.id)
+  );
+
   const location = useLocation();
   console.log(location);
   const path = location.pathname.split("/")[3];
@@ -68,6 +75,10 @@ const FriendProfile = () => {
   }, []);
 
   //get profile friend
+
+ 
+
+
   useEffect(() => {
     const profileFriend = async () => {
     try {
@@ -80,9 +91,11 @@ const FriendProfile = () => {
       //   // console.log(data)
       //   // setFriendProfile(data)
 
-      const res = await axios.get("https://social-media-app-vp1y.onrender.com/api/user/" + path)
+      const res = await axios.get("https://social-media-app-vp1y.onrender.com/api/user/"+ path)
       console.log(res.data)
       setFriendProfile(res.data)
+      setFollowers(res.data.followers)
+      setFollowings(res.data.followings)
        
         
       
@@ -94,7 +107,33 @@ const FriendProfile = () => {
     }
     profileFriend()
 
-  }, [])
+  }, [path]);
+
+  //set followers & followings
+  const handleFollow = async() => {
+    try {
+      if(follow) {
+        await axios.put(`/user/unfollow/${path}`, {
+          userId: user._id,
+        });
+
+        dispatch({type: "UNFOLLOW", payload: path})
+        console.log("unfollow")
+      }else {
+        await axios.put(`/user/follow/${path}`, {
+          userId: user._id,
+        });
+        dispatch({type: "FOLLOW", payload: path})
+        console.log("follow");
+
+      }
+      setFollow(!follow)
+      
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
 
   const [commentMode, setCommentMode] = useState(false);
 
@@ -183,7 +222,7 @@ const FriendProfile = () => {
 
             </div>
             <div className="left">
-              <button>Follow</button>
+              <button onClick={handleFollow}>  {follow ? "Unfollow" : "Follow"}</button>
             </div>
         
            
@@ -195,8 +234,8 @@ const FriendProfile = () => {
           <p>Description</p>
           <span className="joined">member since {new Date(friendProfile.createdAt).toDateString()}</span>
           <div className="follow">
-            <span className="followers">{friendProfile.followers.length} Followers</span>
-            <span>{friendProfile.followings.length} Followings</span>
+            <span className="followers">{followers.length} Followers</span>
+            <span>{followings.length} Followings</span>
 
           </div>
        
