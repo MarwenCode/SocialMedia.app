@@ -3,7 +3,7 @@ import { BsChatSquareText } from "react-icons/bs";
 import { FcVideoCall } from "react-icons/fc";
 import { RiUserFollowFill, RiUserUnfollowFill } from "react-icons/ri";
 import { FaTrashAlt, FaRegCommentAlt, FaEdit } from "react-icons/fa";
-import { ArrowLeft   } from "phosphor-react";
+import { ArrowLeft, CloudSlash } from "phosphor-react";
 import { MdDeleteForever } from "react-icons/md";
 import { MdGroups } from "react-icons/md";
 import LeftHome from "../../components/leftHome/LeftHome";
@@ -16,31 +16,46 @@ import Post from "../post/Post";
 
 import "./friendprofile.scss";
 
-const getlocalStorage = () => {
-  let follow = localStorage.getItem("follow");
-  if (follow) {
-    return JSON.parse(localStorage.getItem("follow"));
-  } else {
-    return [];
-  }
-};
+// const getlocalStorage = () => {
+//   let follow = localStorage.getItem("follow");
+//   if (follow) {
+//     return JSON.parse(localStorage.getItem("follow"));
+//   } else {
+//     return [];
+//   }
+// };
 
 const FriendProfile = () => {
-  const [friendProfile, setFriendProfile] = useState([])
-  const [followers, setFollowers] = useState("")
-  const [followings, setFollowings] = useState("")
-  const { user, dispatch } = useContext(AppContext);
+  const [friendProfile, setFriendProfile] = useState([]);
+  const [followers, setFollowers] = useState("");
+  const [followings, setFollowings] = useState("");
+  const { user: currentUser, dispatch } = useContext(AppContext);
   const [friends, setFriends] = useState([]);
-  const [followed, setFollowed] = useState(getlocalStorage(false));
+  // const [followed, setFollowed] = useState(getlocalStorage(false));
 
-  const [follow, setFollow] = useState(
-    user.followings.includes(friendProfile?.id)
-  );
-
+  // const [unFollow , setUnFollow] = useState(true)
   const location = useLocation();
   console.log(location);
   const path = location.pathname.split("/")[3];
   console.log(path);
+
+  const [follow, setFollow] =useState(
+    currentUser.followings.includes(path)
+    // currentUser._id
+    // "follow"
+    // false
+    );
+    const [unFollow, setUnFollow] = useState("UnFollow")
+    // currentUser.followings.includes(friendProfile?._id)
+    // user.followings.includes(friendProfile?._id) ||
+    // user.followings.includes(friendProfile?._id)
+
+    // "Follow"
+    // "UnFollow"
+    // "Follow"
+    // null
+
+  console.log(follow);
 
   const [users, setUsers] = useState([]);
 
@@ -51,7 +66,9 @@ const FriendProfile = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       // const res = await axios.get(`/profile/friend/${user._id}`);
-      const res = await axios.get("https://social-media-app-vp1y.onrender.com/api/profile/friend/" + path);
+      const res = await axios.get(
+        "https://social-media-app-vp1y.onrender.com/api/profile/friend/" + path
+      );
       console.log(res);
       setPosts(res.data);
     };
@@ -63,7 +80,9 @@ const FriendProfile = () => {
     const getUsers = async () => {
       try {
         // const usersList = await axios.get("/user");
-        const usersList = await axios.get("https://social-media-app-vp1y.onrender.com/api/user");
+        const usersList = await axios.get(
+          "https://social-media-app-vp1y.onrender.com/api/user"
+        );
         console.log(usersList);
         setUsers(usersList.data);
       } catch (error) {
@@ -76,64 +95,78 @@ const FriendProfile = () => {
 
   //get profile friend
 
- 
-
-
   useEffect(() => {
     const profileFriend = async () => {
-    try {
-     
-      //  fetch("/friend/info/" + path, {method: 'GET'})
-      //  .then(response => response.json())
-      // //  .then(data => setFriendProfile(data))
-      //  .then(data => console.log(data))
-      //   // const data = await res.json()
-      //   // console.log(data)
-      //   // setFriendProfile(data)
+      try {
+        //  fetch("/friend/info/" + path, {method: 'GET'})
+        //  .then(response => response.json())
+        // //  .then(data => setFriendProfile(data))
+        //  .then(data => console.log(data))
+        //   // const data = await res.json()
+        //   // console.log(data)
+        //   // setFriendProfile(data)
 
-      const res = await axios.get("https://social-media-app-vp1y.onrender.com/api/user/"+ path)
-      console.log(res.data)
-      setFriendProfile(res.data)
-      setFollowers(res.data.followers)
-      setFollowings(res.data.followings)
-       
-        
-      
-  
-      } catch(error) {
-        console.log(error)
+        const res = await axios.get(
+          "https://social-media-app-vp1y.onrender.com/api/user/" + path
+        );
+        console.log(res.data);
+        setFriendProfile(res.data);
+        setFollowers(res.data.followers);
+        setFollowings(res.data.followings);
+      } catch (error) {
+        console.log(error);
       }
-      
-    }
-    profileFriend()
-
+    };
+    profileFriend();
   }, [path]);
 
   //set followers & followings
-  const handleFollow = async() => {
+  const handleFollow = async () => {
     try {
-      if(follow) {
-        await axios.put(`/user/unfollow/${path}`, {
-          userId: user._id,
-        });
+      if (follow) {
+        await axios.put(
+          `https://social-media-app-vp1y.onrender.com/api/user/unfollow/${path}`,
+          {
+            userId: currentUser._id,
+          }
+        );
 
-        dispatch({type: "UNFOLLOW", payload: path})
-        console.log("unfollow")
-      }else {
-        await axios.put(`/user/follow/${path}`, {
-          userId: user._id,
-        });
-        dispatch({type: "FOLLOW", payload: path})
+        dispatch({ type: "UNFOLLOW", payload: friendProfile._id });
+        // window.location.replace(`/user/friend/${path}`);
+        // setFollow((prev) => !prev)
+        // setUnFollow(unFollow)
+
+        console.log("unfollow");
+        // setFollow(!follow);
+      } else {
+        await axios.put(
+          `https://social-media-app-vp1y.onrender.com/api/user/follow/${path}`,
+          {
+            userId: currentUser._id,
+          }
+        );
+        dispatch({ type: "FOLLOW", payload: friendProfile._id });
         console.log("follow");
+        // window.location.replace(`/user/friend/${path}`);
+        // setFollow(follow);
+        // setFollow((prev) => !prev)
 
+        // setFollow(true)
       }
+
       setFollow(!follow)
-      
+      // setFollow((prev) => !prev)
+      // setFollow(false)
+      // setFollow((prev) => !prev)
+      // setFollow(false);
     } catch (error) {
-      console.log(error)
-      
+      console.log(error);
     }
-  }
+    // setFollow(true)
+    // setFollow((prev) => !prev)          
+  };
+
+  console.log(follow);
 
   const [commentMode, setCommentMode] = useState(false);
 
@@ -144,7 +177,9 @@ const FriendProfile = () => {
   useEffect(() => {
     const fetchComment = async () => {
       // const res = await axios.get(`/comments/${comment._id}`);
-      const res = await axios.get(`https://social-media-app-vp1y.onrender.com/api/comments/${comment._id}`);
+      const res = await axios.get(
+        `https://social-media-app-vp1y.onrender.com/api/comments/${comment._id}`
+      );
 
       console.log(res);
       setComment(res.data);
@@ -172,9 +207,9 @@ const FriendProfile = () => {
     setIsLiked(!isLiked);
   };
 
-  useEffect(() => {
-    localStorage.setItem("follow", JSON.stringify(followed));
-  }, [followed]);
+  // useEffect(() => {
+  //   localStorage.setItem("follow", JSON.stringify(followed));
+  // }, [followed]);
 
   return (
     <div className="profile">
@@ -198,50 +233,47 @@ const FriendProfile = () => {
           <li className="list">City</li>
           <li className="list">Occupation</li>
         </div>
-        <div className="follow" onClick={() => setFollowed((prev) => !prev)}>
+        {/* <div className="follow" onClick={() => setFollowed((prev) => !prev)}>
           <button className="followBtn">
             {followed ? "Follow" : "UnFollow"}
           </button>
-        </div>
+        </div> */}
       </div>
       <div className="center">
         {/* <div className="image">
           <img className="picBack" src="/images/image2.jpeg" />
         </div> */}
-      
 
         <div className="posts">
-        <div className="profileIntro">
-        
-          <div className="top">
-           <ArrowLeft  />
-          <div className="firstbloc">
-            <div className="right">
-            <img   src="/images/noAvatar.png"/>
-           
-
+          <div className="profileIntro">
+            <div className="top">
+              <ArrowLeft />
+              <div className="firstbloc">
+                <div className="right">
+                  <img src="/images/noAvatar.png" />
+                </div>
+                {friendProfile.username !== currentUser.username && (
+                  <div className="left">
+                    <button onClick={() => handleFollow(friendProfile._id)}>
+                      {follow ? "unfollow" : "Follow" }
+                      {/* {unFollow && "follow" } */}
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="left">
-              <button onClick={handleFollow}>  {follow ? "Unfollow" : "Follow"}</button>
+            <div className="center">
+              <span>{friendProfile.username}</span>
+              <p>Description</p>
+              <span className="joined">
+                member since {new Date(friendProfile.createdAt).toDateString()}
+              </span>
+              <div className="follow">
+                <span className="followers">{followers.length} Followers</span>
+                <span>{followings.length} Followings</span>
+              </div>
             </div>
-        
-           
           </div>
-
-          </div>
-          <div className="center">
-          <span>{friendProfile.username}</span>
-          <p>Description</p>
-          <span className="joined">member since {new Date(friendProfile.createdAt).toDateString()}</span>
-          <div className="follow">
-            <span className="followers">{followers.length} Followers</span>
-            <span>{followings.length} Followings</span>
-
-          </div>
-       
-
-          </div>
-        </div>
           {posts.map((post) => (
             <div className="post">
               <div className="postWrapper">
