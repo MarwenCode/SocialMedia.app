@@ -1,0 +1,80 @@
+.modal {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: -30px;
+  left: 0;
+  display: flex;
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(197, 197, 197, 0.568);
+
+
+//   button {
+//     margin-left: 50px;
+//     position: absolute;
+//   }
+
+  .settingForm {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0px;
+    background-color: white;
+    width: 650px;
+    padding: 20px 30px;
+   
+
+    label {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+
+    .settingProfilePicutre img {
+      height: 70px;
+      width: 70px;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+
+    .settingProfilePicutre {
+      .fileInput {
+        width: 115px;
+        cursor: pointer;
+        background-color: #0a577e;
+      }
+    }
+
+    span {
+        width: 20px;
+        margin-left: 550px;
+        margin-top: -90px;
+    }
+
+    .settingInput {
+      flex-direction: column;
+      width: 100%;
+      border: none;
+      background-color:#e5edf7;
+    }
+
+    .settingInput:focus {
+      outline-style: none;
+    }
+
+    .settingsSubmit {
+      margin: 30px 0px;
+      width: 20%;
+      color: white;
+      border-radius: 10px;
+      border: none;
+      background-color: #1872f2;
+      color: white;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: 16px;
+      cursor: pointer;
+      height: 25px;
+    }
+  }
+}

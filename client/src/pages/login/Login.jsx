@@ -65,7 +65,7 @@ const Login = () => {
       </div>
       <div className="loginRight" >
         <form className="loginBox"  onSubmit={handleLogin}>
-          <label>Username</label>
+          <label>Email</label>
           <input
            placeholder="Email" 
            type="email"

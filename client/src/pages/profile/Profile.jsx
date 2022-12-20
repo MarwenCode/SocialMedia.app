@@ -9,6 +9,7 @@ import Share from "../../components/share/Share";
 import axios from "axios";
 import { AppContext } from "../../components/context/context";
 import Post from "../../components/post/Post";
+import Modal from "../../components/modal/Modal";
 import "./profile.scss";
 
 const Profile = () => {
@@ -19,6 +20,9 @@ const Profile = () => {
   const [followed, setFollowed] = useState();
   const [showFriendsList, setShowFriendsList] = useState(false);
   const image = "https://social-media-app-vp1y.onrender.com/api/images/";
+  const [showModal, setShowModal] = useState(false)
+
+
 
   //fetch friends list
 
@@ -80,6 +84,13 @@ const Profile = () => {
   // );
 
   console.log(user);
+  
+
+
+
+
+
+
 
   return (
     <div className="profile">
@@ -111,21 +122,24 @@ const Profile = () => {
               }
             />
 
-            <button>Edit Profile</button>
+            <button onClick={() => setShowModal(!showModal)}>Edit Profile</button>
           </div>
           <div className="center">
             <span className="username">{user.username}</span>
-            <span className="joined">joined</span>
+            <span className="joined"> member since {new Date(user.createdAt).toDateString()}</span>
           </div>
           <div className="down">
+            <p>{user.desc} </p>
             <span className="followings">
-              {user.followings.length} <span>Following</span>
+              {user.followings.length} <span>Followings</span>
             </span>
             <span className="followers">
               {user.followers.length} <span>Followers</span>
             </span>
           </div>
         </div>
+        {showModal &&  <Modal /> }
+       
         <div className="reactions">
           <Reactions />
         </div>
