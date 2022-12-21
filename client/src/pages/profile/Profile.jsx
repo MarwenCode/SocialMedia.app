@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { BsChatSquareText } from "react-icons/bs";
 import { FcVideoCall } from "react-icons/fc";
-import { MdGroups, MdExpandMore,MdExpandLess } from "react-icons/md";
+import { MdGroups, MdExpandMore, MdExpandLess } from "react-icons/md";
 import LeftHome from "../../components/leftHome/LeftHome";
 import { Link } from "react-router-dom";
 import Reactions from "../../components/reactions/Reactions";
@@ -19,10 +19,8 @@ const Profile = () => {
   const [posts, setPosts] = useState([]);
   const [followed, setFollowed] = useState();
   const [showFriendsList, setShowFriendsList] = useState(false);
-  const image = "https://social-media-app-vp1y.onrender.com/api/images/";
-  const [showModal, setShowModal] = useState(false)
-
-
+  // const image = "https://social-media-app-vp1y.onrender.com/api/images/";
+  const [showModal, setShowModal] = useState(false);
 
   //fetch friends list
 
@@ -61,7 +59,7 @@ const Profile = () => {
     getUsers();
   }, []);
 
-  console.log(user);
+  console.log(user.profilePicture);
 
   //fetch my own posts
 
@@ -84,13 +82,6 @@ const Profile = () => {
   // );
 
   console.log(user);
-  
-
-
-
-
-
-
 
   return (
     <div className="profile">
@@ -111,22 +102,29 @@ const Profile = () => {
         </ul> */}
         <div className="profileinfo">
           <div className="top">
-            <img
+            {/* <img
               className="image"
-              src={
-                // user
-                //   ? user.profilePicture
-                //   :
+              // src={user ? user.profilePicture : "/images/image1.jpg"}
+              src={user.profilePicture}
+            /> */}
+               <img
+                className="image"
+                src={
+                  user.profilePicture
+                    // ? image + user.profilePicture
+                    // : "/images/noAvatar.png"
+                }
+              />
 
-                "/images/noAvatar.png"
-              }
-            />
-
-            <button onClick={() => setShowModal(!showModal)}>Edit Profile</button>
+            <button onClick={() => setShowModal(!showModal)}>
+              Edit Profile
+            </button>
           </div>
           <div className="center">
             <span className="username">{user.username}</span>
-            <span className="joined"> member since {new Date(user.createdAt).toDateString()}</span>
+            <span className="joined">
+              member since {new Date(user.createdAt).toDateString()}
+            </span>
           </div>
           <div className="down">
             <p>{user.desc} </p>
@@ -138,8 +136,8 @@ const Profile = () => {
             </span>
           </div>
         </div>
-        {showModal &&  <Modal /> }
-       
+        {showModal && <Modal />}
+
         <div className="reactions">
           <Reactions />
         </div>
@@ -159,17 +157,15 @@ const Profile = () => {
         </div>
       </div>
       <div className="users">
-       
         <div className="suggTop">
-    
           {users.map((user) => (
             <div className="suggestions">
               <img
                 className="image"
                 src={
                   user.profilePicture
-                    ? image + user.profilePicture
-                    : "/images/noAvatar.png"
+                    // ? image + user.profilePicture
+                    // : "/images/noAvatar.png"
                 }
               />
 
@@ -178,12 +174,10 @@ const Profile = () => {
               </Link>
             </div>
           ))}
-           
         </div>
         <span className="title">Suggested accounts</span>
 
         <div className="friendsList">
-         
           <div className="leftbarFollowings">
             {showFriendsList && (
               <>
@@ -193,8 +187,8 @@ const Profile = () => {
                       className="leftbarFollowingImg"
                       src={
                         friend.profilePicture
-                          ? image + friend.profilePicture
-                          : "/images/noAvatar.png"
+                          // ? image + friend.profilePicture
+                          // : "/images/noAvatar.png"
                       }
                     />
                     <span className="online"></span>
@@ -206,11 +200,12 @@ const Profile = () => {
               </>
             )}
           </div>
-      
         </div>
-        <summary className="expandMore"    onClick={() => setShowFriendsList((prev) => !prev)}>
-            On Line Friends <MdExpandLess />
-          </summary>
+        <summary
+          className="expandMore"
+          onClick={() => setShowFriendsList((prev) => !prev)}>
+          On Line Friends <MdExpandLess />
+        </summary>
       </div>
     </div>
   );

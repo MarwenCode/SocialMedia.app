@@ -3,7 +3,7 @@ import { AppContext } from "../context/context";
 import { FaRegTimesCircle, FaRegSun } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import "./modal.scss";
+import "./navbarModal.scss";
 
 const Modal = () => {
   const { modalOpen, setModalOpen, user, dispatch } = useContext(AppContext);
@@ -26,7 +26,7 @@ const Modal = () => {
 
 
   return (
-    <div className="modalbackground">
+    <div className="navbarModal">
       <div className="sign">
         <ul className="signList">
           <FaRegTimesCircle

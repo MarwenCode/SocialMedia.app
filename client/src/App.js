@@ -1,6 +1,5 @@
 import Navbar from "./components/navabar/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Modal from "./components/navabar/Modal";
 import { AppContext } from "./components/context/context";
 import { useContext } from "react";
 import Home from "./pages/home/Home";

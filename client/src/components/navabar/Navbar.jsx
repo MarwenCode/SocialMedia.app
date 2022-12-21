@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../context/context";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Modal from "./Modal";
+import NavbarModal from "./NavbarModal"
 
 const Navbar = () => {
   const { modalOpen, setModalOpen, user, posts } = useContext(AppContext);
@@ -123,7 +123,7 @@ const Navbar = () => {
             <div className="sign">
               {modalOpen ? (
                 <div className="modal">
-                  <Modal setOpenModal={setModalOpen} />
+                  <NavbarModal setOpenModal={setModalOpen} />
                 </div>
               ) : (
                 <img

@@ -250,7 +250,8 @@ const FriendProfile = () => {
               <ArrowLeft />
               <div className="firstbloc">
                 <div className="right">
-                  <img src="/images/noAvatar.png" />
+                  {/* <img src="/images/noAvatar.png" /> */}
+                  <img src={friendProfile.profilePicture} />
                 </div>
                 {friendProfile.username !== currentUser.username && (
                   <div className="left">
