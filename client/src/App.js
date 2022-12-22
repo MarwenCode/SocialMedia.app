@@ -5,10 +5,11 @@ import { useContext } from "react";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import SinglePost from "./components/singlePost/SinglePost";
+// import SinglePost from "./components/singlePost/SinglePost";
 import Profile from "./pages/profile/Profile";
 import FriendProfile from "./components/FriendProfile/FriendProfile";
 import "./app.scss"
+import EditPost from "./components/editPost/EditPost";
 
 
 
@@ -23,8 +24,9 @@ function App() {
         <Route path="/" element={user ? <Home /> : <Login /> } />
         <Route path="/login" element={user ? <Home /> : <Login /> } />
         <Route path="/register" element={user ? <Login /> : <Register />} />
-        <Route path="/post/:postId" element={<SinglePost />} />
+        {/* <Route path="/post/:postId" element={<SinglePost />} /> */}
         <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/post/:id" element={<EditPost />} />
         <Route path="/profile/friend/:id" element={<FriendProfile />} />
       </Routes>
     </div>

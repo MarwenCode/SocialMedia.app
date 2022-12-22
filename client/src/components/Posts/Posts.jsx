@@ -9,7 +9,7 @@ const Posts = ({posts}) => {
 
 <div className='posts'>
     {posts.map((post, index)=> (
-      <Post post={post} key={index}/>
+      <Post post={post} key={index}  />
       
 
     ))}

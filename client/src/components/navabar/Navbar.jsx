@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./navbar.scss";
 import { FaSearch, FaRegEnvelope } from "react-icons/fa";
-import { UserCircle, House,Bell   } from "phosphor-react";
+import { UserCircle, House, Bell } from "phosphor-react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../context/context";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import NavbarModal from "./NavbarModal"
+import NavbarModal from "./NavbarModal";
 
 const Navbar = () => {
   const { modalOpen, setModalOpen, user, posts } = useContext(AppContext);
@@ -106,8 +106,6 @@ const Navbar = () => {
           <div className="setting">
             <div className="settingList">
               <ul className="list">
-              
-
                 <Link to="/" className="link">
                   {/* <li className="item">Home</li> */}
                   <House size={25} />
@@ -129,7 +127,12 @@ const Navbar = () => {
                 <img
                   className="topImg"
                   // src="images/image1.jpg"
-                  src="/images/noAvatar.png"
+
+                  src={
+                    user.profilePicture
+                    // ? image + user.profilePicture
+                    // : "/images/noAvatar.png"
+                  }
                   onClick={() => {
                     setModalOpen(true);
                   }}
@@ -138,18 +141,11 @@ const Navbar = () => {
             </div>
           </div>
         </>
-      ): (
-          <div className="avatar">
-            <UserCircle/>
-
-          </div>
-          
-      
-      )
-    
-    
-    }
-    
+      ) : (
+        <div className="avatar">
+          <UserCircle />
+        </div>
+      )}
     </div>
   );
 };

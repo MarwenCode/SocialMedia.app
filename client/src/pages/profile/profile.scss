@@ -50,6 +50,7 @@
         .image {
           width: 40px;
           border-radius: 20px;
+          object-fit: cover;
         }
       
       
@@ -173,9 +174,10 @@
       
 
         .image {
-          width: 35px;
-          margin-left: 10px;
-          border-radius: 10px;
+           width: 30px;
+          border-radius: 30px;
+          height: 30px;
+          object-fit: cover;
         }
 
         .name {

@@ -306,6 +306,13 @@
             .postDate{
                 font-size: 11px;
                 color: grey;
+                margin-left: 20px;
+                width: 100px;
+            }
+            .editPost {
+                margin-left: 350px;
+               font-size: 18px;
+               cursor: pointer;
             }
         
     
@@ -412,6 +419,14 @@
                     margin-top: 20px;
                     margin-right: -95px;
 
+                    span {
+                        .timeAgo{
+                            font-size: x-small;
+                            color: grey;
+                   
+                        }
+                    }
+
                
                 }
 
@@ -420,10 +435,12 @@
                     // font-style: italic;
                     color: rgb(67, 92, 131);
                     // margin-left: -25px;
+                   
                 
                  
                   
                 }
+                
 
                 .editDeleteComment{
                     margin-top: 25px;

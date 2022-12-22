@@ -45,8 +45,9 @@ const Modal = () => {
       } catch (error) {
         console.log(error);
       }
-      window.location.replace(`/profile/${user._id}`);
       setShowModal(!showModal);
+      window.location.replace(`/profile/${user._id}`);
+      
       updateProfile();
     } catch (error) {
       console.log(error);
@@ -55,7 +56,9 @@ const Modal = () => {
   console.log(user)
 
   return (
-    <div className="modal">
+    <>
+       {!showModal && (
+      <div className="modal">
       <form className="settingForm" onSubmit={updateProfile}>
         <div className="settingProfilePicutre">
           {/* <img src={file ? URL.createObjectURL(file) : + publicFolder+user.profilePic} */}
@@ -103,17 +106,24 @@ const Modal = () => {
           />
         </div>
         <div className="buttons">
-          <button className="settingsSubmit " type="submit">
+          <button className="settingsSubmit " type="submit"
+          onClick={(e) => updateProfile(e)} 
+          
+          
+          >
             Update
           </button>
           <button
             className="settingsSubmit"
             style={{ margin: "20px" }}
-            onClick={() => setShowModal(!showModal)}>
+            onClick={() => setShowModal((prev) => !prev)}>
+        
             Cancel
           </button>
+      
         
         </div>
+      
 
         {/* {successMessage && (
         <span
@@ -125,6 +135,27 @@ const Modal = () => {
       )} */}
       </form>
     </div>
+
+
+
+
+
+
+
+
+
+
+    )
+
+
+  }
+    
+    
+    
+    </>
+    
+ 
+ 
   );
 };
 

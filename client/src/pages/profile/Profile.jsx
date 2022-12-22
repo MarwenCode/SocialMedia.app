@@ -107,14 +107,14 @@ const Profile = () => {
               // src={user ? user.profilePicture : "/images/image1.jpg"}
               src={user.profilePicture}
             /> */}
-               <img
-                className="image"
-                src={
-                  user.profilePicture
-                    // ? image + user.profilePicture
-                    // : "/images/noAvatar.png"
-                }
-              />
+            <img
+              className="image"
+              src={
+                user.profilePicture
+                // ? image + user.profilePicture
+                // : "/images/noAvatar.png"
+              }
+            />
 
             <button onClick={() => setShowModal(!showModal)}>
               Edit Profile
@@ -158,22 +158,25 @@ const Profile = () => {
       </div>
       <div className="users">
         <div className="suggTop">
-          {users.map((user) => (
-            <div className="suggestions">
-              <img
-                className="image"
-                src={
-                  user.profilePicture
+          {users
+            .filter((currentUser) => currentUser._id !== user._id)
+
+            .map((user) => (
+              <div className="suggestions">
+                <img
+                  className="image"
+                  src={
+                    user.profilePicture
                     // ? image + user.profilePicture
                     // : "/images/noAvatar.png"
-                }
-              />
+                  }
+                />
 
-              <Link className="link" to={`/profile/friend/${user._id}`}>
-                <span className="name">{user.username}</span>
-              </Link>
-            </div>
-          ))}
+                <Link className="link" to={`/profile/friend/${user._id}`}>
+                  <span className="name">{user.username}</span>
+                </Link>
+              </div>
+            ))}
         </div>
         <span className="title">Suggested accounts</span>
 
@@ -187,8 +190,8 @@ const Profile = () => {
                       className="leftbarFollowingImg"
                       src={
                         friend.profilePicture
-                          // ? image + friend.profilePicture
-                          // : "/images/noAvatar.png"
+                        // ? image + friend.profilePicture
+                        // : "/images/noAvatar.png"
                       }
                     />
                     <span className="online"></span>

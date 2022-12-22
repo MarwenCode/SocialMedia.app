@@ -83,7 +83,7 @@ postRoute.get("/:id", async (req, res) => {
 
   try {
   
-    const posts = await Post.find(req.params.id)
+    const posts = await Post.findById(req.params.id)
       .populate("comments")
       .exec();
     res.status(200).json(posts);

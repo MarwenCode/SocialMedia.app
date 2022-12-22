@@ -4,6 +4,7 @@ import { GiConfirmed } from "react-icons/gi";
 import { MdDeleteForever } from "react-icons/md";
 import { BiLike } from "react-icons/bi";
 import { FcLike } from "react-icons/fc";
+import { PencilSimple } from "phosphor-react";
 import { AiOutlineDislike } from "react-icons/ai";
 import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
@@ -218,11 +219,17 @@ const Post = ({ post }) => {
             }
             alt=""
           /> */}
-
+    
             <span className="postUsername">{post.username}</span>
+         
             <span className="postDate">
               {new Date(post.createdAt).toDateString()}
             </span>
+            <Link to={`/post/${post._id}`} className="link">
+            <span className="editPost"> <PencilSimple /></span>
+            
+            </Link>
+         
           </div>
           <div className="postTopRight">{/* <MoreVert /> */}</div>
         </div>
@@ -271,12 +278,13 @@ const Post = ({ post }) => {
                     </button>
                   </>
                 ) : (
-                  <p className="text"> {comment.text}</p>
+                  <p className="text"> {comment.text} <span><span className="timeAgo"> {new Date(post.createdAt).toDateString()}</span></span>   </p>
                 )}
 
                 {!editModeComment && (
                   <>
                     <span className="commentUser">{comment.username}</span>
+                    
                     <div className="editDeleteComment">
                       {/* <GiConfirmed className="edit"
                       //  onClick={handleEdit}
