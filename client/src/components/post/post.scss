@@ -331,6 +331,30 @@
             max-height: 500px;
             object-fit: contain;
         }
+
+        .editDescription{
+            resize: none;
+            height: 100px;
+            width: 100%;
+            outline: none;
+            border:1px;
+        }
+        
+        button {
+            border: none;
+              background-color: #1872f2;
+              color: white;
+              border-radius: 5px;
+              padding: 5px 10px;
+              display: flex;
+              /* align-items: center; */
+              font-size: 16px;
+              font-weight: 500;
+              cursor: pointer;
+              height:25px;
+              margin-bottom: 15px;
+
+        }
     }
 
     .postBottom{

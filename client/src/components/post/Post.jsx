@@ -12,6 +12,7 @@ import { AppContext } from "../context/context";
 import "./post.scss";
 import { useEffect } from "react";
 
+
 const Post = ({ post }) => {
   const { user } = useContext(AppContext);
   const image = "http://localhost:5500/images/";
@@ -21,6 +22,8 @@ const Post = ({ post }) => {
   const [comment, setComment] = useState([]);
   const [text, setText] = useState("");
   const Location = useLocation();
+
+
 
   console.log(Location);
   const { userId } = useParams();
@@ -195,6 +198,45 @@ const Post = ({ post }) => {
     } catch (error) {}
   };
 
+  const handleEditComment =  (commentId) => {
+    // e.preventDefault()
+    setEditModeComment((prev) => !prev)
+ 
+
+  }
+
+
+
+
+  //edit post description
+  const [descriptionMode, setDescriptionMode] = useState(false)
+  const [descriptionUpdate, setDescriptionUpdate] = useState("");
+  // const [desc, setDesc] = useState(post.desc)
+  
+
+  const handleEditDescription = async(postId) => {
+    try {
+      await axios.put(`/post/${postId}`, 
+      { userId: user._id,
+        desc:descriptionUpdate
+
+      }
+      
+      );
+
+      
+      window.location.replace("/");
+      setDescriptionMode((prev) => !prev)
+
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+
+  
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -225,16 +267,35 @@ const Post = ({ post }) => {
             <span className="postDate">
               {new Date(post.createdAt).toDateString()}
             </span>
-            <Link to={`/post/${post._id}`} className="link">
-            <span className="editPost"> <PencilSimple /></span>
+            {/* <Link to={`/post/${post._id}`} className="link"> */}
+            <span className="editPost" onClick={() => setDescriptionMode((prev) => !prev)}> <PencilSimple /></span>
             
-            </Link>
+            {/* </Link> */}
          
           </div>
           <div className="postTopRight">{/* <MoreVert /> */}</div>
         </div>
         <div className="postCenter">
+          {descriptionMode ? (
+            <>
+                 <textarea
+                  className="editDescription" 
+                  // value={descriptionUpdate}
+                  defaultValue={post.desc}
+                  onChange={(e) => setDescriptionUpdate(e.target.value)}
+                  
+                  /> 
+                 <button onClick={() => handleEditDescription(post._id)}>Edit</button>
+            </>
+       
+          )
+        
+        : (
           <span className="postText"> {post.desc} </span>
+
+        )
+        }
+         
           {/* <img className="postImg" src="./images/image2.jpeg" /> */}
           <img className="postImg" src={image + post.img} alt="" />
         </div>
@@ -260,14 +321,14 @@ const Post = ({ post }) => {
             </div>
           </div>
           <div className="comment">
-            {post.comments.map((comment) => (
-              <div className="commentText">
+            {post.comments.map((comment, index) => (
+              <div className="commentText"  key={index} >
                 {editModeComment ? (
                   <>
                     <textarea
                       className="commentInput"
                       type="text"
-                      value={editComment}
+                      defaultValue={comment.text}
                       onChange={(e) => setEditComment(e.target.value)}
                     />
 
@@ -292,7 +353,8 @@ const Post = ({ post }) => {
                        /> */}
                       <FaEdit
                         className="edit"
-                        onClick={() => setEditModeComment((prev) => !prev)}
+                        // onClick={() => setEditModeComment((prev) => !prev)}
+                        onClick={() => handleEditComment(comment._id)}
                         // onClick={showEditComment}
                       />
                       {/* <FaEdit className="edit"  onClick={handleEdit} /> */}
