@@ -10,6 +10,7 @@ import Profile from "./pages/profile/Profile";
 import FriendProfile from "./components/FriendProfile/FriendProfile";
 import "./app.scss"
 import EditPost from "./components/editPost/EditPost";
+import Chat from "./pages/chat/Chat";
 
 
 
@@ -23,8 +24,8 @@ function App() {
       <Routes>
         <Route path="/" element={user ? <Home /> : <Login /> } />
         <Route path="/login" element={user ? <Home /> : <Login /> } />
+        <Route path="/chat" element={user ? <Chat /> : <Login /> } />
         <Route path="/register" element={user ? <Login /> : <Register />} />
-        {/* <Route path="/post/:postId" element={<SinglePost />} /> */}
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/post/:id" element={<EditPost />} />
         <Route path="/profile/friend/:id" element={<FriendProfile />} />

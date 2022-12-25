@@ -1,0 +1,36 @@
+.chat {
+    width: 100%;
+    // background-color: aqua;
+    height: 80vh;
+    display: flex;
+    // align-items: center;
+    margin-top: 70px;
+    margin-left: 250px;
+    position: absolute;
+
+    .chatMenu {
+        flex: 5;
+      .chatMenuWrapper {
+
+        .chatMenuInput {
+            width: 30%;
+            border: none;
+            border-bottom: 1px solid rgb(82, 117, 150);
+        
+        }
+
+      }
+
+
+    }
+
+    .chatBox {
+        flex: 7
+         
+    }
+
+
+   
+
+
+}
