@@ -127,6 +127,24 @@ commentRoute.get("/:postId", async (req, res) => {
   }
 });
 
+
+//get a single comment
+commentRoute.get("/:postId/:commentId", async(req, res) => {
+  try {
+    const comment = await Comment.findById({
+      commentId:req.params.postId
+    });
+    res.status(200).json(comment)
+    
+  } catch (error) {
+    res.status(500).json(error);
+    
+  }
+})
+
+
+
+
 //get comments
 
 // commentRoute.get("/:commentId", async (req, res) => {

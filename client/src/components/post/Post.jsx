@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { FaTrashAlt, FaRegCommentAlt, FaEdit } from "react-icons/fa";
 import { GiConfirmed } from "react-icons/gi";
 import { MdDeleteForever } from "react-icons/md";
@@ -12,7 +12,6 @@ import { AppContext } from "../context/context";
 import "./post.scss";
 import { useEffect } from "react";
 
-
 const Post = ({ post }) => {
   const { user } = useContext(AppContext);
   const image = "http://localhost:5500/images/";
@@ -23,10 +22,10 @@ const Post = ({ post }) => {
   const [text, setText] = useState("");
   const Location = useLocation();
 
-
-
   console.log(Location);
   const { userId } = useParams();
+
+  console.log(post);
 
   // get all comments and stock it all in const [comment, seComment]
 
@@ -48,7 +47,7 @@ const Post = ({ post }) => {
 
   console.log(comment);
 
-  // add comment and stock it on const [comment, setComment]
+  // add comment and stock it on const [comments, setComments]
 
   const addComment = (e) => {
     e.preventDefault();
@@ -142,39 +141,10 @@ const Post = ({ post }) => {
     setIsLiked(!isLiked);
   };
 
-  //Edit post
-
-  const [edit, setEdit] = useState("");
-
-  // const handleEdit = async() => {
-  //   try {
-  //     await axios.put(`/comments/${post._id}`, {
-  //       username: user.username,
-  //       userId: user._id,
-  //       text:edit
-  //     });
-
-  //     setEditComment(false)
-
-  //     // setComments(comments)
-
-  //   } catch (error) {
-
-  //   }
-  // }
-
   //edit a comment
+  const [singleComment, setSingleComment] = useState([]);
   const [editComment, setEditComment] = useState("");
   const [editModeComment, setEditModeComment] = useState(false);
-
-  // const showEditComment = (e) => {
-  //   if(editComment === comment.id) {
-  //     setComment(editComment)
-  //     setEditComment(true)
-  //   }else {
-  //     return false
-  //   }
-  // }
 
   const handleEdit = async (commentId) => {
     try {
@@ -186,56 +156,29 @@ const Post = ({ post }) => {
           text: editComment,
         }
       );
+
       window.location.replace("/");
-
-      // const specificComment = comments.find((currentComment) => currentComment._id === commentId)
-      // console.log(post)
-
-      // setComment(specificComment.editComment)
-
-      // setEditModeComment(false)
-      // setEditComment(editComment)
     } catch (error) {}
   };
 
-  const handleEditComment =  (commentId) => {
-    // e.preventDefault()
-    setEditModeComment((prev) => !prev)
- 
-
-  }
-
-
-
-
   //edit post description
-  const [descriptionMode, setDescriptionMode] = useState(false)
+  const [descriptionMode, setDescriptionMode] = useState(false);
   const [descriptionUpdate, setDescriptionUpdate] = useState("");
   // const [desc, setDesc] = useState(post.desc)
-  
 
-  const handleEditDescription = async(postId) => {
+  const handleEditDescription = async (postId) => {
     try {
-      await axios.put(`/post/${postId}`, 
-      { userId: user._id,
-        desc:descriptionUpdate
+      await axios.put(`/post/${postId}`, {
+        userId: user._id,
+        desc: descriptionUpdate,
+      });
 
-      }
-      
-      );
-
-      
       window.location.replace("/");
-      setDescriptionMode((prev) => !prev)
-
-      
+      setDescriptionMode((prev) => !prev);
     } catch (error) {
       console.log(error);
-      
     }
-  }
-
-  
+  };
 
   return (
     <div className="post">
@@ -261,41 +204,41 @@ const Post = ({ post }) => {
             }
             alt=""
           /> */}
-    
+
             <span className="postUsername">{post.username}</span>
-         
+
             <span className="postDate">
               {new Date(post.createdAt).toDateString()}
             </span>
             {/* <Link to={`/post/${post._id}`} className="link"> */}
-            <span className="editPost" onClick={() => setDescriptionMode((prev) => !prev)}> <PencilSimple /></span>
-            
+            <span
+              className="editPost"
+              onClick={() => setDescriptionMode((prev) => !prev)}>
+              {" "}
+              <PencilSimple />
+            </span>
+
             {/* </Link> */}
-         
           </div>
           <div className="postTopRight">{/* <MoreVert /> */}</div>
         </div>
         <div className="postCenter">
           {descriptionMode ? (
             <>
-                 <textarea
-                  className="editDescription" 
-                  // value={descriptionUpdate}
-                  defaultValue={post.desc}
-                  onChange={(e) => setDescriptionUpdate(e.target.value)}
-                  
-                  /> 
-                 <button onClick={() => handleEditDescription(post._id)}>Edit</button>
+              <textarea
+                className="editDescription"
+                // value={descriptionUpdate}
+                defaultValue={post.desc}
+                onChange={(e) => setDescriptionUpdate(e.target.value)}
+              />
+              <button onClick={() => handleEditDescription(post._id)}>
+                Edit
+              </button>
             </>
-       
-          )
-        
-        : (
-          <span className="postText"> {post.desc} </span>
+          ) : (
+            <span className="postText"> {post.desc} </span>
+          )}
 
-        )
-        }
-         
           {/* <img className="postImg" src="./images/image2.jpeg" /> */}
           <img className="postImg" src={image + post.img} alt="" />
         </div>
@@ -322,8 +265,8 @@ const Post = ({ post }) => {
           </div>
           <div className="comment">
             {post.comments.map((comment, index) => (
-              <div className="commentText"  key={index} >
-                {editModeComment ? (
+              <div className="commentText" key={index}>
+                {user._id === comment.userId && editModeComment ? (
                   <>
                     <textarea
                       className="commentInput"
@@ -339,13 +282,22 @@ const Post = ({ post }) => {
                     </button>
                   </>
                 ) : (
-                  <p className="text"> {comment.text} <span><span className="timeAgo"> {new Date(post.createdAt).toDateString()}</span></span>   </p>
-                )}
-
-                {!editModeComment && (
-                  <>
-                    <span className="commentUser">{comment.username}</span>
+                  <p className="text">
                     
+                    {comment.text}
+                    <span>
+                      <span className="timeAgo">
+                        
+                        {new Date(comment.createdAt).toDateString()}
+                      </span>
+                    </span>
+                  </p>
+                )}
+                  <span className="commentUser">{comment.username}</span>
+                {user._id === comment.userId && !editModeComment  && (
+                  <>
+                   
+
                     <div className="editDeleteComment">
                       {/* <GiConfirmed className="edit"
                       //  onClick={handleEdit}
@@ -353,8 +305,8 @@ const Post = ({ post }) => {
                        /> */}
                       <FaEdit
                         className="edit"
-                        // onClick={() => setEditModeComment((prev) => !prev)}
-                        onClick={() => handleEditComment(comment._id)}
+                        onClick={() => setEditModeComment((prev) => !prev)}
+                        // onClick={() => handleEditComment(comment._id)}
                         // onClick={showEditComment}
                       />
                       {/* <FaEdit className="edit"  onClick={handleEdit} /> */}
@@ -407,3 +359,4 @@ const Post = ({ post }) => {
 };
 
 export default Post;
+ 
