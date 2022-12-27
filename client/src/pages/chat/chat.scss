@@ -35,6 +35,8 @@
         overflow-y: scroll;
         padding-right: 10px;
         scroll-behavior: smooth;
+
+      
      
       }
 
@@ -49,6 +51,16 @@
         border-radius: 10px;
       }
      
+
+      .noConversationText{
+        position: absolute;
+        top: 10%;
+        font-size: 30px;
+        color:rgb(189, 202, 238);
+        text-align: center;
+
+
+      }
 
       .chatBoxBottom {
         margin-top: 105px;

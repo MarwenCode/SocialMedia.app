@@ -7,6 +7,8 @@ import authRoute from "./routes/auth.js";
 import userRoute from "./routes/users.js"
 import postRoute from "./routes/posts.js";
 import commentRoute from "./routes/comments.js";
+import conversationRoute from "./routes/conversation.js";
+import messageRoute from "./routes/message.js";
 import profilefriendRoute from "./routes/friendsprofile.js"
 import { fileURLToPath } from "url";
 import cors from "cors"
@@ -63,6 +65,8 @@ app.use(express.json());
 app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
 app.use("/api/post", postRoute)
+app.use("/api/conversation", conversationRoute);
+app.use("/api/message", messageRoute);
 app.use("/api/comments", commentRoute);
 app.use("/api/profile", profilefriendRoute);
 
