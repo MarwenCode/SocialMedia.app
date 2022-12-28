@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import {BsChatSquareText} from "react-icons/bs";
 import {FcVideoCall} from "react-icons/fc";
 import {MdGroups} from "react-icons/md";
@@ -41,8 +42,11 @@ const SideBar = () => {
     <div className="sidebarWrapper">
       <ul className="sidebarList">
         <li className="sidebarListItem">
+          <Link to="/chat" className='link'>
           <BsChatSquareText className="sidebarIcon" />
           <span className="sidebarListItemText">Chats</span>
+          </Link>
+      
         </li>
         <li className="sidebarListItem">
           <FcVideoCall className="sidebarIcon" />
