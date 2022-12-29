@@ -3,6 +3,7 @@ import "./chat.scss";
 import Conversation from "../../components/conversations/Conversation";
 import Message from "../../components/message/Message";
 import { AppContext } from "../../components/context/context";
+import { io } from "socket.io-client";
 import axios from "axios";
 
 const Chat = () => {
@@ -11,7 +12,39 @@ const Chat = () => {
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const socket = useRef();
+  const [arrivalMessage, setArrivalMessage] = useState(null);
   const refView = useRef();
+
+  //socket io
+  useEffect(() => {
+    socket.current = io("ws://localhost:8900");
+    socket?.current?.on("getMessage", (data) => {
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createdAt: Date.now(),
+      });
+    });
+  }, []);
+  console.log(currentChat)
+
+  useEffect(() => {
+    arrivalMessage &&
+      currentChat?.members?.includes(arrivalMessage.sender) &&
+      setMessages((prev) => [...prev, arrivalMessage]);
+  }, [arrivalMessage, currentChat]);
+
+  useEffect(() => {
+    socket?.current?.emit("addUser", user._id);
+    socket?.current?.on("getUsers", (users) => {
+      // setOnlineUsers(
+      //   user.followings.filter((f) => users.some((u) => u.userId === f))
+      // );
+    });
+  }, [user]);
+
+
 
   //get conversation
   useEffect(() => {
@@ -42,7 +75,7 @@ const Chat = () => {
     };
 
     getMessages();
-  }, [currentChat?._id]);
+  }, [currentChat]);
 
   //add a new message to the conversation
   const handleSubmit = async () => {
@@ -61,6 +94,20 @@ const Chat = () => {
       console.log(error);
     }
   };
+
+  //socket 
+  const receiverId = currentChat?.members?.find(
+    (member) => member !== user._id
+  );
+  console.log(receiverId);
+
+
+  socket?.current?.emit("sendMessage", {
+    senderId: user._id,
+    receiverId,
+    text: newMessage,
+  });
+  console.log(socket)
 
   //scroll usinf useRef to get the last message on the chat
   useEffect(() => {
