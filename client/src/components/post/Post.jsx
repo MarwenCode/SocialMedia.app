@@ -12,10 +12,13 @@ import { AppContext } from "../context/context";
 import "./post.scss";
 import { useEffect } from "react";
 
+
 const Post = ({ post }) => {
   const { user } = useContext(AppContext);
   const image = "http://localhost:5500/images/";
   const [commentMode, setCommentMode] = useState(false);
+
+  // const [video, setVideo] = useState(null);
 
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState([]);
@@ -256,6 +259,17 @@ const Post = ({ post }) => {
               src="./images/heart.png"
               onClick={likeHandler}
             /> */}
+              {/* {video && (
+                <div>
+                  <iframe
+                    width="560"
+                    height="315"
+                    src={video}
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                </div>
+              )} */}
 
             <span className="postLikeCounter">like it {like} </span>
 

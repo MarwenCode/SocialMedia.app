@@ -11,13 +11,14 @@ const addUser = (userId, socketId) => {
   !users.some((user) => user.userId === userId) &&
     users.push({ userId, socketId });
 };
+console.log(users)
 
 const removeUser = (socketId) => {
   users = users.filter((user) => user.socketId !== socketId);
 };
 
 const getUser = (userId) => {
-  return users.find((user) => user.userId === userId);
+  return users?.find((user) => user.userId === userId);
 };
 
 io.on("connection", (socket) => {
@@ -32,9 +33,15 @@ io.on("connection", (socket) => {
 
   //send and get message
   socket.on("sendMessage", ({ senderId, receiverId, text }) => {
-    const userId = getUser(receiverId);
-    // console.log(user)
-    io.to(userId).emit("getMessage", {
+    const user = getUser(receiverId);
+   
+
+    if (typeof user !== 'undefined') {
+      console.log(user.socketId);
+    }
+
+    // console.log(user.socket)
+    io.to(user.socketId).emit("getMessage", {
       senderId,
       text,
     });
