@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
 import { useEffect, useState } from "react";
-import axios from 'axios';
-import "./conversation.scss"
+import axios from "axios";
+import "./conversation.scss";
 
-const Conversation = ({conv, currentUser}) => {
+const Conversation = ({ conv, currentUser }) => {
   const [user, setUser] = useState(null);
-
 
   useEffect(() => {
     const friendId = conv.members.find((m) => m !== currentUser._id);
@@ -13,7 +12,7 @@ const Conversation = ({conv, currentUser}) => {
     const getUser = async () => {
       try {
         const res = await axios.get("/user/" + friendId);
-        console.log(res.data)
+        console.log(res.data);
         setUser(res.data);
       } catch (err) {
         console.log(err);
@@ -22,16 +21,16 @@ const Conversation = ({conv, currentUser}) => {
     getUser();
   }, [currentUser, conv]);
   return (
-    <div className='conversation'>
-        <img className='conversationImg'
-
-        src="images/image1.jpg"
-        
-        />
-        <span className='conversationName'>{user?.username}</span>
-
+    <div className="conversation">
+      <img
+        className="conversationImg"
+        src={
+          user?.profilePicture ? user?.profilePicture : "images/noAvatar.png"
+        }
+      />
+      <span className="conversationName">{user?.username}</span>
     </div>
-  )
-}
+  );
+};
 
-export default Conversation
+export default Conversation;

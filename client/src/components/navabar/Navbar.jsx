@@ -135,8 +135,8 @@ const Navbar = () => {
 
                   src={
                     user.profilePicture
-                    // ? image + user.profilePicture
-                    // : "/images/noAvatar.png"
+                      ? user.profilePicture
+                      : "/images/noAvatar.png"
                   }
                   onClick={() => {
                     setModalOpen(true);

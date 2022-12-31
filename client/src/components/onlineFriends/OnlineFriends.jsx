@@ -39,8 +39,8 @@ useEffect(() => {
           <div className="chatOnlineImgContainer">
             <img
               className="chatOnlineImg"
-              src={
-                "person/noAvatar.png"
+              src={ friend.profilePicture ? friend.profilePicture :
+                "images/noAvatar.png"
               }
               alt=""
             />
