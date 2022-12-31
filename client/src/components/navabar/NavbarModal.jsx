@@ -50,10 +50,10 @@ const Modal = () => {
           {/* <li className="signItemLogin">Login</li>
   
         <li className="signItemRegister">Register</li> */}
-          <li className="item">
+          {/* <li className="item">
             Setting 
             <FaRegSun className="settingItem" />
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>

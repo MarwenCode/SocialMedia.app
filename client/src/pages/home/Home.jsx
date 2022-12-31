@@ -90,7 +90,7 @@ const Home = () => {
       <div className="center">
         <Share />
 
-        <Posts posts={posts} />
+        <Posts posts={posts}  />
       </div>
       <div className="left">
         <LeftHome />

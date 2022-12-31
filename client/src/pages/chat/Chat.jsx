@@ -2,6 +2,7 @@ import React, { useRef, useContext, useState, useEffect } from "react";
 import "./chat.scss";
 import Conversation from "../../components/conversations/Conversation";
 import Message from "../../components/message/Message";
+import OnlineFriends from "../../components/onlineFriends/OnlineFriends";
 import { AppContext } from "../../components/context/context";
 import { io } from "socket.io-client";
 import axios from "axios";
@@ -17,16 +18,16 @@ const Chat = () => {
   const refView = useRef();
 
   //socket io
-  useEffect(() => {
-    socket.current = io("ws://localhost:8900");
-    socket?.current?.on("getMessage", (data) => {
-      setArrivalMessage({
-        sender: data.senderId,
-        text: data.text,
-        createdAt: Date.now(),
-      });
-    });
-  }, []);
+  // useEffect(() => {
+  //   socket.current = io("ws://localhost:8900");
+  //   socket?.current?.on("getMessage", (data) => {
+  //     setArrivalMessage({
+  //       sender: data.senderId,
+  //       text: data.text,
+  //       createdAt: Date.now(),
+  //     });
+  //   });
+  // }, []);
   console.log(currentChat)
 
   useEffect(() => {
@@ -35,14 +36,14 @@ const Chat = () => {
       setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, currentChat]);
 
-  useEffect(() => {
-    socket?.current?.emit("addUser", user._id);
-    socket?.current?.on("getUsers", (users) => {
-      // setOnlineUsers(
-      //   user.followings.filter((f) => users.some((u) => u.userId === f))
-      // );
-    });
-  }, [user]);
+  // useEffect(() => {
+  //   socket?.current?.emit("addUser", user._id);
+  //   socket?.current?.on("getUsers", (users) => {
+  //     // setOnlineUsers(
+  //     //   user.followings.filter((f) => users.some((u) => u.userId === f))
+  //     // );
+  //   });
+  // }, [user]);
 
 
 
@@ -96,20 +97,20 @@ const Chat = () => {
   };
 
   //socket 
-  const receiverId = currentChat?.members?.find(
-    (member) => member !== user._id
-  );
-  console.log(receiverId);
+  // const receiverId = currentChat?.members?.find(
+  //   (member) => member !== user._id
+  // );
+  // console.log(receiverId);
 
 
-  socket?.current?.emit("sendMessage", {
-    senderId: user._id,
-    receiverId,
-    text: newMessage,
-  });
-  console.log(socket)
+  // socket?.current?.emit("sendMessage", {
+  //   senderId: user._id,
+  //   receiverId,
+  //   text: newMessage,
+  // });
+  // console.log(socket)
 
-  //scroll usinf useRef to get the last message on the chat
+  //scroll using useRef to get the last message on the chat
   useEffect(() => {
     refView.current?.scrollIntoView({ behavior: 'smooth', 
     inline: 'nearest'})
@@ -122,7 +123,7 @@ const Chat = () => {
           <input placeholder="search for a friend" className="chatMenuInput" />
           {conversation.map((conv) => (
             <div onClick={() => setCurrentChat(conv)}>
-              <Conversation conv={conv} currentUser={user} />
+              <Conversation  conv={conv} currentUser={user}  />
             </div>
           ))}
         </div>
@@ -158,6 +159,16 @@ const Chat = () => {
           )}
         </div>
       </div>
+      <div className="chatOnline">
+          <div className="chatOnlineWrapper">
+            <OnlineFriends
+              // onlineUsers={onlineUsers}
+              currentId={user._id}
+              setCurrentChat={setCurrentChat}
+            />
+          </div>
+        </div>
+
     </div>
   );
 };

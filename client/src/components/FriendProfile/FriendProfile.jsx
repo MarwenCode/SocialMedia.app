@@ -8,6 +8,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { MdGroups } from "react-icons/md";
 import LeftHome from "../../components/leftHome/LeftHome";
 import { Link, useLocation } from "react-router-dom";
+import { FcLike } from "react-icons/fc";
 import Reactions from "../../components/reactions/Reactions";
 import Share from "../../components/share/Share";
 import axios from "axios";
@@ -26,6 +27,7 @@ import "./friendprofile.scss";
 // };
 
 const FriendProfile = () => {
+
   const [friendProfile, setFriendProfile] = useState([]);
   const [followers, setFollowers] = useState("");
   const [followings, setFollowings] = useState("");
@@ -201,7 +203,13 @@ const FriendProfile = () => {
 
   const likeHandler = () => {
     try {
-      // axios.put("/post/" + post._id + "/like", { userId: user._id });
+      axios.put(
+        "https://social-media-app-vp1y.onrender.com/api/post/" +
+        // post._id +
+   
+          "/like",
+        { userId: currentUser._id }
+      );
     } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
@@ -216,8 +224,10 @@ const FriendProfile = () => {
       <div className="leftSide">
         <ul className="sidebarList">
           <li className="sidebarListItem">
-            <BsChatSquareText className="sidebarIcon" />
-            <span className="sidebarListItemText">Chats</span>
+          <Link to="/chat" className='link'>
+          <BsChatSquareText className="sidebarIcon" />
+          <span className="sidebarListItemText">Chats</span>
+          </Link>
           </li>
           <li className="sidebarListItem">
             <FcVideoCall className="sidebarIcon" />
@@ -228,11 +238,11 @@ const FriendProfile = () => {
             <span className="sidebarListItemText">Groups</span>
           </li>
         </ul>
-        <div className="informations">
+        {/* <div className="informations">
           <li className="list">Age</li>
           <li className="list">City</li>
           <li className="list">Occupation</li>
-        </div>
+        </div> */}
         {/* <div className="follow" onClick={() => setFollowed((prev) => !prev)}>
           <button className="followBtn">
             {followed ? "Follow" : "UnFollow"}
@@ -299,7 +309,7 @@ const FriendProfile = () => {
                 </div>
                 <div className="postBottom">
                   <div className="postBottomLeft">
-                    <img
+                    {/* <img
                       className="likeIcon"
                       src="./images/like.png"
                       onClick={likeHandler}
@@ -308,7 +318,8 @@ const FriendProfile = () => {
                       className="likeIcon"
                       src="./images/heart.png"
                       onClick={likeHandler}
-                    />
+                    /> */}
+                    <FcLike className="likeIcon" onClick={likeHandler} />
 
                     <span className="postLikeCounter">like it {like} </span>
                   </div>

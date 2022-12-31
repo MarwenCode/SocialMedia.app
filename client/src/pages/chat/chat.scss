@@ -10,7 +10,7 @@
   overflow-y: hidden;
 
   .chatMenu {
-    flex: 5;
+    flex: 2;
     .chatMenuWrapper {
       .chatMenuInput {
         width: 30%;
@@ -21,7 +21,7 @@
   }
 
   .chatBox {
-    flex: 7;
+    flex: 5;
    
 
     .chatBoxWrapper {
@@ -86,5 +86,9 @@
         }
       }
     }
+  }
+
+  .chatOnline{
+    flex:2
   }
 }

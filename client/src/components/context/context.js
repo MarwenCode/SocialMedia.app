@@ -17,6 +17,7 @@ export const AppProvider = ({children}) => {
     const [state, dispatch] = useReducer(reducer, initialState)
     const [modalOpen, setModalOpen] = useState(false);
     const [posts, setPosts] = useState([]);
+    const [users, setUsers] = useState([]);
     // const [theme, setTheme]= useState("light");
 
     // const toggleTheme = () => {
@@ -46,6 +47,27 @@ export const AppProvider = ({children}) => {
     console.log(posts)
 
 
+    //fetch all users 
+    useEffect(() => {
+        const getUsers = async () => {
+          try {
+            // const usersList = await axios.get("/user");
+            const usersList = await axios.get(
+              "https://social-media-app-vp1y.onrender.com/api/user"
+            );
+            console.log(usersList);
+            setUsers(usersList.data);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+    
+        getUsers();
+      }, []);
+
+      console.log(users);
+
+
 
 
     return(
@@ -55,7 +77,8 @@ export const AppProvider = ({children}) => {
             error: state.error,
             dispatch,
             modalOpen, setModalOpen,
-            posts,setPosts
+            posts,setPosts,
+            users
            
 
         }}        

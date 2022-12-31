@@ -11,6 +11,7 @@ import axios from "axios";
 import { AppContext } from "../context/context";
 import "./post.scss";
 import { useEffect } from "react";
+import FriendProfile from "../FriendProfile/FriendProfile";
 
 
 const Post = ({ post }) => {
@@ -217,7 +218,7 @@ const Post = ({ post }) => {
             <span
               className="editPost"
               onClick={() => setDescriptionMode((prev) => !prev)}>
-              {" "}
+             
               <PencilSimple />
             </span>
 
@@ -279,7 +280,8 @@ const Post = ({ post }) => {
           </div>
           <div className="comment">
             {post.comments.map((comment, index) => (
-              <div className="commentText" key={index}>
+              <>
+                <div className="commentText" key={index}>
                 {user._id === comment.userId && editModeComment ? (
                   <>
                     <textarea
@@ -333,6 +335,11 @@ const Post = ({ post }) => {
                   </>
                 )}
               </div>
+              
+              
+              
+              </>
+            
             ))}
 
             {!editModeComment && (
@@ -368,6 +375,7 @@ const Post = ({ post }) => {
           </div>
         </div>
       </div>
+     
     </div>
   );
 };

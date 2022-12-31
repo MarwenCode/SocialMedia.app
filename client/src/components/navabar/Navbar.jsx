@@ -9,7 +9,8 @@ import { useNavigate } from "react-router-dom";
 import NavbarModal from "./NavbarModal";
 
 const Navbar = () => {
-  const { modalOpen, setModalOpen, user, posts } = useContext(AppContext);
+  const { modalOpen, setModalOpen, user, posts, users } =
+    useContext(AppContext);
   const publicFolder = "https://social-media-app-vp1y.onrender.com/api/images/";
   const [post, setPost] = useState([]);
   const Navigate = useNavigate();
@@ -65,27 +66,31 @@ const Navbar = () => {
           <div className="searchSection">
             {searchActive && (
               <div className="search">
-                {posts
-                  .filter((post) => {
+                {users
+                  .filter((user) => {
                     if (searchTerm == "") {
                       return;
                     } else if (
-                      post.desc.toLowerCase().includes(searchTerm.toLowerCase())
+                      user.username
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase())
                     ) {
-                      return post;
+                      return user;
                     }
                   })
-                  .map((post, key) => {
+                  .map((user, key) => {
                     return (
                       <div className="searchTerm" key={key}>
-                        <Link to={`/post/${post._id}`} className="link">
-                          <p
-                            className="searchTitle"
-                            onClick={handleClickSearchTerm}>
-                            {post.desc}
-                          </p>
-                          {/* <p className="searchTitle" >{post.title} </p> */}
-                        </Link>
+                        <p
+                          className="searchTitle"
+                          onClick={handleClickSearchTerm}>
+                          <Link
+                            className="link"
+                            to={`/profile/friend/${user._id}`}>
+                            <span className="name">{user.username}</span>
+                          </Link>
+                        </p>
+                        {/* <p className="searchTitle" >{post.title} </p> */}
                       </div>
                     );
                   })}

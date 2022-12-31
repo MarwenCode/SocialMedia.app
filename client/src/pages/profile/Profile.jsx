@@ -165,11 +165,8 @@ const Profile = () => {
               <div className="suggestions">
                 <img
                   className="image"
-                  src={
-                    user.profilePicture
-                    // ? image + user.profilePicture
-                    // : "/images/noAvatar.png"
-                  }
+                  src={user.profilePicture ?  user.profilePicture : "/images/noAvatar.png"  } 
+                
                 />
 
                 <Link className="link" to={`/profile/friend/${user._id}`}>
