@@ -138,7 +138,7 @@ const Profile = () => {
         </div>
         {showModal && <Modal />}
 
-        <div className="reactions">
+        <div className="postsUpdate">
           <Reactions />
         </div>
       </div>

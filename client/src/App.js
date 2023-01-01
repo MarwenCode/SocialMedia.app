@@ -24,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={user ? <Home /> : <Login /> } />
         <Route path="/login" element={user ? <Home /> : <Login /> } />
+        {/* <Route path="/login" element={ <Login /> } /> */}
         <Route path="/chat" element={user ? <Chat /> : <Login /> } />
         <Route path="/register" element={user ? <Login /> : <Register />} />
         <Route path="/profile/:id" element={<Profile />} />

@@ -8,12 +8,14 @@ import { FaTrashAlt, FaRegCommentAlt } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { AppContext } from "../../components/context/context";
 import "./home.scss";
-
+import { Spinner } from "phosphor-react";
+import { RiLoaderFill } from "react-icons/ri";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
-  
+  const [loading, setLoading] = useState(false);
+
   const { user } = useContext(AppContext);
   // const [comment, setComment] =useState([])
 
@@ -22,11 +24,15 @@ const Home = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       // const res = await axios.get("/post");
-      const res = await axios.get("https://social-media-app-vp1y.onrender.com/api/post");
+      const res = await axios.get(
+        "https://social-media-app-vp1y.onrender.com/api/post"
+      );
       console.log(res);
-      setPosts( res.data.sort((p1, p2) => {
-        return new Date(p2.createdAt) - new Date(p1.createdAt);
-      }));
+      setPosts(
+        res.data.sort((p1, p2) => {
+          return new Date(p2.createdAt) - new Date(p1.createdAt);
+        })
+      );
     };
 
     fetchPosts();
@@ -79,8 +85,7 @@ const Home = () => {
   // console.log(comments)
 
   // console.log(comments)
-  console.log(user)
-
+  console.log(user);
 
   return (
     <div className="home">
@@ -90,15 +95,13 @@ const Home = () => {
       <div className="center">
         <Share />
 
-        <Posts posts={posts}  />
+        <Posts posts={posts} />
       </div>
       <div className="left">
         <LeftHome />
       </div>
-  
     </div>
   );
 };
 
 export default Home;
-
