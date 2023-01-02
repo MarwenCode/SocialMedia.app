@@ -68,7 +68,7 @@ const Navbar = () => {
               <div className="search">
                 {users
                   .filter((user) => {
-                    if (searchTerm == "") {
+                    if (searchTerm === "") {
                       return;
                     } else if (
                       user.username
@@ -101,7 +101,7 @@ const Navbar = () => {
               <input
                 className="inputSearch"
                 type="text"
-                placeholder="search for a post..."
+                placeholder="search for a profile..."
                 onChange={(e) => setSearchTerm(e.target.value)}
                 // onClick={() => setSearchActive(true)}
                 onClick={() => setSearchActive((prev) => !prev)}

@@ -219,6 +219,45 @@ const FriendProfile = () => {
   //   localStorage.setItem("follow", JSON.stringify(followed));
   // }, [followed]);
 
+
+  //add comment
+
+
+  // const addComment = (e) => {
+  //   e.preventDefault();
+  //   const newComment = {
+  //     // commenterId: user.commenterId,
+  //     userId: currentUser._id,
+  //     username: currentUser.username,
+  //     text: comments,
+  //   };
+
+  //   try {
+  //     // const res = axios.post(`/comments/${post._id}`, newComment);
+  //     const res = axios.post(
+  //       `https://social-media-app-vp1y.onrender.com/api/comments/${post._id}`,
+  //       newComment
+  //     );
+
+  //     setComments(res.data);
+
+  //     console.log("test");
+  //     console.log(res);
+
+  //     console.log(res.data);
+
+  //     window.location.replace("/");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   addComment();
+  // };
+
+
+
+console.log(posts);
+
+
   return (
     <div className="profile">
       <div className="leftSide">
@@ -333,20 +372,32 @@ const FriendProfile = () => {
                         <div className="editDeleteComment"></div>
                       </div>
                     ))}
-                    {/* <div className="iconRespond">
-                      <img className="likeIcon" src="./images/like.png" />
+                    <div className="iconRespond">
+                 
+                      {/* <img className="likeIcon" src="./images/like.png" /> */}
+                      <Link to={`/commentsfriendprofile/${post._id}`} className="link" >
                       <FaRegCommentAlt
                         className="respond"
-                        onClick={() => setCommentMode((prev) => !prev)}
-                      />
-                    </div> */}
-                    {/* {commentMode && (
+                        // onClick={() => setCommentMode((prev) => !prev)}
+                        
+                      />     <span> add a comment</span>
+                     
+                      </Link>
+                    
+                       {/* <button
+                    className="addComment"
+                    // onClick={(e) => addComment(e)}>reply</button>
+                    onClick={(e) => addComment(e)}>
+                    reply
+                  </button> */}
+                    </div>
+                    {commentMode && (
                       <textarea
                         className="respondInput"
                         value={comments}
                         onChange={(e) => setComments(e.target.value)}
                       />
-                    )} */}
+                    )}
                   </div>
                 </div>
               </div>

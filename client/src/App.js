@@ -11,6 +11,7 @@ import FriendProfile from "./components/FriendProfile/FriendProfile";
 import "./app.scss"
 import EditPost from "./components/editPost/EditPost";
 import Chat from "./pages/chat/Chat";
+import CommentsFriendProfile from "./components/commentsFriendprofile/CommentsFriendProfile";
 
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/post/:id" element={<EditPost />} />
         <Route path="/profile/friend/:id" element={<FriendProfile />} />
+        <Route path="/commentsfriendprofile/:id" element={<CommentsFriendProfile />} />
       </Routes>
     </div>
   </Router>

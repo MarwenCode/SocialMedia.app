@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext,useEffect, useState, useRef } from "react";
 import { FaTrashAlt, FaRegCommentAlt, FaEdit } from "react-icons/fa";
 import { GiConfirmed } from "react-icons/gi";
 import { MdDeleteForever } from "react-icons/md";
@@ -10,7 +10,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../context/context";
 import "./post.scss";
-import { useEffect } from "react";
+
 import FriendProfile from "../FriendProfile/FriendProfile";
 
 

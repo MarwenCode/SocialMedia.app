@@ -11,6 +11,7 @@ import { AppContext } from "../../components/context/context";
 import Post from "../../components/post/Post";
 import Modal from "../../components/modal/Modal";
 import "./profile.scss";
+import FollowList from "../../components/followList/FollowList";
 
 const Profile = () => {
   const { user, dispatch } = useContext(AppContext);
@@ -140,6 +141,9 @@ const Profile = () => {
 
         <div className="postsUpdate">
           <Reactions />
+        </div>
+        <div className="followList">
+          <FollowList />
         </div>
       </div>
       <div className="center">
