@@ -1,4 +1,4 @@
-import React, { useContext,useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { FaTrashAlt, FaRegCommentAlt, FaEdit } from "react-icons/fa";
 import { GiConfirmed } from "react-icons/gi";
 import { MdDeleteForever } from "react-icons/md";
@@ -12,7 +12,6 @@ import { AppContext } from "../context/context";
 import "./post.scss";
 
 import FriendProfile from "../FriendProfile/FriendProfile";
-
 
 const Post = ({ post }) => {
   const { user } = useContext(AppContext);
@@ -146,7 +145,7 @@ const Post = ({ post }) => {
   };
 
   //edit a comment
-  const [singleComment, setSingleComment] = useState([]);
+
   const [editComment, setEditComment] = useState("");
   const [editModeComment, setEditModeComment] = useState(false);
 
@@ -168,7 +167,6 @@ const Post = ({ post }) => {
   //edit post description
   const [descriptionMode, setDescriptionMode] = useState(false);
   const [descriptionUpdate, setDescriptionUpdate] = useState("");
-  // const [desc, setDesc] = useState(post.desc)
 
   const handleEditDescription = async (postId) => {
     try {
@@ -189,26 +187,6 @@ const Post = ({ post }) => {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img
-            // className="postProfileImg"
-            // src={
-            //   user.profilePicture
-            //     ? image + user.profilePicture
-            //     : "/images/noAvatar.png"
-            // }
-            // alt=""
-            />
-
-            {/* <img
-            className="postImg"
-            src={
-              user.profilePicture
-                ? image + user.profilePicture
-                :  "/images/noAvatar.png"
-            }
-            alt=""
-          /> */}
-
             <span className="postUsername">{post.username}</span>
 
             <span className="postDate">
@@ -218,11 +196,8 @@ const Post = ({ post }) => {
             <span
               className="editPost"
               onClick={() => setDescriptionMode((prev) => !prev)}>
-             
               <PencilSimple />
             </span>
-
-            {/* </Link> */}
           </div>
           <div className="postTopRight">{/* <MoreVert /> */}</div>
         </div>
@@ -243,34 +218,11 @@ const Post = ({ post }) => {
             <span className="postText"> {post.desc} </span>
           )}
 
-          {/* <img className="postImg" src="./images/image2.jpeg" /> */}
           <img className="postImg" src={image + post.img} alt="" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            {/* <img
-              className="likeIcon"
-              src="./images/like.png"
-              onClick={likeHandler}
-            /> */}
             <FcLike className="likeIcon" onClick={likeHandler} />
-            {/* <AiOutlineDislike className="likeIcon" onClick={likeHandler} /> */}
-            {/* <img
-              className="likeIcon"
-              src="./images/heart.png"
-              onClick={likeHandler}
-            /> */}
-              {/* {video && (
-                <div>
-                  <iframe
-                    width="560"
-                    height="315"
-                    src={video}
-                    frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-                </div>
-              )} */}
 
             <span className="postLikeCounter">like it {like} </span>
 
@@ -282,72 +234,58 @@ const Post = ({ post }) => {
             {post.comments.map((comment, index) => (
               <>
                 <div className="commentText" key={index}>
-                {user._id === comment.userId && editModeComment ? (
-                  <>
-                    <textarea
-                      className="commentInput"
-                      type="text"
-                      defaultValue={comment.text}
-                      onChange={(e) => setEditComment(e.target.value)}
-                    />
+                  {user._id === comment.userId && editModeComment ? (
+                    <>
+                      <textarea
+                        className="commentInput"
+                        type="text"
+                        defaultValue={comment.text}
+                        onChange={(e) => setEditComment(e.target.value)}
+                      />
 
-                    <button
-                      className="updateCommentBtn"
-                      onClick={() => handleEdit(comment._id)}>
-                      update
-                    </button>
-                  </>
-                ) : (
-                  <p className="text">
-                    
-                    {comment.text}
-                    <span>
-                      <span className="timeAgo">
-                        
-                        {new Date(comment.createdAt).toDateString()}
+                      <button
+                        className="updateCommentBtn"
+                        onClick={() => handleEdit(comment._id)}>
+                        update
+                      </button>
+                    </>
+                  ) : (
+                    <p className="text">
+                      {comment.text}
+                      <span>
+                        <span className="timeAgo">
+                          {new Date(comment.createdAt).toDateString()}
+                        </span>
                       </span>
-                    </span>
-                  </p>
-                )}
+                    </p>
+                  )}
                   <span className="commentUser">{comment.username}</span>
-                {user._id === comment.userId && !editModeComment  && (
-                  <>
-                   
-
-                    <div className="editDeleteComment">
-                      {/* <GiConfirmed className="edit"
-                      //  onClick={handleEdit}
+                  {user._id === comment.userId && !editModeComment && (
+                    <>
+                      <div className="editDeleteComment">
+                     
+                        <FaEdit
+                          className="edit"
+                          onClick={() => setEditModeComment((prev) => !prev)}
+                          // onClick={() => handleEditComment(comment._id)}
+                          // onClick={showEditComment}
+                        />
                        
-                       /> */}
-                      <FaEdit
-                        className="edit"
-                        onClick={() => setEditModeComment((prev) => !prev)}
-                        // onClick={() => handleEditComment(comment._id)}
-                        // onClick={showEditComment}
-                      />
-                      {/* <FaEdit className="edit"  onClick={handleEdit} /> */}
 
-                      <MdDeleteForever
-                        onClick={() => deleteComment(comment._id)}
-                        className="delete"
-                      />
-                    </div>
-                  </>
-                )}
-              </div>
-              
-              
-              
+                        <MdDeleteForever
+                          onClick={() => deleteComment(comment._id)}
+                          className="delete"
+                        />
+                      </div>
+                    </>
+                  )}
+                </div>
               </>
-            
             ))}
 
             {!editModeComment && (
               <div className="iconRespond">
-                {/* <img className="likeIcon" src="./images/like.png" /> */}
-                {/* <span className="likeIcon">
-                  <BiLike />
-                </span> */}
+             
 
                 <FaRegCommentAlt
                   className="respond"
@@ -375,10 +313,8 @@ const Post = ({ post }) => {
           </div>
         </div>
       </div>
-     
     </div>
   );
 };
 
 export default Post;
- 

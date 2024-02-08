@@ -47,6 +47,7 @@ const Modal = () => {
       }
       setShowModal(!showModal);
       window.location.replace(`/profile/${user._id}`);
+      // window.location.replace("/");
       
       updateProfile();
     } catch (error) {
